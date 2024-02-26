@@ -1,0 +1,9 @@
+*.vs
+*.vcxproj
+*.users
+*.user
+*.filters
+*.pdb
+*.idb
+lksrc/x64
+x64/Debug
