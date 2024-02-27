@@ -36,7 +36,6 @@ private:
 	ResourceManager& operator=(const ResourceManager& other);
 	std::unordered_map<std::string, SDL_Surface*> mSurfaces;
 	std::unordered_multimap<std::pair<std::string, int>, TTF_Font*, hash_pair> mFonts;
-	//std::vector<StructFont> mFonts;
 
 public:
 	static ResourceManager& GetInstance();

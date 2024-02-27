@@ -17,14 +17,15 @@
 #include "AnimatedSprite.h"
 #include "Engine.h"
 #include "Font.h"
+#include "GameEntity.h"
 
 //global variables
 Engine* engine; 
-TexturedRectangle* object1;
+//TexturedRectangle* object1;
+GameEntity* entity;
+GameEntity* entity2;
 //TexturedRectangle* object2;
 Font* font;
-Font* font2;
-Font* font3;
 
 void HandleEvents() {
 	SDL_Event event;
@@ -60,12 +61,12 @@ void HandleEvents() {
 				std::cout << "x: " << engine->GetMouseX() << std::endl;
 				std::cout << "y: " << engine->GetMouseY() << std::endl;
 
-				//if (object2->IsColliding(*object1)) {
-					//std::cout << "colliding" << std::endl;
-				//}
-				//else {
-					//std::cout << "not colliding." << std::endl;
-				//}
+				if (entity->IsColliding(*entity2)) {
+					std::cout << "colliding" << std::endl;
+				}
+				else {
+					std::cout << "not colliding." << std::endl;
+				}
 
 			}
 			else if (event.button.button == SDL_BUTTON_LEFT && event.button.clicks == 2) {
@@ -104,16 +105,17 @@ void HandleEvents() {
 void HandleRendering() {
 
 	//Draw here
-	object1->Draw(90, 90, 10, 10, 8);
+//	object1->Draw(90, 90, 10, 10, 8);
 	font->Draw(80, 50);
-	font2->Draw(100, 250);
-	font3->Draw(150, 170);
 
 	font->Render(engine->GetRender());
-	font2->Render(engine->GetRender());
-	font3->Render(engine->GetRender());
 
-	object1->Render(engine->GetRender());
+	entity->SetPosition(engine->GetMouseX(), engine->GetMouseY());
+	entity2->SetDimensions(64, 64);
+
+	//object1->Render(engine->GetRender());
+	entity->Render();
+	entity2->Render();
 
 }
 
@@ -124,26 +126,22 @@ int main(int argc, char* argv[]) {
 	engine->SetEventCallback(HandleEvents);
 	engine->SetRenderCallback(HandleRendering);
 
-	object1 = new TexturedRectangle(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
+	//object1 = new TexturedRectangle(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
+	entity = new GameEntity(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
+	entity2 = new GameEntity(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
 	//object2 = new TexturedRectangle(*object1);
 	font = new Font(engine->GetRender(), "assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
 	font->SetColor(engine->GetRender(), { 255, 0, 255 });
 	*font = "hello world! lksrc.";
 
-	font2 = new Font(*font);
-	font2->SetColor(engine->GetRender(), { 0, 255, 255 });
-	font2->SetSize(65);
-	font3 = new Font(engine->GetRender(), "assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
-	*font3 = "lksrc!";
-
 	engine->RunLoop();
 
 	delete engine;
-	delete object1;
+	//delete object1;
 	//delete object2;
 	delete font;
-	delete font2;
-	delete font3;
+	delete entity;
+	delete entity2;
 
 	return 0;
 }
