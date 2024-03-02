@@ -31,11 +31,6 @@ TexturedRectangle::~TexturedRectangle() {
 	SDL_DestroyTexture(mTexture);
 }
 
-SDL_bool TexturedRectangle::IsColliding(const TexturedRectangle& otherRect) {
-	const SDL_Rect temp = otherRect.GetRectangle();
-	return SDL_HasIntersection(&mRect, &temp);
-}
-
 void TexturedRectangle::Update() {
 
 }

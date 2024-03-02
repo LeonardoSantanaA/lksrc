@@ -16,7 +16,7 @@ public:
 	void SetText(const std::string& str);
 	void SetSize(int size);
 	void SetColor(SDL_Renderer* render, const SDL_Color& color);
-	void Draw(int x, int y);
+	void SetPosition(int x, int y);
 	void Render(SDL_Renderer* render);
 
 private:

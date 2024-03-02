@@ -13,12 +13,15 @@ public:
 	TexturedRectangle& operator=(const TexturedRectangle& other);
 	~TexturedRectangle();
 
-	SDL_bool IsColliding(const TexturedRectangle& otherRect);
-
 	void Update();
 	void SetPosition(int x, int y);
 	void SetDimensions(int w, int h, float scale = SCALE);
 	void Render(SDL_Renderer* renderer);
+
+	inline int GetX() const { return mRect.x; }
+	inline int GetY() const { return mRect.y; }
+	inline int GetWidth() const { return mRect.w; }
+	inline int GetHeight() const { return mRect.h; }
 
 private:
 	inline SDL_Rect GetRectangle() const { return mRect; }

@@ -1,44 +1,37 @@
 #pragma once
 
 #include "TexturedRectangle.h"
+//#include "Collider2D.h"
 
+class Collider2D;
 
 class GameEntity {
 public:
-	GameEntity() {
-		mSprite = nullptr;
-		mRender = nullptr;
-	}
+	GameEntity();
 
-	GameEntity(SDL_Renderer* render, const std::string& spritepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE) {
-		mRender = render;
-		mSprite = new TexturedRectangle(mRender, spritepath, format, scale);
-	}
+	GameEntity(SDL_Renderer* render, const std::string& spritepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 
-	~GameEntity() {
-		delete mSprite;
-	}
+	~GameEntity();
 
-	void Update() {
+	void Update();
 
-	}
-
-	void Render() {
-		if (mSprite) {
-			mSprite->Render(mRender);
-		}
-	}
+	void Render();
 
 	inline TexturedRectangle& GetTexturedRectangle() const{
-		if (mSprite) {
-			return *mSprite;
+		if (mnoptrSprite) {
+			return *mnoptrSprite;
 		}
 		std::cout << "trying access a null pointer. GetTexturedRectangle()." << std::endl;
 	}
 
+	inline int GetX() { if (mnoptrSprite) { return mnoptrSprite->GetX(); } std::cout << "getx() from nullptr sprite." << std::endl;  return -1; }
+	inline int GetY() { if (mnoptrSprite) { return mnoptrSprite->GetY(); } std::cout << "gety() from nullptr sprite." << std::endl;  return -1; }
+	inline int GetWidth() { if (mnoptrSprite) { return mnoptrSprite->GetWidth(); } std::cout << "getwidth() from nullptr sprite." << std::endl;  return -1; }
+	inline int GetHeight() { if (mnoptrSprite) { return mnoptrSprite->GetHeight(); } std::cout << "getwidth() from nullptr sprite." << std::endl;  return -1; }
+
 	inline void SetPosition(int x, int y) {
-		if (mSprite) {
-			mSprite->SetPosition(x, y);
+		if (mnoptrSprite) {
+			mnoptrSprite->SetPosition(x, y);
 		}
 		else {
 			std::cout << "trying access a null pointer. SetPosition()." << std::endl;
@@ -47,19 +40,23 @@ public:
 	}
 
 	inline void SetDimensions(int w, int h, float scale = SCALE) {
-		if (mSprite) {
-			mSprite->SetDimensions(w, h, scale);
+		if (mnoptrSprite) {
+			mnoptrSprite->SetDimensions(w, h, scale);
 		}
 		else {
 			std::cout << "trying access a null pointer. SetPosition()." << std::endl;
 		}
 	}
 
-	inline SDL_bool IsColliding(const GameEntity& otherEntity) {
-		return this->GetTexturedRectangle().IsColliding(otherEntity.GetTexturedRectangle());
-	}
+	inline Collider2D& GetCollider2D() { return *mnoptrCollider; }
+	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
+
+	SDL_bool IsColliding(const GameEntity& otherEntity);
 
 private:
-	TexturedRectangle* mSprite;
+	TexturedRectangle* mnoptrSprite;
+	Collider2D* mnoptrCollider;
 	SDL_Renderer* mRender;
+
+	bool mDebugMode;
 };

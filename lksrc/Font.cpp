@@ -71,7 +71,7 @@ void Font::SetColor(SDL_Renderer* render, const SDL_Color& color) {
 	SDL_FreeSurface(ttfSurface);
 }
 
-void Font::Draw(int x, int y) {
+void Font::SetPosition(int x, int y) {
 	int w, h;
 	TTF_SizeUTF8(mFont, mStr.c_str(), &w, &h);
 

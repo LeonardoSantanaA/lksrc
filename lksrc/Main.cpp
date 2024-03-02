@@ -102,16 +102,45 @@ void HandleEvents() {
 
 }
 
-void HandleRendering() {
+void HandleUpdate() {
+	font->SetPosition(80, 50);
 
+	entity->Update();
+	entity2->Update();
+
+	static int posX = 0;
+	static int posY = 0;
+	static bool up = 0;
+	static bool right = 0;
+
+	entity2->SetPosition(posX, posY);
+	entity->SetPosition(engine->GetMouseX(), engine->GetMouseY());
+
+	if (up) {
+		posY--;
+	}
+	else {
+		posY++;
+	}
+
+	if (right) {
+		posX++;
+	}
+	else {
+		posX--;
+	}
+
+	entity2->GetX() > engine->GetWidth() ? right = false : NULL;
+	entity2->GetX() < 0 ? right = true : NULL;
+	entity2->GetY() < 0 ? up = false : NULL;
+	entity2->GetX() > engine->GetHeight() ? up = true : NULL;
+}
+
+void HandleRendering() {
 	//Draw here
-//	object1->Draw(90, 90, 10, 10, 8);
-	font->Draw(80, 50);
+
 
 	font->Render(engine->GetRender());
-
-	entity->SetPosition(engine->GetMouseX(), engine->GetMouseY());
-	entity2->SetDimensions(64, 64);
 
 	//object1->Render(engine->GetRender());
 	entity->Render();
@@ -124,12 +153,18 @@ int main(int argc, char* argv[]) {
 
 	engine = new Engine(title);
 	engine->SetEventCallback(HandleEvents);
+	engine->SetUpdateCallback(HandleUpdate);
 	engine->SetRenderCallback(HandleRendering);
+	engine->SetMaxFrameRate(60);
 
 	//object1 = new TexturedRectangle(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
 	entity = new GameEntity(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
+	entity->SetDebugMode(true);
+
 	entity2 = new GameEntity(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
-	//object2 = new TexturedRectangle(*object1);
+	entity2->SetDimensions(64, 64, 1.5f);
+	entity2->SetDebugMode(true);
+
 	font = new Font(engine->GetRender(), "assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
 	font->SetColor(engine->GetRender(), { 255, 0, 255 });
 	*font = "hello world! lksrc.";
