@@ -18,7 +18,7 @@ TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& 
 
 TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& filepath, int redColorKey, int greenColorKey, int blueColorKey, const ImageFormat& format, float scale) {
 	SDL_Surface* retrieveSurface = ResourceManager::GetInstance().GetSurface(filepath, format);
-	SDL_SetColorKey(retrieveSurface, SDL_FALSE, SDL_MapRGB(retrieveSurface->format, redColorKey, greenColorKey, blueColorKey));
+	SDL_SetColorKey(retrieveSurface, SDL_TRUE, SDL_MapRGB(retrieveSurface->format, redColorKey, greenColorKey, blueColorKey));
 
 	mTexture = SDL_CreateTextureFromSurface(renderer, retrieveSurface); //copy the surface to texture
 	if (mTexture == NULL) {

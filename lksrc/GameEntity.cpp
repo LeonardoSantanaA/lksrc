@@ -4,27 +4,39 @@
 GameEntity::GameEntity() {
 	mnoptrSprite = nullptr;
 	mRender = nullptr;
-	mnoptrCollider = nullptr;
 	mDebugMode = false;
 }
 
+GameEntity::GameEntity(SDL_Renderer* render) {
+	mnoptrSprite = nullptr;
+	mRender = render;
+	mDebugMode = false;
+}
+
+/*
 GameEntity::GameEntity(SDL_Renderer* render, const std::string& spritepath, const ImageFormat& format, float scale) {
 	mDebugMode = false;
 	mRender = render;
-	mnoptrSprite = new TexturedRectangle(mRender, spritepath, format, scale);
+
 	mnoptrCollider = new Collider2D();
 }
+*/
 
 GameEntity::~GameEntity() {
-	delete mnoptrSprite;
-	delete mnoptrCollider;
+	if (mnoptrSprite) {
+		delete mnoptrSprite;
+	}
+
+	for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
+		if (mnoptrColliders[i]) {
+			delete mnoptrColliders[i];
+		}
+	}
+	
 }
 
 void GameEntity::Update() {
-	if (mnoptrCollider) {
-		mnoptrCollider->SetAbsolutePosition(this->GetX(), this->GetY());
-		mnoptrCollider->SetAbsoluteDimensions(this->GetWidth(), this->GetHeight());
-	}
+	
 
 }
 
@@ -32,18 +44,42 @@ void GameEntity::Render() {
 	if (mnoptrSprite) {
 		mnoptrSprite->Render(mRender);
 	}
-	if (mnoptrCollider && mDebugMode) {
-		SDL_SetRenderDrawColor(mRender, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderDrawRect(mRender, &mnoptrCollider->GetColliderBoundingBox());
+
+
+	if (mDebugMode) {
+	for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
+		if (mnoptrColliders[i]) {
+			SDL_SetRenderDrawColor(mRender, 255, 255, 255, SDL_ALPHA_OPAQUE);
+			SDL_RenderDrawRect(mRender, mnoptrColliders[i]->GetColliderBoundingBox());
+		}
+		else {
+			std::cout << "trying access nullptr mnoptrcolliders, index: " << i << " gameentity::render()." << std::endl;
+		}
+	
+
+	}
+		
 	}
 
 }
 
-SDL_bool GameEntity::IsColliding(const GameEntity& otherEntity) {
-	if (mnoptrCollider) {
-		return this->GetCollider2D().IsColliding(*otherEntity.mnoptrCollider);
+void GameEntity::AddTexturedRectangleComponent(std::string filepath, const ImageFormat& format, float scale) {
+	mnoptrSprite = new TexturedRectangle(mRender, filepath, format, scale);
+}
+
+void GameEntity::AddTexturedRectangleComponent(std::string filepath, int red, int green, int blue, const ImageFormat& format, float scale) {
+	mnoptrSprite = new TexturedRectangle(mRender, filepath, red, green, blue, format, scale);
+}
+
+void GameEntity::AddCollider2D() {
+	mnoptrColliders.push_back(new Collider2D());
+}
+
+SDL_bool GameEntity::IsColliding(const GameEntity& otherEntity, size_t index, size_t otherIndex) {
+	if (mnoptrColliders[index] && otherEntity.mnoptrColliders[otherIndex]) {
+		return this->GetCollider2D(index)->IsColliding(*otherEntity.mnoptrColliders[otherIndex]);
 	}
-	std::cout << "mcollider nullptr. gameentity::IsColliding()." << std::endl;
+	std::cout << "mcollider nullptr, index: " << index << " other index: " << otherIndex << ". gameentity::iscolliding()." << std::endl;
 	return SDL_FALSE;
 }
 

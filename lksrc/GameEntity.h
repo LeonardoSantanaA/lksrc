@@ -1,15 +1,17 @@
 #pragma once
 
 #include "TexturedRectangle.h"
-//#include "Collider2D.h"
+#include <vector>
+#include "Collider2D.h"
 
-class Collider2D;
+//class Collider2D;
 
 class GameEntity {
 public:
 	GameEntity();
+	GameEntity(SDL_Renderer* render);
 
-	GameEntity(SDL_Renderer* render, const std::string& spritepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
+	//GameEntity(SDL_Renderer* render, const std::string& spritepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 
 	~GameEntity();
 
@@ -17,11 +19,25 @@ public:
 
 	void Render();
 
+	void AddTexturedRectangleComponent(std::string filepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
+	void AddTexturedRectangleComponent(std::string filepath, int red, int green, int blue, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
+
+	void AddCollider2D();
+
+	SDL_bool IsColliding(const GameEntity& otherEntity, size_t index, size_t otherIndex);
+
 	inline TexturedRectangle& GetTexturedRectangle() const{
 		if (mnoptrSprite) {
 			return *mnoptrSprite;
 		}
-		std::cout << "trying access a null pointer. GetTexturedRectangle()." << std::endl;
+		std::cout << "trying access a nullptr. gameentity::gettexturedrectangle()." << std::endl;
+	}
+
+	inline Collider2D* GetCollider2D(size_t index) {
+		if (mnoptrColliders[index]) {
+			return mnoptrColliders[index];
+		}
+		std::cout << "trying access a nullptr. gameentity::getcollider2D(), index: " << index << std::endl;
 	}
 
 	inline int GetX() { if (mnoptrSprite) { return mnoptrSprite->GetX(); } std::cout << "getx() from nullptr sprite." << std::endl;  return -1; }
@@ -48,14 +64,12 @@ public:
 		}
 	}
 
-	inline Collider2D& GetCollider2D() { return *mnoptrCollider; }
 	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
 
-	SDL_bool IsColliding(const GameEntity& otherEntity);
 
 private:
 	TexturedRectangle* mnoptrSprite;
-	Collider2D* mnoptrCollider;
+	std::vector<Collider2D*> mnoptrColliders;
 	SDL_Renderer* mRender;
 
 	bool mDebugMode;

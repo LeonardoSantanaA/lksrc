@@ -8,8 +8,8 @@ public:
 	~Collider2D();
 
 	SDL_bool IsColliding(const Collider2D& collider);
-	void SetAbsolutePosition(int x, int y);
-	void SetAbsoluteDimensions(int w, int h);
+	void SetPosition(int x, int y);
+	void SetDimensions(int w, int h);
 
 	void Update() {
 		//not really needed...yet
@@ -19,9 +19,9 @@ public:
 
 	}
 
-	inline SDL_Rect& GetColliderBoundingBox() { return mColliderRect; }
+	inline SDL_Rect* GetColliderBoundingBox() { return mnoptrColliderRect; }
 
 private:
-	SDL_Rect mColliderRect;
+	SDL_Rect* mnoptrColliderRect;
 
 };

@@ -1,27 +1,43 @@
 #include "Collider2D.h"
 
-Collider2D::Collider2D(): mColliderRect() {
-	mColliderRect.x = 0;
-	mColliderRect.y = 0;
-	mColliderRect.w = 0;
-	mColliderRect.h = 0;
+#include <iostream>
+
+Collider2D::Collider2D(): mnoptrColliderRect() {
+	mnoptrColliderRect = new SDL_Rect;
+	mnoptrColliderRect->x = 0;
+	mnoptrColliderRect->y = 0;
+	mnoptrColliderRect->w = 0;
+	mnoptrColliderRect->h = 0;
 }
 
 Collider2D::~Collider2D() {
-
+	if (mnoptrColliderRect) {
+		delete mnoptrColliderRect;
+	}
 }
 
 SDL_bool Collider2D::IsColliding(const Collider2D& collider) {
-	const SDL_Rect temp = collider.mColliderRect;
-	return SDL_HasIntersection(&mColliderRect, &temp);
+	if (mnoptrColliderRect) {
+		const SDL_Rect* temp = collider.mnoptrColliderRect;
+		if (temp) {
+			return SDL_HasIntersection(mnoptrColliderRect, temp);
+		}
+		else {
+			std::cout << "trying intersects with a nullptr. collider2d::iscolliding()." << std::endl;
+		}
+	}
+	else {
+		std::cout << "trying access nullptr mnoptrcolliderrect. collider2d::iscolliuding()." << std::endl;
+	}
+	return SDL_FALSE;
 }
 
-void Collider2D::SetAbsolutePosition(int x, int y) {
-	mColliderRect.x = x;
-	mColliderRect.y = y;
+void Collider2D::SetPosition(int x, int y) {
+	mnoptrColliderRect->x = x;
+	mnoptrColliderRect->y = y;
 }
 
-void Collider2D::SetAbsoluteDimensions(int w, int h) {
-	mColliderRect.w = w;
-	mColliderRect.h = h;
+void Collider2D::SetDimensions(int w, int h) {
+	mnoptrColliderRect->w = w;
+	mnoptrColliderRect->h = h;
 }
