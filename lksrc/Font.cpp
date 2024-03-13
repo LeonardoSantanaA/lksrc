@@ -41,7 +41,7 @@ Font& Font::operator=(const std::string& str) {
 	SDL_Surface* ttfSurface = TTF_RenderText_Solid(mFont, mStr.c_str(), mColor);
 	mTexture = SDL_CreateTextureFromSurface(mRender, ttfSurface);
 	if (mTexture == NULL) {
-		std::cout << "Couldnt create texture from surface. (operator = font)" << SDL_GetError() << std::endl;
+		std::cout << "Couldnt create texture from surface. font::operator =" << SDL_GetError() << std::endl;
 	}
 	SDL_FreeSurface(ttfSurface);
 	return *this;
@@ -52,7 +52,7 @@ void Font::SetText(const std::string& str) {
 	SDL_Surface* ttfSurface = TTF_RenderText_Solid(mFont, mStr.c_str(), mColor);
 	mTexture = SDL_CreateTextureFromSurface(mRender, ttfSurface);
 	if (mTexture == NULL) {
-		std::cout << "Couldnt create texture from surface. (settext() font)" << SDL_GetError() << std::endl;
+		std::cout << "Couldnt create texture from surface. font::settext()/" << SDL_GetError() << std::endl;
 	}
 	SDL_FreeSurface(ttfSurface);
 }
@@ -66,7 +66,7 @@ void Font::SetColor(SDL_Renderer* render, const SDL_Color& color) {
 	SDL_Surface* ttfSurface = TTF_RenderText_Solid(mFont, mStr.c_str(), mColor);
 	mTexture = SDL_CreateTextureFromSurface(render, ttfSurface);
 	if (mTexture == NULL) {
-		std::cout << "Couldnt create texture from surface. (setcolor() font)" << SDL_GetError() << std::endl;
+		std::cout << "Couldnt create texture from surface. font::setcolor()." << SDL_GetError() << std::endl;
 	}
 	SDL_FreeSurface(ttfSurface);
 }
@@ -82,5 +82,5 @@ void Font::SetPosition(int x, int y) {
 }
 
 void Font::Render(SDL_Renderer* render) {
-	SDL_RenderCopy(render, mTexture, NULL, &mRect);
+	SDL_RenderCopy(mRender, mTexture, NULL, &mRect);
 }

@@ -10,8 +10,8 @@
 Engine::Engine(const char* windowName): mMouseX(0), mMouseY(0), mWidth(800), mHeight(600), mMaxFrameRate(60) {
 	mGameIsRunning = true;
 
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		std::cerr << "SDL coult nod be initialized: " << SDL_GetError() << std::endl;
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
+		std::cerr << "SDL could not be initialized: " << SDL_GetError() << std::endl;
 	}
 	else {
 		std::cout << "SDL initialized." << std::endl;

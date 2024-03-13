@@ -45,20 +45,16 @@ void GameEntity::Render() {
 		mnoptrSprite->Render(mRender);
 	}
 
-
 	if (mDebugMode) {
-	for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
-		if (mnoptrColliders[i]) {
-			SDL_SetRenderDrawColor(mRender, 255, 255, 255, SDL_ALPHA_OPAQUE);
-			SDL_RenderDrawRect(mRender, mnoptrColliders[i]->GetColliderBoundingBox());
-		}
-		else {
-			std::cout << "trying access nullptr mnoptrcolliders, index: " << i << " gameentity::render()." << std::endl;
-		}
-	
-
-	}
-		
+		for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
+			if (mnoptrColliders[i]) {
+				SDL_SetRenderDrawColor(mRender, 255, 255, 255, SDL_ALPHA_OPAQUE);
+				SDL_RenderDrawRect(mRender, mnoptrColliders[i]->GetColliderBoundingBox());
+			}
+			else {
+				std::cout << "trying access nullptr mnoptrcolliders, index: " << i << " gameentity::render()." << std::endl;
+			}
+		}	
 	}
 
 }
@@ -83,3 +79,41 @@ SDL_bool GameEntity::IsColliding(const GameEntity& otherEntity, size_t index, si
 	return SDL_FALSE;
 }
 
+void GameEntity::SetPosition(int x, int y, int indexCollision, int xoffsetCollision, int yoffsetCollision) {
+	if (mnoptrSprite) {
+		mnoptrSprite->SetPosition(x, y);
+	}
+	else {
+		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
+	}
+
+	for (int i = 0; i < mnoptrColliders.size(); ++i) {
+		if (mnoptrColliders[i]) {
+			mnoptrColliders[i]->SetPosition(x, y);
+			if (i == indexCollision) {
+				mnoptrColliders[i]->SetPosition(x + xoffsetCollision, y + yoffsetCollision);
+			}
+		}
+		else {
+			std::cout << "trying access a null pointer. gameentity::setposition(). index " << i << "." << std::endl;
+		}
+	}
+}
+
+void GameEntity::SetDimensions(int w, int h, float scale) {
+	if (mnoptrSprite) {
+		mnoptrSprite->SetDimensions(w, h, scale);
+	}
+	else {
+		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
+	}
+
+	for (int i = 0; i < mnoptrColliders.size(); ++i) {
+		if (mnoptrColliders[i]) {
+			mnoptrColliders[i]->SetDimensions(w, h);
+		}
+		else {
+			std::cout << "trying access a null pointer. gameentity::setdimensions(). index " << i << "." << std::endl;
+		}
+	}
+}
