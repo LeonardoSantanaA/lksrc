@@ -68,6 +68,7 @@ void HandleEvents() {
 
 				if (entity->IsColliding(*entity2, 0, 0)) {
 					std::cout << "colliding hitbox 1" << std::endl;
+					*font = "hey! colliding.";
 				}
 				else {
 					std::cout << "not colliding hitbox 1." << std::endl;
@@ -99,6 +100,7 @@ void HandleEvents() {
 			if (event.key.keysym.sym == SDLK_ESCAPE) {
 				std::cout << "esc!" << std::endl;
 				sound->PlaySound(s);
+				*font = "hey! you pressed the esc button. are you sure? my name is leo";
 			}
 
 			std::cout << "key pressed - key scancode: " << SDL_GetScancodeName(event.key.keysym.scancode) << std::endl;

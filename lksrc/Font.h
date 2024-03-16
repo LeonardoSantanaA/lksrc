@@ -27,4 +27,7 @@ private:
 	SDL_Color mColor;
 	std::string mStr;
 	std::string mFilepath;
+	int mWidth, mHeight;
+
+	void UpdateDimensions();
 };

@@ -44,6 +44,7 @@ Font& Font::operator=(const std::string& str) {
 		std::cout << "Couldnt create texture from surface. font::operator =" << SDL_GetError() << std::endl;
 	}
 	SDL_FreeSurface(ttfSurface);
+	UpdateDimensions();
 	return *this;
 }
 
@@ -55,6 +56,7 @@ void Font::SetText(const std::string& str) {
 		std::cout << "Couldnt create texture from surface. font::settext()/" << SDL_GetError() << std::endl;
 	}
 	SDL_FreeSurface(ttfSurface);
+	UpdateDimensions();
 }
 
 void Font::SetSize(int size) {
@@ -77,10 +79,19 @@ void Font::SetPosition(int x, int y) {
 
 	mRect.x = x;
 	mRect.y = y;
-	mRect.w = w;
-	mRect.h = h;
+	
+	UpdateDimensions();
 }
 
 void Font::Render(SDL_Renderer* render) {
 	SDL_RenderCopy(mRender, mTexture, NULL, &mRect);
+}
+
+void Font::UpdateDimensions() {
+	int w, h;
+	TTF_SizeUTF8(mFont, mStr.c_str(), &w, &h);
+	mWidth = w;
+	mHeight = h;
+	mRect.w = mWidth;
+	mRect.h = mHeight;
 }
