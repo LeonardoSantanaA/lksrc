@@ -21,6 +21,14 @@ ResourceManager::ResourceManager() {
 	else {
 		std::cout << "sdl_ttf initialized." << std::endl;
 	}
+	
+	Mix_Init(MIX_INIT_MP3);
+	SDL_Init(SDL_INIT_AUDIO);
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+		std::cout << "SDL_Mixer couldn't init. Error: " << Mix_GetError() << std::endl;
+	}
+	std::cout << "sdl_mixer started." << std::endl;
+	
 }
 
 ResourceManager::ResourceManager(const ResourceManager& other)
@@ -41,8 +49,15 @@ void ResourceManager::ClearResourceManager() {
 	for (auto& pair: mSurfaces) {
 		SDL_FreeSurface(pair.second);	
 	}
+	for (auto& pair : mSounds) {
+		Mix_FreeChunk(pair.second);
+	}
+	for (auto& pair : mMusics) {
+		Mix_FreeMusic(pair.second);
+	}
 	IMG_Quit();
 	TTF_Quit();
+	Mix_Quit();
 }
 
 
@@ -123,4 +138,33 @@ TTF_Font* ResourceManager::GetFont(const std::string& filepath, int size) {
 	}
 }
 
+Mix_Chunk* ResourceManager::GetSound(const std::string& filepath) {
+	auto search = mSounds.find(filepath);
+	if (search != mSounds.end()) {
+		return mSounds[filepath];
+	}
+	else {
+		std::cout << "new sound loaded." << std::endl;
+		Mix_Chunk* newSound;
+		newSound = Mix_LoadWAV(filepath.c_str());
+		mSounds.insert(std::make_pair(filepath, newSound));
+		return mSounds[filepath];
+	}
+	return nullptr;
+}
+
+Mix_Music* ResourceManager::GetMusic(const std::string& filepath) {
+	auto search = mMusics.find(filepath);
+	if (search != mMusics.end()) {
+		return mMusics[filepath];
+	}
+	else {
+		std::cout << "new music loaded." << std::endl;
+		Mix_Music* newMusic;
+		newMusic = Mix_LoadMUS(filepath.c_str());
+		mMusics.insert(std::make_pair(filepath, newMusic));
+		return mMusics[filepath];
+	}
+	return nullptr;
+}
 

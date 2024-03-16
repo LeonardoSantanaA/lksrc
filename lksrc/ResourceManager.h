@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -36,6 +37,8 @@ private:
 	ResourceManager& operator=(const ResourceManager& other);
 	std::unordered_map<std::string, SDL_Surface*> mSurfaces;
 	std::unordered_multimap<std::pair<std::string, int>, TTF_Font*, hash_pair> mFonts;
+	std::unordered_map<std::string, Mix_Chunk*> mSounds;
+	std::unordered_map<std::string, Mix_Music*> mMusics;
 
 public:
 	static ResourceManager& GetInstance();
@@ -43,4 +46,6 @@ public:
 
 	SDL_Surface* GetSurface(const std::string& filepath, const ImageFormat& format = FORMAT_BMP);
 	TTF_Font* GetFont(const std::string& filepath, int size);
+	Mix_Chunk* GetSound(const std::string& filepath);
+	Mix_Music* GetMusic(const std::string& filepath);
 };

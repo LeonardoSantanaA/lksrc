@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <functional>
+#include <set>
 
 class Engine {
 public:
@@ -25,8 +26,12 @@ public:
 
 	inline void SetWidth(int w) { mWidth = w; }
 	inline void SetHeight(int h) { mHeight = h; }
-	inline int GetWidth() { return mWidth; }
-	inline int GetHeight() { return mHeight; }
+	inline int GetWidth() const { return mWidth; }
+	inline int GetHeight() const { return mHeight; }
+
+	SDL_TimerID AddTimer(uint32_t delay, SDL_TimerCallback callback, void* param);
+	SDL_TimerID AddRecurringTimer(uint32_t interval, SDL_TimerCallback callback, void* param);
+	void RemoveTimer(SDL_TimerID id);
 
 private:
 	SDL_Window* mWindow = nullptr;
@@ -39,5 +44,7 @@ private:
 	int mMouseX, mMouseY;
 	int mWidth, mHeight;
 	int mMaxFrameRate;
+
+	std::set<SDL_TimerID> mTimers;
 
 };

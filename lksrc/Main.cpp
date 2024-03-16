@@ -18,6 +18,7 @@
 #include "Engine.h"
 #include "Font.h"
 #include "GameEntity.h"
+#include "Sound.h"
 
 //global variables
 Engine* engine; 
@@ -26,6 +27,10 @@ GameEntity* entity;
 GameEntity* entity2;
 //TexturedRectangle* object2;
 Font* font;
+
+Sound* sound;
+int s;
+int m;
 
 void HandleEvents() {
 	SDL_Event event;
@@ -93,6 +98,7 @@ void HandleEvents() {
 		case SDL_KEYDOWN:
 			if (event.key.keysym.sym == SDLK_ESCAPE) {
 				std::cout << "esc!" << std::endl;
+				sound->PlaySound(s);
 			}
 
 			std::cout << "key pressed - key scancode: " << SDL_GetScancodeName(event.key.keysym.scancode) << std::endl;
@@ -153,24 +159,29 @@ void HandleUpdate() {
 
 void HandleRendering() {
 	//Draw here
-
-
 	font->Render(engine->GetRender());
 
 	//object1->Render(engine->GetRender());
 	entity->Render();
 	entity2->Render();
+}
 
+uint32_t mCallbackFun(uint32_t interval, void* param) {
+	std::cout << "callbackfunction: " << (const char*)param << std::endl;
+	return 0;
 }
 
 int main(int argc, char* argv[]) {
 	const char* title = "lksrc - prototype";
 
 	engine = new Engine(title);
+	engine->SetMaxFrameRate(60);
 	engine->SetEventCallback(HandleEvents);
 	engine->SetUpdateCallback(HandleUpdate);
 	engine->SetRenderCallback(HandleRendering);
-	engine->SetMaxFrameRate(60);
+
+	engine->AddTimer(2000, mCallbackFun, (char*)"timer called");
+	
 
 	//object1 = new TexturedRectangle(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
 	entity = new GameEntity(engine->GetRender());
@@ -195,12 +206,20 @@ int main(int argc, char* argv[]) {
 	*font = "hello world! lksrc.";
 	font->SetPosition(80, 50);
 
+	sound = new Sound();
+	s = sound->LoadSound("assets/snd/GameOver.wav");
+	m = sound->LoadMusic("assets/snd/TetrisSoundTrack.wav");
+	sound->PlayMusic(m);
+
+
 	engine->RunLoop();
 
 	delete engine;
 	delete font;
 	delete entity;
 	delete entity2;
+	delete sound;
+
 
 	return 0;
 }

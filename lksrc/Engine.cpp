@@ -6,11 +6,12 @@
 #include <SDL.h>
 #include <functional>
 #include "ResourceManager.h"
+#include "Sound.h"
 
 Engine::Engine(const char* windowName): mMouseX(0), mMouseY(0), mWidth(800), mHeight(600), mMaxFrameRate(60) {
 	mGameIsRunning = true;
 
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
+	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		std::cerr << "SDL could not be initialized: " << SDL_GetError() << std::endl;
 	}
 	else {
@@ -23,11 +24,13 @@ Engine::Engine(const char* windowName): mMouseX(0), mMouseY(0), mWidth(800), mHe
 	}
 
 	mRender = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
+
 }
 
 Engine::~Engine() {
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRender);
+	Sound::QuitMixer();
 	ResourceManager::GetInstance().ClearResourceManager();
 	SDL_Quit();
 }
@@ -77,4 +80,44 @@ void Engine::RunLoop() {
 
 SDL_Renderer* Engine::GetRender() const {
 	return mRender;
+}
+
+SDL_TimerID Engine::AddTimer(uint32_t delay, SDL_TimerCallback callback, void* param) {
+	SDL_TimerID id = SDL_AddTimer(delay, callback, param);
+	mTimers.insert(id);
+	return id;
+}
+
+SDL_TimerID Engine::AddRecurringTimer(uint32_t interval, SDL_TimerCallback callback, void* param) {
+	SDL_TimerID id = SDL_AddTimer(interval, callback, param);
+	mTimers.insert(id);
+
+	SDL_Event event;
+	SDL_UserEvent userevent;
+
+	userevent.type = SDL_USEREVENT;
+	userevent.code = 0;
+	userevent.data1 = NULL;
+	userevent.data2 = NULL;
+
+	event.type = SDL_USEREVENT;
+	event.user = userevent;
+
+	SDL_PushEvent(&event);
+	return (interval);
+}
+
+void Engine::RemoveTimer(SDL_TimerID id) {
+	auto search = mTimers.find(id);
+	if (search != mTimers.end()) {
+		if (SDL_RemoveTimer(id) == SDL_FALSE) {
+			std::cout << "timer not removed." << std::endl;
+		}
+		else {
+			mTimers.erase(id);
+		}
+	}
+	else {
+		std::cout << "timer not found.engine::removetimer()." << std::endl;
+	}
 }
