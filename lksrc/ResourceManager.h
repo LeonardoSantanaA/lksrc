@@ -33,6 +33,7 @@ struct hash_pair {
 class ResourceManager {
 private:
 	ResourceManager();
+	static ResourceManager* mInstance;
 	ResourceManager(const ResourceManager& other);
 	ResourceManager& operator=(const ResourceManager& other);
 	std::unordered_map<std::string, SDL_Surface*> mSurfaces;
@@ -41,7 +42,7 @@ private:
 	std::unordered_map<std::string, Mix_Music*> mMusics;
 
 public:
-	static ResourceManager& GetInstance();
+	static ResourceManager* GetInstance();
 	void ClearResourceManager();
 
 	SDL_Surface* GetSurface(const std::string& filepath, const ImageFormat& format = FORMAT_BMP);

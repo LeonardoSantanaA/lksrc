@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
+ResourceManager* ResourceManager::mInstance = nullptr;
 
 ResourceManager::ResourceManager() {
 	int flags = IMG_INIT_JPG | IMG_INIT_PNG;
@@ -45,6 +46,7 @@ ResourceManager& ResourceManager::operator=(const ResourceManager& other) {
 	return *this;
 }
 
+
 void ResourceManager::ClearResourceManager() {
 	for (auto& pair: mSurfaces) {
 		SDL_FreeSurface(pair.second);	
@@ -58,12 +60,18 @@ void ResourceManager::ClearResourceManager() {
 	IMG_Quit();
 	TTF_Quit();
 	Mix_Quit();
+	if (mInstance) {
+		delete mInstance;
+		mInstance = nullptr;
+	}
 }
 
 
-ResourceManager& ResourceManager::GetInstance() {
-	static ResourceManager sInstance;
-	return sInstance;
+ResourceManager* ResourceManager::GetInstance() {
+	if (!mInstance) {
+		mInstance = new ResourceManager();
+	}
+	return mInstance;
 }
 
 

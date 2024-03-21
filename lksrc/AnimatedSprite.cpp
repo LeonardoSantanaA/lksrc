@@ -2,7 +2,7 @@
 
 
 AnimatedSprite::AnimatedSprite(SDL_Renderer* render, const std::string& filepath, const ImageFormat& format): mDst(), mSrc() {
-	SDL_Surface* retrieveSurface = ResourceManager::GetInstance().GetSurface(filepath, format);
+	SDL_Surface* retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
 	mTexture = SDL_CreateTextureFromSurface(render, retrieveSurface);
 	SDL_FreeSurface(retrieveSurface);
 }

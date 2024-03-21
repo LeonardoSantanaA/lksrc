@@ -7,7 +7,7 @@
 class GameEntity {
 public:
 	GameEntity();
-	GameEntity(SDL_Renderer* render);
+	GameEntity(const std::string& name, SDL_Renderer* render);
 
 	//GameEntity(SDL_Renderer* render, const std::string& spritepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 
@@ -50,6 +50,7 @@ public:
 
 
 private:
+	std::string mName;
 	TexturedRectangle* mnoptrSprite;
 	std::vector<Collider2D*> mnoptrColliders;
 	SDL_Renderer* mRender;

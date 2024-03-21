@@ -7,20 +7,12 @@ GameEntity::GameEntity() {
 	mDebugMode = false;
 }
 
-GameEntity::GameEntity(SDL_Renderer* render) {
+GameEntity::GameEntity(const std::string& name, SDL_Renderer* render) {
+	mName = name;
 	mnoptrSprite = nullptr;
 	mRender = render;
 	mDebugMode = false;
 }
-
-/*
-GameEntity::GameEntity(SDL_Renderer* render, const std::string& spritepath, const ImageFormat& format, float scale) {
-	mDebugMode = false;
-	mRender = render;
-
-	mnoptrCollider = new Collider2D();
-}
-*/
 
 GameEntity::~GameEntity() {
 	if (mnoptrSprite) {

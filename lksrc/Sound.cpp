@@ -11,7 +11,7 @@ std::vector<Mix_Music*> Sound::musics;
 
 int Sound::LoadMusic(std::string filepath) {
 	Mix_Music* m = nullptr;
-	m = ResourceManager::GetInstance().GetMusic(filepath);
+	m = ResourceManager::GetInstance()->GetMusic(filepath);
 	if (m == nullptr) {
 		std::cout << "Failed to load music. Error: " << Mix_GetError() << std::endl;
 	}
@@ -23,7 +23,7 @@ int Sound::LoadMusic(std::string filepath) {
 int Sound::LoadSound(std::string filepath) {
 	Mix_Chunk* s = nullptr;
 
-	s = ResourceManager::GetInstance().GetSound(filepath);
+	s = ResourceManager::GetInstance()->GetSound(filepath);
 
 	if (s == nullptr) {
 		std::cout << "Failed to load sound. Error: " << Mix_GetError() << std::endl;

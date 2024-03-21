@@ -5,6 +5,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <functional>
+#include "EntityManager.h"
 #include "ResourceManager.h"
 #include "Sound.h"
 
@@ -31,7 +32,8 @@ Engine::~Engine() {
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRender);
 	Sound::QuitMixer();
-	ResourceManager::GetInstance().ClearResourceManager();
+	ResourceManager::GetInstance()->ClearResourceManager();
+	EntityManager::GetInstance()->DeleteAllEntities();
 	SDL_Quit();
 }
 
@@ -62,8 +64,6 @@ void Engine::RunLoop() {
 		SDL_RenderClear(mRender);
 		//Draw
 		mRenderCallback();
-
-		//TODO: set a frame cap
 
 		//show what draw
 		SDL_RenderPresent(mRender);

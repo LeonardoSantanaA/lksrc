@@ -4,7 +4,7 @@
 
 Font::Font(SDL_Renderer* render, const std::string& filepath, const std::string& str, int size, const SDL_Color& color)
 	: mStr(str), mRect(), mFilepath(filepath), mRender(render), mColor(color) {
-	mFont = ResourceManager::GetInstance().GetFont(filepath, size);
+	mFont = ResourceManager::GetInstance()->GetFont(filepath, size);
 	SDL_Surface* ttfSurface = TTF_RenderText_Solid(mFont, mStr.c_str(), color);
 	mTexture = SDL_CreateTextureFromSurface(render, ttfSurface);
 	if (mTexture == NULL) {
@@ -60,7 +60,7 @@ void Font::SetText(const std::string& str) {
 }
 
 void Font::SetSize(int size) {
-	mFont = ResourceManager::GetInstance().GetFont(mFilepath, size);
+	mFont = ResourceManager::GetInstance()->GetFont(mFilepath, size);
 }
 
 void Font::SetColor(SDL_Renderer* render, const SDL_Color& color) {
