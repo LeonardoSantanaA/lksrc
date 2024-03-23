@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -28,11 +29,8 @@ Engine* engine;
 //TexturedRectangle* object2;
 Font* font;
 
-Sound* sound;
 int s;
 int m;
-
-
 
 void HandleEvents() {
 	SDL_Event event;
@@ -108,7 +106,7 @@ void HandleEvents() {
 		case SDL_KEYDOWN:
 			if (event.key.keysym.sym == SDLK_ESCAPE) {
 				std::cout << "esc!" << std::endl;
-				sound->PlaySound(s);
+				Sound::GetInstance()->PlaySound(s);
 				*font = "hey! you pressed the esc button. are you sure? my name is leo";
 			}
 
@@ -216,17 +214,15 @@ int main(int argc, char* argv[]) {
 	*font = "hello world! lksrc.";
 	font->SetPosition(80, 50);
 
-	sound = new Sound();
-	s = sound->LoadSound("assets/snd/GameOver.wav");
-	m = sound->LoadMusic("assets/snd/TetrisSoundTrack.wav");
-	sound->PlayMusic(m);
+	s = Sound::GetInstance()->LoadSound("assets/snd/GameOver.wav");
+	m = Sound::GetInstance()->LoadMusic("assets/snd/TetrisSoundTrack.wav");
+	Sound::GetInstance()->PlayMusic(m);
 
 
 	engine->RunLoop();
 
 	
 	delete font;
-	delete sound;
 	delete engine;
 
 

@@ -34,6 +34,7 @@ Engine::~Engine() {
 	Sound::QuitMixer();
 	ResourceManager::GetInstance()->ClearResourceManager();
 	EntityManager::GetInstance()->DeleteAllEntities();
+	Sound::GetInstance()->ClearSound();
 	SDL_Quit();
 }
 

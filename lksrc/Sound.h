@@ -6,16 +6,19 @@
 
 class Sound {
 private:
-	static int mVolumeSound;
-	static int mVolumeMusic;
+	Sound():mVolumeMusic(20), mVolumeSound(30) {};
+	static Sound* mInstance;
+
+	int mVolumeSound;
+	int mVolumeMusic;
 	std::string mPath;
 
-	static std::vector<Mix_Chunk*> sounds;
-	static std::vector<Mix_Music*> musics;
+	std::vector<Mix_Chunk*> sounds;
+	std::vector<Mix_Music*> musics;
 
 public:
-	//Sound(std::string path, bool music = false);
-	Sound() {};
+	static Sound* GetInstance();
+	void ClearSound();
 
 	int LoadMusic(std::string filepath);
 	int LoadSound(std::string filepath);

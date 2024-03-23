@@ -3,11 +3,22 @@
 #include "Sound.h"
 #include "ResourceManager.h"
 
-int Sound::mVolumeSound = 148;
-int Sound::mVolumeMusic = 50;
-std::vector<Mix_Chunk*> Sound::sounds;
-std::vector<Mix_Music*> Sound::musics;
+Sound* Sound::mInstance = nullptr;
 
+Sound* Sound::GetInstance() {
+	if (!mInstance) {
+		mInstance = new Sound;
+	}
+
+	return mInstance;
+}
+
+void Sound::ClearSound() {
+	if (mInstance) {
+		delete mInstance;
+		mInstance = nullptr;
+	}
+}
 
 int Sound::LoadMusic(std::string filepath) {
 	Mix_Music* m = nullptr;
@@ -34,11 +45,11 @@ int Sound::LoadSound(std::string filepath) {
 }
 
 void Sound::SetVolumeSound(int v) {
-	mVolumeSound = (MIX_MAX_VOLUME * v) / 100;
+	Sound::GetInstance()->mVolumeSound = (MIX_MAX_VOLUME * v) / 100;
 }
 
 void Sound::SetVolumeMusic(int v) {
-	mVolumeMusic = (MIX_MAX_VOLUME * v) / 100;
+	Sound::GetInstance()->mVolumeMusic = (MIX_MAX_VOLUME * v) / 100;
 }
 
 
@@ -60,8 +71,8 @@ int Sound::PlaySound(int s) {
 
 
 void Sound::QuitMixer() {
-	sounds.clear();
-	musics.clear();
+	Sound::GetInstance()->sounds.clear();
+	Sound::GetInstance()->musics.clear();
 	
 }
 
