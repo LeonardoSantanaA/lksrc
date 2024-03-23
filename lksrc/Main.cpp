@@ -189,10 +189,12 @@ int main(int argc, char* argv[]) {
 	//create entities
 	EntityManager::GetInstance()->CreateEntity("entity1", engine->GetRender());
 	EntityManager::GetInstance()->CreateEntity("entity2", engine->GetRender());
+	EntityManager::GetInstance()->CreateEntity("background", engine->GetRender(), Layer::BACKGROUND);
 
 	//get entities
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
 	std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
+	std::shared_ptr<GameEntity> background = EntityManager::GetInstance()->GetEntityRef("background");
 
 	//object1 = new TexturedRectangle(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
 	entity->AddTexturedRectangleComponent("assets/images/megaman.bmp");
@@ -203,11 +205,14 @@ int main(int argc, char* argv[]) {
 	entity->GetCollider2D(1)->SetDimensions(100, 100);
 	entity->SetDebugMode(true);
 	
-
-	entity2->AddTexturedRectangleComponent("assets/images/tom.bmp", 0xFF, 0x00, 0xFF);
+	entity2->AddTexturedRectangleComponent("assets/images/mario.png", 0xFF, 0x00, 0xFF, FORMAT_PNG);
 	entity2->AddCollider2D();
 	entity2->SetDimensions(64, 64, 2);
 	entity2->SetDebugMode(true);
+
+	background->AddTexturedRectangleComponent("assets/images/tom.bmp", FORMAT_BMP);
+	background->SetDimensions(engine->GetWidth(), engine->GetHeight(), 1);
+	background->SetPosition(0, 0);
 
 	font = new Font(engine->GetRender(), "assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
 	font->SetColor(engine->GetRender(), { 255, 0, 255 });

@@ -3,13 +3,13 @@
 #include "TexturedRectangle.h"
 #include <vector>
 #include "Collider2D.h"
+#include "Layer.h"
 
 class GameEntity {
 public:
 	GameEntity();
 	GameEntity(const std::string& name, SDL_Renderer* render);
 
-	//GameEntity(SDL_Renderer* render, const std::string& spritepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 
 	~GameEntity();
 
@@ -47,10 +47,13 @@ public:
 	inline int GetWidth() { if (mnoptrSprite) { return mnoptrSprite->GetWidth(); } std::cout << "getwidth() from nullptr sprite." << std::endl;  return -1; }
 	inline int GetHeight() { if (mnoptrSprite) { return mnoptrSprite->GetHeight(); } std::cout << "getwidth() from nullptr sprite." << std::endl;  return -1; }
 	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
+	inline Layer GetLayer() const { return mLayer; }
+	inline void SetLayer(Layer layer) { mLayer = layer; }
 
 
 private:
 	std::string mName;
+	Layer mLayer;
 	TexturedRectangle* mnoptrSprite;
 	std::vector<Collider2D*> mnoptrColliders;
 	SDL_Renderer* mRender;
