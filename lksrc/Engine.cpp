@@ -58,8 +58,11 @@ void Engine::RunLoop() {
 
 		uint32_t buttons;
 		buttons = SDL_GetMouseState(&mMouseX, &mMouseY);
+
 		mEventCallback();
 		mUpdateCallback();
+
+		SDL_Event event;
 
 		SDL_SetRenderDrawColor(mRender, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(mRender);

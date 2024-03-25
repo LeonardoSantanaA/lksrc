@@ -44,6 +44,21 @@ void HandleEvents() {
 			engine->CloseEngine();
 			break;
 
+		case SDL_WINDOWEVENT:
+			if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+				int width = 0, height = 0;
+				SDL_GetWindowSize(engine->GetWindow(), &width, &height);
+				engine->SetWidth(width);
+				engine->SetHeight(height);
+				SDL_RenderSetLogicalSize(engine->GetRender(), engine->GetWidth(), engine->GetHeight());
+
+				std::shared_ptr<GameEntity> background = EntityManager::GetInstance()->GetEntityRef("background");
+
+				background->SetDimensions(engine->GetWidth(), engine->GetHeight(), 1);
+				
+			}
+			break;
+
 		case SDL_MOUSEWHEEL:
 			if (event.wheel.y > 0) {
 				std::cout << "scroll up." << std::endl;
@@ -166,9 +181,8 @@ void HandleUpdate() {
 
 void HandleRendering() {
 	//Draw here
-	font->Render(engine->GetRender());
-
 	EntityManager::GetInstance()->RenderAllEntities();
+	font->Render(engine->GetRender());
 }
 
 uint32_t mCallbackFun(uint32_t interval, void* param) {
@@ -210,14 +224,15 @@ int main(int argc, char* argv[]) {
 	entity2->SetDimensions(64, 64, 2);
 	entity2->SetDebugMode(true);
 
+	std::cout << "width:" << engine->GetWidth() << std::endl;
 	background->AddTexturedRectangleComponent("assets/images/tom.bmp", FORMAT_BMP);
-	background->SetDimensions(engine->GetWidth(), engine->GetHeight(), 1);
 	background->SetPosition(0, 0);
+	background->SetDimensions(engine->GetWidth(), engine->GetHeight(), 1);
 
 	font = new Font(engine->GetRender(), "assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
 	font->SetColor(engine->GetRender(), { 255, 0, 255 });
 	*font = "hello world! lksrc.";
-	font->SetPosition(80, 50);
+	font->SetPosition(50, 50);
 
 	s = Sound::GetInstance()->LoadSound("assets/snd/GameOver.wav");
 	m = Sound::GetInstance()->LoadMusic("assets/snd/TetrisSoundTrack.wav");
