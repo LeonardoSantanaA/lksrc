@@ -1,0 +1,13 @@
+prefix=C:/Users/lekao/Desktop/tmx/install/zlib
+exec_prefix=C:/Users/lekao/Desktop/tmx/install/zlib
+libdir=C:/Users/lekao/Desktop/tmx/install/zlib/lib
+sharedlibdir=C:/Users/lekao/Desktop/tmx/install/zlib/lib
+includedir=C:/Users/lekao/Desktop/tmx/install/zlib/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.3.1.1
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
