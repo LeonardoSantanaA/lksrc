@@ -2,7 +2,7 @@
 #include <iostream>
 
 TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& filepath, const ImageFormat& format, float scale)
-: mRedColorKey(), mGreenColorKey(), mBlueColorKey(){
+: mRedColorKey(), mGreenColorKey(), mBlueColorKey(), mAngle(0), mDirectionFlip(SDL_FLIP_NONE){
 	SDL_Surface* retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
 	SDL_SetColorKey(retrieveSurface, SDL_FALSE, SDL_MapRGB(retrieveSurface->format, 0xFF, 0xFF, 0xFF));
 
@@ -15,6 +15,9 @@ TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& 
 	mRect.y = 0;
 	mRect.w = static_cast<int>(32 * scale);
 	mRect.h = static_cast<int>(32 * scale);
+
+	mCenterPoint.x = mRect.w / 2;
+	mCenterPoint.y = mRect.h / 2;
 }
 
 TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& filepath, int redColorKey, int greenColorKey, int blueColorKey, const ImageFormat& format, float scale) {
@@ -36,6 +39,9 @@ TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& 
 	mRedColorKey = redColorKey;
 	mGreenColorKey = greenColorKey;
 	mBlueColorKey = blueColorKey;
+
+	mCenterPoint.x = mRect.w / 2;
+	mCenterPoint.y = mRect.h / 2;
 }
 
 void TexturedRectangle::Init() {
@@ -45,7 +51,7 @@ void TexturedRectangle::Init() {
 }
 
 TexturedRectangle::TexturedRectangle(const TexturedRectangle& other)
-	:mRect(other.mRect), mTexture(other.mTexture), mRedColorKey(other.mRedColorKey), mGreenColorKey(other.mGreenColorKey), mBlueColorKey(other.mBlueColorKey) {
+	:mRect(other.mRect), mTexture(other.mTexture), mRedColorKey(other.mRedColorKey), mGreenColorKey(other.mGreenColorKey), mBlueColorKey(other.mBlueColorKey), mAngle(other.mAngle), mCenterPoint(other.mCenterPoint) {
 }
 
 TexturedRectangle& TexturedRectangle::operator=(const TexturedRectangle& other) {
@@ -55,6 +61,8 @@ TexturedRectangle& TexturedRectangle::operator=(const TexturedRectangle& other) 
 		mRedColorKey = other.mRedColorKey;
 		mGreenColorKey = other.mGreenColorKey;
 		mBlueColorKey = other.mBlueColorKey;
+		mAngle = other.mAngle;
+		mCenterPoint = other.mCenterPoint;
 	}
 	return *this;
 }
@@ -79,9 +87,23 @@ void TexturedRectangle::SetDimensions(int w, int h, float scale) {
 
 
 void TexturedRectangle::Render(SDL_Renderer* renderer) {
-	SDL_RenderCopy(renderer, mTexture, NULL, &mRect);
+	SDL_RenderCopyEx(renderer, mTexture, nullptr, &mRect, mAngle, &mCenterPoint, mDirectionFlip);
 }
 
-void TexturedRectangle::SetColorKey(int red, int green, int blue) {
+void TexturedRectangle::FlipImageHorizontal() {
+	if (mDirectionFlip == SDL_FLIP_NONE) {
+		mDirectionFlip = SDL_FLIP_HORIZONTAL;
+	}
+	else {
+		mDirectionFlip = SDL_FLIP_NONE;
+	}
+}
 
+void TexturedRectangle::FlipImageVertical() {
+	if (mDirectionFlip == SDL_FLIP_NONE) {
+		mDirectionFlip = SDL_FLIP_VERTICAL;
+	}
+	else {
+		mDirectionFlip = SDL_FLIP_NONE;
+	}
 }

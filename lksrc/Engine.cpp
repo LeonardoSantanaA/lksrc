@@ -24,7 +24,7 @@ Engine::Engine(const char* windowName): mMouseX(0), mMouseY(0), mWidth(800), mHe
 			std::cerr << "Couldn't create window: " << SDL_GetError() << std::endl;
 	}
 
-	mRender = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
+	mRender = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 }
 

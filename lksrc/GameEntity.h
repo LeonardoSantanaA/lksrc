@@ -27,6 +27,8 @@ public:
 	void SetPosition(int x, int y, int indexCollision = 0, int xoffsetCollision = 0, int yoffsetCollision = 0);
 	void SetDimensions(int w, int h, float scale = SCALE);
 
+	
+
 	inline TexturedRectangle& GetTexturedRectangle() const{
 		if (mnoptrSprite) {
 			return *mnoptrSprite;
@@ -49,6 +51,10 @@ public:
 	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
 	inline Layer GetLayer() const { return mLayer; }
 	inline void SetLayer(Layer layer) { mLayer = layer; }
+	inline void SetAngleRotate(float angle) { mnoptrSprite->SetAngle(angle); mAngle = angle; }
+	inline void SetCenterPointRotate(const SDL_Point& point) { mnoptrSprite->SetCenterPointRotate(point); mCenterPoint = point; }
+	inline void FlipHorizontal() { mnoptrSprite->FlipImageHorizontal(); }
+	inline void FlipVertical() { mnoptrSprite->FlipImageVertical(); }
 
 
 private:
@@ -59,4 +65,6 @@ private:
 	SDL_Renderer* mRender;
 
 	bool mDebugMode;
+	float mAngle;
+	SDL_Point mCenterPoint;
 };

@@ -26,8 +26,12 @@ public:
 	inline int GetY() const { return mRect.y; }
 	inline int GetWidth() const { return mRect.w; }
 	inline int GetHeight() const { return mRect.h; }
+	inline void SetAngle(float angle) { mAngle = angle; }
+	inline void SetCenterPointRotate(SDL_Point point) { mCenterPoint = point; }
 
-	void SetColorKey(int red, int green, int blue);
+	void FlipImageHorizontal();
+	void FlipImageVertical();
+
 
 private:
 	inline SDL_Rect GetRectangle() const { return mRect; }
@@ -38,4 +42,8 @@ private:
 	int mRedColorKey;
 	int mGreenColorKey;
 	int mBlueColorKey;
+
+	float mAngle;
+	SDL_Point mCenterPoint;
+	SDL_RendererFlip mDirectionFlip;
 };

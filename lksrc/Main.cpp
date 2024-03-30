@@ -24,9 +24,6 @@
 
 //global variables
 Engine* engine; 
-//TexturedRectangle* object1;
-
-//TexturedRectangle* object2;
 Font* font;
 
 int s;
@@ -109,6 +106,8 @@ void HandleEvents() {
 			}
 			if (event.button.button == SDL_BUTTON_MIDDLE) {
 				std::cout << "mouse scroll button." << std::endl;
+				std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
+				entity2->FlipHorizontal();
 			}
 			if (event.button.button == SDL_BUTTON_X1) {
 				std::cout << "mouse button x1." << std::endl;
@@ -143,6 +142,7 @@ void HandleUpdate() {
 	static int posY = 0;
 	static bool up = 0;
 	static bool right = 0;
+	static float angle = 0;
 
 	if (entity2) {
 		entity2->GetX() > engine->GetWidth() ? right = false : NULL;
@@ -151,6 +151,8 @@ void HandleUpdate() {
 		entity2->GetX() > engine->GetHeight() ? up = true : NULL;
 	}
 
+	angle++;
+	entity2->SetAngleRotate(angle);
 
 	if (up) {
 		posY--;
