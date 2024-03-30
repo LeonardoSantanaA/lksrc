@@ -62,7 +62,7 @@ void Engine::RunLoop() {
 		mEventCallback();
 		mUpdateCallback();
 
-		SDL_Event event;
+		SDL_Event event{};
 
 		SDL_SetRenderDrawColor(mRender, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(mRender);

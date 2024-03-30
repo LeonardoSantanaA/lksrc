@@ -21,6 +21,7 @@
 #include "GameEntity.h"
 #include "Sound.h"
 #include "EntityManager.h"
+#include "Transform.h"
 
 //global variables
 Engine* engine; 
@@ -240,6 +241,8 @@ int main(int argc, char* argv[]) {
 	m = Sound::GetInstance()->LoadMusic("assets/snd/TetrisSoundTrack.wav");
 	Sound::GetInstance()->PlayMusic(m);
 
+	Transform tf;
+	tf.Log();
 
 	engine->RunLoop();
 

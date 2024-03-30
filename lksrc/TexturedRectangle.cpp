@@ -51,7 +51,7 @@ void TexturedRectangle::Init() {
 }
 
 TexturedRectangle::TexturedRectangle(const TexturedRectangle& other)
-	:mRect(other.mRect), mTexture(other.mTexture), mRedColorKey(other.mRedColorKey), mGreenColorKey(other.mGreenColorKey), mBlueColorKey(other.mBlueColorKey), mAngle(other.mAngle), mCenterPoint(other.mCenterPoint) {
+	:mRect(other.mRect), mTexture(other.mTexture), mRedColorKey(other.mRedColorKey), mGreenColorKey(other.mGreenColorKey), mBlueColorKey(other.mBlueColorKey), mAngle(other.mAngle), mCenterPoint(other.mCenterPoint), mDirectionFlip(other.mDirectionFlip) {
 }
 
 TexturedRectangle& TexturedRectangle::operator=(const TexturedRectangle& other) {

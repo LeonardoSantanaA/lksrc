@@ -28,7 +28,10 @@ public:
 	inline void SetHeight(int h) { mHeight = h; }
 	inline int GetWidth() const { return mWidth; }
 	inline int GetHeight() const { return mHeight; }
-	inline SDL_Window* GetWindow() { if (mWindow) { return mWindow; } }
+	inline SDL_Window* GetWindow() {
+		if (mWindow) { return mWindow; }
+		return nullptr;
+}
 
 	SDL_TimerID AddTimer(uint32_t delay, SDL_TimerCallback callback, void* param);
 	SDL_TimerID AddRecurringTimer(uint32_t interval, SDL_TimerCallback callback, void* param);

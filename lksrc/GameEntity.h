@@ -10,7 +10,6 @@ public:
 	GameEntity();
 	GameEntity(const std::string& name, SDL_Renderer* render);
 
-
 	~GameEntity();
 
 	void Update();
@@ -28,7 +27,6 @@ public:
 	void SetDimensions(int w, int h, float scale = SCALE);
 
 	
-
 	inline TexturedRectangle& GetTexturedRectangle() const{
 		if (mnoptrSprite) {
 			return *mnoptrSprite;

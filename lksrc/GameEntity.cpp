@@ -5,6 +5,9 @@ GameEntity::GameEntity() {
 	mnoptrSprite = nullptr;
 	mRender = nullptr;
 	mDebugMode = false;
+	mLayer = {};
+	mAngle = 0;
+	mCenterPoint = {};
 }
 
 GameEntity::GameEntity(const std::string& name, SDL_Renderer* render) {
@@ -12,6 +15,9 @@ GameEntity::GameEntity(const std::string& name, SDL_Renderer* render) {
 	mnoptrSprite = nullptr;
 	mRender = render;
 	mDebugMode = false;
+	mLayer = {};
+	mAngle = 0;
+	mCenterPoint = {};
 }
 
 GameEntity::~GameEntity() {
