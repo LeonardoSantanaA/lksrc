@@ -80,6 +80,16 @@ void TexturedRectangle::SetPosition(int x, int y) {
 	mRect.y = y;
 }
 
+void TexturedRectangle::SetPosition(const Vec2D& vec) {
+	mRect.x = vec.x;
+	mRect.y = vec.y;
+}
+
+void TexturedRectangle::MovePosition(const Vec2D& vec) {
+	mRect.x += vec.x;
+	mRect.y += vec.y;
+}
+
 void TexturedRectangle::SetDimensions(int w, int h, float scale) {
 	mRect.w = static_cast<int>(w * scale);
 	mRect.h = static_cast<int>(h * scale);

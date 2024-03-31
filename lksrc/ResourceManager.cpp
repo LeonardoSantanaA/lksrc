@@ -48,14 +48,14 @@ ResourceManager& ResourceManager::operator=(const ResourceManager& other) {
 
 
 void ResourceManager::ClearResourceManager() {
-	for (auto& pair: mSurfaces) {
-		SDL_FreeSurface(pair.second);	
-	}
 	for (auto& pair : mSounds) {
 		Mix_FreeChunk(pair.second);
 	}
 	for (auto& pair : mMusics) {
 		Mix_FreeMusic(pair.second);
+	}
+	for (auto& pair : mSurfaces) {
+		SDL_FreeSurface(pair.second);
 	}
 	IMG_Quit();
 	TTF_Quit();

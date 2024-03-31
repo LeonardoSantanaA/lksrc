@@ -27,6 +27,8 @@
 Engine* engine; 
 Font* font;
 
+std::string spriteName;
+
 int s;
 int m;
 
@@ -112,9 +114,19 @@ void HandleEvents() {
 			}
 			if (event.button.button == SDL_BUTTON_X1) {
 				std::cout << "mouse button x1." << std::endl;
+				std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
+				if (entity) {
+					entity->ChangeAnimation("idle");
+				}
+				
 			}
 			if (event.button.button == SDL_BUTTON_X2) {
 				std::cout << "mouse button x2." << std::endl;
+				std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
+				if (entity) {
+					entity->ChangeAnimation("run");
+				}
+				
 			}
 			break;
 
@@ -138,6 +150,8 @@ void HandleUpdate() {
 	//get entities
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
 	std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
+
+	entity->UpdateSpriteSheet();
 
 	static int posX = 0;
 	static int posY = 0;
@@ -186,6 +200,11 @@ void HandleRendering() {
 	//Draw here
 	EntityManager::GetInstance()->RenderAllEntities();
 	font->Render(engine->GetRender());
+	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
+	if (entity) {
+		entity->Render(spriteName, false, 7.0f);
+	}
+	
 }
 
 uint32_t mCallbackFun(uint32_t interval, void* param) {
@@ -214,13 +233,22 @@ int main(int argc, char* argv[]) {
 	std::shared_ptr<GameEntity> background = EntityManager::GetInstance()->GetEntityRef("background");
 
 	//object1 = new TexturedRectangle(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
-	entity->AddTexturedRectangleComponent("assets/images/megaman.bmp");
-	entity->SetDimensions(100, 100, 1);
+	//entity->AddTexturedRectangleComponent("assets/images/megaman.bmp");
+	entity->AddAnimatedSprite("assets/images/spriteSheetPlayer.png", FORMAT_PNG);
+	entity->SetAnimatedSpriteDimensionsInSpriteSheet(32, 32);
+	entity->AddAnimation("idle", 0, 12);
+	entity->AddAnimation("run", 32, 7);
+	entity->ChangeAnimation("idle");
+	
+	entity->SetAnimatedSpriteDimensions(80, 80);
+	//entity->SetDimensions(100, 100, 1);
 	entity->AddCollider2D();
 	entity->AddCollider2D();
 	entity->GetCollider2D(0)->SetDimensions(70, 90);
 	entity->GetCollider2D(1)->SetDimensions(100, 100);
 	entity->SetDebugMode(true);
+	entity->SetAnimationSpeed(40.0f);
+	entity->SetAnimationLoop(true);
 	
 	entity2->AddTexturedRectangleComponent("assets/images/mario.png", 0xFF, 0x00, 0xFF, FORMAT_PNG);
 	entity2->AddCollider2D();
