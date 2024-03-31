@@ -109,8 +109,11 @@ void HandleEvents() {
 			}
 			if (event.button.button == SDL_BUTTON_MIDDLE) {
 				std::cout << "mouse scroll button." << std::endl;
-				std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
-				entity2->FlipHorizontal();
+				std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity1");
+				if (entity2) {
+					entity2->FlipHorizontal();
+				}
+			
 			}
 			if (event.button.button == SDL_BUTTON_X1) {
 				std::cout << "mouse button x1." << std::endl;
@@ -150,8 +153,10 @@ void HandleUpdate() {
 	//get entities
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
 	std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
-
-	entity->UpdateSpriteSheet();
+	if (entity) {
+		entity->UpdateSpriteSheet();
+	}
+	
 
 	static int posX = 0;
 	static int posY = 0;
@@ -200,10 +205,6 @@ void HandleRendering() {
 	//Draw here
 	EntityManager::GetInstance()->RenderAllEntities();
 	font->Render(engine->GetRender());
-	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
-	if (entity) {
-		entity->Render(spriteName, false, 7.0f);
-	}
 	
 }
 
@@ -240,14 +241,13 @@ int main(int argc, char* argv[]) {
 	entity->AddAnimation("run", 32, 7);
 	entity->ChangeAnimation("idle");
 	
-	entity->SetAnimatedSpriteDimensions(80, 80);
-	//entity->SetDimensions(100, 100, 1);
+	entity->SetDimensions(100, 100, 1);
 	entity->AddCollider2D();
 	entity->AddCollider2D();
 	entity->GetCollider2D(0)->SetDimensions(70, 90);
 	entity->GetCollider2D(1)->SetDimensions(100, 100);
 	entity->SetDebugMode(true);
-	entity->SetAnimationSpeed(40.0f);
+	entity->SetAnimationSpeed(10.0f);
 	entity->SetAnimationLoop(true);
 	
 	entity2->AddTexturedRectangleComponent("assets/images/mario.png", 0xFF, 0x00, 0xFF, FORMAT_PNG);

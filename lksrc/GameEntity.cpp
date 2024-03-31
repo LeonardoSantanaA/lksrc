@@ -62,6 +62,8 @@ void GameEntity::Update() {
 void GameEntity::Render() {
 	if (mnoptrSprite) {
 		mnoptrSprite->Render(mRender);
+	}else if (mnoptrAnimatedSprite) {
+		mnoptrAnimatedSprite->Render(mRender);
 	}
 
 	if (mDebugMode) {
@@ -92,7 +94,6 @@ void GameEntity::UpdateSpriteSheet() {
 			}
 			else {
 				if (mFrame < mAnimations[mCurrentAnimationName].second) {
-					std::cout << "passar frame!" << std::endl;
 					mAnimationDelayCount = 0;
 					mFrame++;
 				}
@@ -105,10 +106,6 @@ void GameEntity::UpdateSpriteSheet() {
 			}
 		}
 	}
-}
-
-void GameEntity::Render(const std::string& animationName, bool loop, float speed) {
-	mnoptrAnimatedSprite->Render(mRender);
 }
 
 void GameEntity::AddTexturedRectangleComponent(const std::string& filepath, const ImageFormat& format, float scale) {
@@ -165,6 +162,9 @@ void GameEntity::SetDimensions(int w, int h, float scale) {
 	if (mnoptrSprite) {
 		mnoptrSprite->SetDimensions(w, h, scale);
 	}
+	else if (mnoptrAnimatedSprite) {
+		mnoptrAnimatedSprite->SetDimensions(w, h, scale);
+	}
 	else {
 		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
 	}
@@ -172,7 +172,7 @@ void GameEntity::SetDimensions(int w, int h, float scale) {
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
 		if (mnoptrColliders[i]) {
 			mnoptrColliders[i]->SetDimensions(w, h);
-		}
+		} 
 		else {
 			std::cout << "trying access a null pointer. gameentity::setdimensions(). index " << i << "." << std::endl;
 		}
@@ -190,4 +190,124 @@ void GameEntity::ChangeAnimation(const std::string& animationName) {
 	if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->SetCountSpeed(0);
 	}
+}
+
+TexturedRectangle& GameEntity::GetTexturedRectangle() const {
+	if (mnoptrSprite) {
+		return *mnoptrSprite;
+	}
+	std::cout << "trying access a nullptr. gameentity::gettexturedrectangle()." << std::endl;
+}
+
+Collider2D* GameEntity::GetCollider2D(size_t index) {
+	if (mnoptrColliders[index]) {
+		return mnoptrColliders[index];
+	}
+	std::cout << "trying access a nullptr. gameentity::getcollider2D(), index: " << index << std::endl;
+	return nullptr;
+}
+
+int GameEntity::GetX() { 
+	if (mnoptrSprite) { 
+		return mnoptrSprite->GetX(); 
+	}
+	else if (mnoptrAnimatedSprite) {
+		return mnoptrAnimatedSprite->GetX();
+	}
+	std::cout << "gameentity::getx() from nullptr sprite." << std::endl;  
+	return -1; 
+}
+
+int GameEntity::GetY() {
+	if (mnoptrSprite) { 
+		return mnoptrSprite->GetY(); 
+	}
+	else if (mnoptrAnimatedSprite) {
+		return mnoptrAnimatedSprite->GetY();
+	}
+	std::cout << "gameentity::gety() from nullptr sprite." << std::endl; 
+	return -1; 
+}
+
+int GameEntity::GetWidth() {
+	if (mnoptrSprite) { 
+		return mnoptrSprite->GetWidth(); 
+	}
+	else if (mnoptrAnimatedSprite) {
+		return mnoptrAnimatedSprite->GetWidth();
+	}
+	std::cout << "gameentity::getwidth() from nullptr sprite." << std::endl;  
+	return -1; 
+}
+
+int GameEntity::GetHeight() {
+	if (mnoptrSprite) { 
+		return mnoptrSprite->GetHeight(); 
+	}
+	else if (mnoptrAnimatedSprite) {
+		return mnoptrAnimatedSprite->GetHeight();
+	}
+	std::cout << "gameentity::getheight() from nullptr sprite." << std::endl;  
+	return -1; 
+}
+
+
+void GameEntity::SetAngleRotate(float angle) { 
+	mAngle = angle;
+	if (mnoptrSprite) {
+		mnoptrSprite->SetAngle(angle);
+	}
+	else if (mnoptrAnimatedSprite) {
+		mnoptrAnimatedSprite->SetAngle(angle);
+	}
+	else {
+		std::cout << "gameentity::setanglerotate() from nullptr sprite." << std::endl;
+	}
+	
+	
+}
+
+void GameEntity::SetCenterPointRotate(const SDL_Point& point) { 
+	mCenterPoint = point;
+
+	if (mnoptrSprite) {
+		mnoptrSprite->SetCenterPointRotate(point);
+	}
+	else if (mnoptrAnimatedSprite) {
+		mnoptrAnimatedSprite->SetCenterPointRotate(point);
+	}
+	else {
+		std::cout << "gameentity::setcenterpointrotate() from nullptr sprite." << std::endl;
+	}
+
+	
+	
+}
+
+void GameEntity::FlipHorizontal() { 
+	if (mnoptrSprite) {
+		mnoptrSprite->FlipImageHorizontal();
+	}
+	else if (mnoptrAnimatedSprite) {
+		mnoptrAnimatedSprite->FlipImageHorizontal();
+	}
+	else {
+		std::cout << "gameentity::fliphorizontal() from nullptr sprite." << std::endl;
+	}
+
+	
+}
+
+void GameEntity::FlipVertical() { 
+	if (mnoptrSprite) {
+		mnoptrSprite->FlipImageVertical();
+	}
+	else if (mnoptrAnimatedSprite) {
+		mnoptrAnimatedSprite->FlipImageVertical();
+	}
+	else {
+		std::cout << "gameentity::flipvertical() from nullptr sprite." << std::endl;
+	}
+
+	
 }

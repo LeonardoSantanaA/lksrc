@@ -30,7 +30,7 @@ Engine::Engine(const char* windowName): mMouseX(0), mMouseY(0), mWidth(800), mHe
 
 Engine::~Engine() {
 	SDL_DestroyWindow(mWindow);
-	SDL_DestroyRenderer(mRender);
+	SDL_DestroyRenderer(mRender); 
 	Sound::QuitMixer();
 	ResourceManager::GetInstance()->ClearResourceManager();
 	EntityManager::GetInstance()->DeleteAllEntities();

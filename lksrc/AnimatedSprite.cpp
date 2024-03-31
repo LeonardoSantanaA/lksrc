@@ -23,7 +23,8 @@ void AnimatedSprite::Update() {
 }
 
 void AnimatedSprite::Render(SDL_Renderer*& render) {
-	SDL_RenderCopy(render, mTexture, &mSrc, &mDst);
+	//SDL_RenderCopy(render, mTexture, &mSrc, &mDst);
+	SDL_RenderCopyEx(render, mTexture, &mSrc, &mDst, mAngle, &mCenterPoint, mDirectionFlip);
 }
 
 void AnimatedSprite::SetPosition(int x, int y) {
@@ -34,4 +35,22 @@ void AnimatedSprite::SetPosition(int x, int y) {
 void AnimatedSprite::SetDimensions(int w, int h, float scale) {
 	mDst.w = static_cast<int>(w * scale);
 	mDst.h = static_cast<int>(h * scale);
+}
+
+void AnimatedSprite::FlipImageHorizontal() {
+	if (mDirectionFlip == SDL_FLIP_NONE) {
+		mDirectionFlip = SDL_FLIP_HORIZONTAL;
+	}
+	else {
+		mDirectionFlip = SDL_FLIP_NONE;
+	}
+}
+
+void AnimatedSprite::FlipImageVertical() {
+	if (mDirectionFlip == SDL_FLIP_NONE) {
+		mDirectionFlip = SDL_FLIP_VERTICAL;
+	}
+	else {
+		mDirectionFlip = SDL_FLIP_NONE;
+	}
 }
