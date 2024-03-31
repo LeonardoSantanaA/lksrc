@@ -17,6 +17,7 @@ public:
 
 	SDL_bool IsColliding(const Collider2D& collider);
 	void SetPosition(int x, int y);
+	void MovePosition(int x, int y);
 	void SetDimensions(int w, int h);
 	int GetWidth();
 	int GetHeight();

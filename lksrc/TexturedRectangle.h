@@ -21,6 +21,7 @@ public:
 	void Update();
 	void SetPosition(int x, int y);
 	void SetPosition(const Vec2D& vec);
+	void MovePosition(int x, int y);
 	void MovePosition(const Vec2D& vec);
 	void SetDimensions(int w, int h, float scale = SCALE);
 	void Render(SDL_Renderer* renderer);

@@ -158,6 +158,31 @@ void GameEntity::SetPosition(int x, int y, int indexCollision, int xoffsetCollis
 	}
 }
 
+void GameEntity::MovePosition(int x, int y, int indexCollision, int xoffsetCollision, int yoffsetCollision) {
+	if (mnoptrSprite) {
+		mnoptrSprite->MovePosition(x, y);
+	}
+	else if (mnoptrAnimatedSprite) {
+		mnoptrAnimatedSprite->MovePosition(x, y);
+	}
+
+	else {
+		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
+	}
+
+	for (int i = 0; i < mnoptrColliders.size(); ++i) {
+		if (mnoptrColliders[i]) {
+			mnoptrColliders[i]->MovePosition(x, y);
+			if (i == indexCollision) {
+				mnoptrColliders[i]->MovePosition(x + xoffsetCollision, y + yoffsetCollision);
+			}
+		}
+		else {
+			std::cout << "trying access a null pointer. gameentity::moveposition(). index " << i << "." << std::endl;
+		}
+	}
+}
+
 void GameEntity::SetDimensions(int w, int h, float scale) {
 	if (mnoptrSprite) {
 		mnoptrSprite->SetDimensions(w, h, scale);

@@ -85,6 +85,11 @@ void TexturedRectangle::SetPosition(const Vec2D& vec) {
 	mRect.y = vec.y;
 }
 
+void TexturedRectangle::MovePosition(int x, int y) {
+	mRect.x += x;
+	mRect.y += y;
+}
+
 void TexturedRectangle::MovePosition(const Vec2D& vec) {
 	mRect.x += vec.x;
 	mRect.y += vec.y;

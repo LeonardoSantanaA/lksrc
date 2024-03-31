@@ -17,6 +17,7 @@ public:
 	void Render(SDL_Renderer*& render);
 
 	void SetPosition(int x, int y);
+	void MovePosition(int x, int y);
 	void SetDimensions(int w, int h, float scale);
 
 	inline int GetX() const { return mDst.x; }

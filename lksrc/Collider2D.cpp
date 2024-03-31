@@ -42,6 +42,16 @@ void Collider2D::SetPosition(int x, int y) {
     }
 }
 
+void Collider2D::MovePosition(int x, int y) {
+    if (mnoptrColliderRect) {
+        mnoptrColliderRect->x += x;
+        mnoptrColliderRect->y += y;
+    }
+    else {
+        std::cout << "trying access nullptr mnoptrcolliderrect. collider2d::moveposition()." << std::endl;
+    }
+}
+
 void Collider2D::SetDimensions(int w, int h) {
     if (mnoptrColliderRect) {
         mnoptrColliderRect->w = w;
