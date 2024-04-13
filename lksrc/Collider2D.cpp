@@ -8,6 +8,8 @@ Collider2D::Collider2D(): mnoptrColliderRect() {
 	mnoptrColliderRect->y = 0;
 	mnoptrColliderRect->w = 0;
 	mnoptrColliderRect->h = 0;
+    xOffset = 0;
+    yOffset = 0;
 }
 
 Collider2D::~Collider2D() {
@@ -34,8 +36,9 @@ SDL_bool Collider2D::IsColliding(const Collider2D& collider) {
 
 void Collider2D::SetPosition(int x, int y) {
     if (mnoptrColliderRect) {
-        mnoptrColliderRect->x = x;
-        mnoptrColliderRect->y = y;
+        mnoptrColliderRect->x = x + xOffset;
+       // std::cout << "offset do x: " << xOffset << std::endl;
+        mnoptrColliderRect->y = y + yOffset;
     }
     else {
         std::cout << "trying access nullptr mnoptrcolliderrect. collider2d::setposition()." << std::endl;
@@ -44,8 +47,8 @@ void Collider2D::SetPosition(int x, int y) {
 
 void Collider2D::MovePosition(int x, int y) {
     if (mnoptrColliderRect) {
-        mnoptrColliderRect->x += x;
-        mnoptrColliderRect->y += y;
+        mnoptrColliderRect->x += (x + xOffset);
+        mnoptrColliderRect->y += (y + yOffset);
     }
     else {
         std::cout << "trying access nullptr mnoptrcolliderrect. collider2d::moveposition()." << std::endl;

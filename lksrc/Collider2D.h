@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GlobalResources.h"
+#include <iostream>
 
 #include <SDL.h>
 
@@ -19,6 +20,7 @@ public:
 	void SetPosition(int x, int y);
 	void MovePosition(int x, int y);
 	void SetDimensions(int w, int h);
+
 	int GetWidth();
 	int GetHeight();
 
@@ -28,9 +30,12 @@ public:
 	void Render() {}
 
 	inline SDL_Rect* GetColliderBoundingBox() { return mnoptrColliderRect; }
+	inline void SetXOffset(int x) { xOffset = x; std::cout << "setado para: " << xOffset << std::endl; }
+	inline void SetYOffset(int y) { yOffset = y; }
 
 
 private:
 	SDL_Rect* mnoptrColliderRect;
-
+	int xOffset;
+	int yOffset;
 };

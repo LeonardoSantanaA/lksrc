@@ -55,7 +55,6 @@ GameEntity::~GameEntity() {
 }
 
 void GameEntity::Update() {
-	
 
 }
 
@@ -133,7 +132,17 @@ SDL_bool GameEntity::IsColliding(const GameEntity& otherEntity, size_t index, si
 	return SDL_FALSE;
 }
 
-void GameEntity::SetPosition(int x, int y, int indexCollision, int xoffsetCollision, int yoffsetCollision) {
+void GameEntity::SetOffsetPositionCollision(int indexColission, int xoffsetCollision, int yoffsetCollision) {
+	for (int i = 0; i < mnoptrColliders.size(); ++i) {
+		if (i == indexColission && mnoptrColliders[i]) {
+			std::cout << "setando offset " << xoffsetCollision << std::endl;
+			mnoptrColliders[i]->SetXOffset(xoffsetCollision);
+			mnoptrColliders[i]->SetYOffset(yoffsetCollision);
+		}
+	}
+}
+
+void GameEntity::SetPosition(int x, int y) {
 	if (mnoptrSprite) {
 		mnoptrSprite->SetPosition(x, y);
 	}
@@ -148,9 +157,7 @@ void GameEntity::SetPosition(int x, int y, int indexCollision, int xoffsetCollis
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
 		if (mnoptrColliders[i]) {
 			mnoptrColliders[i]->SetPosition(x, y);
-			if (i == indexCollision) {
-				mnoptrColliders[i]->SetPosition(x + xoffsetCollision, y + yoffsetCollision);
-			}
+			
 		}
 		else {
 			std::cout << "trying access a null pointer. gameentity::setposition(). index " << i << "." << std::endl;
@@ -158,7 +165,7 @@ void GameEntity::SetPosition(int x, int y, int indexCollision, int xoffsetCollis
 	}
 }
 
-void GameEntity::MovePosition(int x, int y, int indexCollision, int xoffsetCollision, int yoffsetCollision) {
+void GameEntity::MovePosition(int x, int y) {
 	if (mnoptrSprite) {
 		mnoptrSprite->MovePosition(x, y);
 	}
@@ -173,9 +180,6 @@ void GameEntity::MovePosition(int x, int y, int indexCollision, int xoffsetColli
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
 		if (mnoptrColliders[i]) {
 			mnoptrColliders[i]->MovePosition(x, y);
-			if (i == indexCollision) {
-				mnoptrColliders[i]->MovePosition(x + xoffsetCollision, y + yoffsetCollision);
-			}
 		}
 		else {
 			std::cout << "trying access a null pointer. gameentity::moveposition(). index " << i << "." << std::endl;

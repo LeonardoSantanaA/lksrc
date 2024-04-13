@@ -22,10 +22,12 @@
 #include "Sound.h"
 #include "EntityManager.h"
 #include "Transform.h"
+#include "Player.h"
 
 //global variables
 Engine* engine; 
 Font* font;
+Player* player;
 
 std::string spriteName;
 
@@ -149,10 +151,14 @@ void HandleEvents() {
 
 void HandleUpdate() {
 	EntityManager::GetInstance()->UpdateAllEntities();
+	player->Update();
+
 
 	//get entities
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
 	std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
+
+
 	if (entity) {
 		entity->UpdateSpriteSheet();
 	}
@@ -195,7 +201,8 @@ void HandleUpdate() {
 
 
 	if (entity) {
-		entity->SetPosition(engine->GetMouseX(), engine->GetMouseY(), 0, 15, 4);
+		
+		entity->SetPosition(engine->GetMouseX(), engine->GetMouseY());
 	}
 	
 
@@ -203,9 +210,11 @@ void HandleUpdate() {
 
 void HandleRendering() {
 	//Draw here
-	EntityManager::GetInstance()->RenderAllEntities();
-	font->Render(engine->GetRender());
 	
+	EntityManager::GetInstance()->RenderAllEntities();
+
+	font->Render(engine->GetRender());
+	player->Render();
 }
 
 uint32_t mCallbackFun(uint32_t interval, void* param) {
@@ -224,6 +233,7 @@ int main(int argc, char* argv[]) {
 	engine->AddTimer(2000, mCallbackFun, (char*)"timer called");
 	
 	//create entities
+	player = new Player("player", engine->GetRender());
 	EntityManager::GetInstance()->CreateEntity("entity1", engine->GetRender());
 	EntityManager::GetInstance()->CreateEntity("entity2", engine->GetRender());
 	EntityManager::GetInstance()->CreateEntity("background", engine->GetRender(), Layer::BACKGROUND);
@@ -240,6 +250,7 @@ int main(int argc, char* argv[]) {
 	entity->AddAnimation("idle", 0, 12);
 	entity->AddAnimation("run", 32, 7);
 	entity->ChangeAnimation("idle");
+
 	
 	entity->SetDimensions(100, 100, 1);
 	entity->AddCollider2D();
@@ -249,6 +260,7 @@ int main(int argc, char* argv[]) {
 	entity->SetDebugMode(true);
 	entity->SetAnimationSpeed(10.0f);
 	entity->SetAnimationLoop(true);
+	entity->SetOffsetPositionCollision(0, 15, 25);
 	
 	entity2->AddTexturedRectangleComponent("assets/images/mario.png", 0xFF, 0x00, 0xFF, FORMAT_PNG);
 	entity2->AddCollider2D();
@@ -277,6 +289,7 @@ int main(int argc, char* argv[]) {
 	
 	delete font;
 	delete engine;
+	delete player;
 
 
 	return 0;

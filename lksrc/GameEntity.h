@@ -14,9 +14,9 @@ public:
 
 	~GameEntity();
 
-	void Update();
+	virtual void Update();
 	void UpdateSpriteSheet();
-	void Render();
+	virtual void Render();
 
 	void AddTexturedRectangleComponent(const std::string& filepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 	void AddTexturedRectangleComponent(const std::string& filepath, int red, int green, int blue, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
@@ -25,9 +25,10 @@ public:
 	void AddCollider2D();
 
 	SDL_bool IsColliding(const GameEntity& otherEntity, size_t index, size_t otherIndex);
+	void SetOffsetPositionCollision(int indexColission, int xoffsetCollision, int yoffsetColision);
 
-	void SetPosition(int x, int y, int indexCollision = 0, int xoffsetCollision = 0, int yoffsetCollision = 0);
-	void MovePosition(int x, int y, int indexCollision = 0, int xoffsetCollision = 0, int yoffsetCollision = 0);
+	void SetPosition(int x, int y);
+	void MovePosition(int x, int y);
 	void SetDimensions(int w, int h, float scale = SCALE);
 	void AddAnimation(const std::string& animationName, int yStartPositionInSpritesheet, int numberFrames);
 	void ChangeAnimation(const std::string& animationName);
@@ -52,7 +53,7 @@ public:
 	inline Layer GetLayer() const { return mLayer; }
 	inline void SetLayer(Layer layer) { mLayer = layer; }
 
-private:
+protected:
 	std::string mName;
 	Layer mLayer;
 	TexturedRectangle* mnoptrSprite;
