@@ -3,13 +3,16 @@
 #include <SDL.h>
 #include <functional>
 #include <set>
+#include "Input.h"
 
 class Engine {
 public:
-	Engine(const char* windowName);
-
+	Engine();
+	static Engine* GetInstance();
+	void Init();
 	~Engine();
 
+	inline void SetWindowName(const char* name) { SDL_SetWindowTitle(mWindow, name); }
 	void SetEventCallback(std::function<void(void)> func);
 	void SetUpdateCallback(std::function<void(void)> func);
 	void SetRenderCallback(std::function<void(void)> func);
@@ -38,6 +41,7 @@ public:
 	void RemoveTimer(SDL_TimerID id);
 
 private:
+	static Engine* mInstance;
 	SDL_Window* mWindow = nullptr;
 	SDL_Renderer* mRender = nullptr;
 	bool mGameIsRunning = false;

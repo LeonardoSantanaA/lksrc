@@ -23,6 +23,7 @@
 #include "EntityManager.h"
 #include "Transform.h"
 #include "Player.h"
+#include "Input.h"
 
 //global variables
 Engine* engine; 
@@ -35,121 +36,14 @@ int s;
 int m;
 
 void HandleEvents() {
-	SDL_Event event;
-
-	//start event loop
-	while (SDL_PollEvent(&event)) {
-		//handle each especific event
-
-		switch (event.type) {
-		case SDL_QUIT:
-			engine->CloseEngine();
-			break;
-
-		case SDL_WINDOWEVENT:
-			if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
-				int width = 0, height = 0;
-				SDL_GetWindowSize(engine->GetWindow(), &width, &height);
-				engine->SetWidth(width);
-				engine->SetHeight(height);
-				SDL_RenderSetLogicalSize(engine->GetRender(), engine->GetWidth(), engine->GetHeight());
-
-				std::shared_ptr<GameEntity> background = EntityManager::GetInstance()->GetEntityRef("background");
-
-				background->SetDimensions(engine->GetWidth(), engine->GetHeight(), 1);
-				
-			}
-			break;
-
-		case SDL_MOUSEWHEEL:
-			if (event.wheel.y > 0) {
-				std::cout << "scroll up." << std::endl;
-			}
-			else if (event.wheel.y < 0) {
-				std::cout << "scroll down." << std::endl;
-			}
-			if (event.wheel.x > 0) {
-				std::cout << "scroll right." << std::endl;
-			}
-			else if (event.wheel.x < 0) {
-				std::cout << "scroll left." << std::endl;
-			}
-			break;
-
-		case SDL_MOUSEBUTTONDOWN:
-
-			if (event.button.button == SDL_BUTTON_LEFT && event.button.clicks == 1) {
-				//get entities
-				std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
-				std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
-
-				std::cout << "mouse button left. single-click." << std::endl;
-				std::cout << "x: " << engine->GetMouseX() << std::endl;
-				std::cout << "y: " << engine->GetMouseY() << std::endl;
-
-				if (entity && entity2) {
-					if (entity->IsColliding(*entity2, 0, 0)) {
-						std::cout << "colliding hitbox 1" << std::endl;
-						*font = "hey! colliding.";
-					}
-					else {
-						std::cout << "not colliding hitbox 1." << std::endl;
-					}
-				}
-				
-
-			}
-			else if (event.button.button == SDL_BUTTON_LEFT && event.button.clicks == 2) {
-				std::cout << "mouse button left. double-click." << std::endl;
-			}
-			else if (event.button.button == SDL_BUTTON_LEFT && event.button.clicks == 3) {
-			}
-
-			if (event.button.button == SDL_BUTTON_RIGHT) {
-				std::cout << "mouse button right." << std::endl;
-				EntityManager::GetInstance()->RemoveEntity("entity1");
-			}
-			if (event.button.button == SDL_BUTTON_MIDDLE) {
-				std::cout << "mouse scroll button." << std::endl;
-				std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity1");
-				if (entity2) {
-					entity2->FlipHorizontal();
-				}
-			
-			}
-			if (event.button.button == SDL_BUTTON_X1) {
-				std::cout << "mouse button x1." << std::endl;
-				std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
-				if (entity) {
-					entity->ChangeAnimation("idle");
-				}
-				
-			}
-			if (event.button.button == SDL_BUTTON_X2) {
-				std::cout << "mouse button x2." << std::endl;
-				std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
-				if (entity) {
-					entity->ChangeAnimation("run");
-				}
-				
-			}
-			break;
-
-		case SDL_KEYDOWN:
-			if (event.key.keysym.sym == SDLK_ESCAPE) {
-				std::cout << "esc!" << std::endl;
-				Sound::GetInstance()->PlaySound(s);
-				*font = "hey! you pressed the esc button. are you sure? my name is leo";
-			}
-
-			std::cout << "key pressed - key scancode: " << SDL_GetScancodeName(event.key.keysym.scancode) << std::endl;
-			std::cout << "key pressed - key name: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
-		}
-	}
+	
 
 }
 
 void HandleUpdate() {
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A)) {
+		std::cout << "apertou o a aquii" << std::endl;
+	}
 	EntityManager::GetInstance()->UpdateAllEntities();
 	player->Update();
 
@@ -224,7 +118,8 @@ uint32_t mCallbackFun(uint32_t interval, void* param) {
 
 int main(int argc, char* argv[]) {
 
-	engine = new Engine("lksrc - prototype");
+	engine = Engine::GetInstance();
+	engine->Init();
 	engine->SetMaxFrameRate(60);
 	engine->SetEventCallback(HandleEvents);
 	engine->SetUpdateCallback(HandleUpdate);

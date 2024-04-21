@@ -8,8 +8,23 @@
 #include "EntityManager.h"
 #include "ResourceManager.h"
 #include "Sound.h"
+#include "Input.h"
 
-Engine::Engine(const char* windowName): mMouseX(0), mMouseY(0), mWidth(800), mHeight(600), mMaxFrameRate(60) {
+Engine* Engine::mInstance = nullptr;
+
+Engine::Engine(): mMouseX(0), mMouseY(0), mWidth(800), mHeight(600), mMaxFrameRate(60) {
+
+}
+
+Engine* Engine::GetInstance() {
+	if (!mInstance) {
+		mInstance = new Engine;
+		std::cout << "new engine instance." << std::endl;
+	}
+	return mInstance;
+}
+
+void Engine::Init() {
 	mGameIsRunning = true;
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -19,9 +34,9 @@ Engine::Engine(const char* windowName): mMouseX(0), mMouseY(0), mWidth(800), mHe
 		std::cout << "SDL initialized." << std::endl;
 	}
 
-	mWindow = SDL_CreateWindow(windowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mWidth, mHeight, SDL_WINDOW_RESIZABLE); //| SDL_WINDOW_OPENGL);)
+	mWindow = SDL_CreateWindow("lksrc", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mWidth, mHeight, SDL_WINDOW_RESIZABLE); //| SDL_WINDOW_OPENGL);)
 	if (mWindow == NULL) {
-			std::cerr << "Couldn't create window: " << SDL_GetError() << std::endl;
+		std::cerr << "Couldn't create window: " << SDL_GetError() << std::endl;
 	}
 
 	mRender = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -31,10 +46,12 @@ Engine::Engine(const char* windowName): mMouseX(0), mMouseY(0), mWidth(800), mHe
 Engine::~Engine() {
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRender); 
+	
 	Sound::QuitMixer();
 	ResourceManager::GetInstance()->ClearResourceManager();
 	EntityManager::GetInstance()->DeleteAllEntities();
 	Sound::GetInstance()->ClearSound();
+	Input::GetInstance()->DestroyInput();
 	SDL_Quit();
 }
 
@@ -59,7 +76,7 @@ void Engine::RunLoop() {
 		uint32_t buttons;
 		buttons = SDL_GetMouseState(&mMouseX, &mMouseY);
 
-		mEventCallback();
+		Input::GetInstance()->Listen();
 		mUpdateCallback();
 
 		SDL_Event event{};
