@@ -1,8 +1,7 @@
 #pragma once
 
-enum class Layer {
-	BACKGROUND = 0,
-	MIDDLEGROUND,
-	FOREGROUND,
-	END
+class Layer {
+public:
+	virtual void Update() = 0;
+	virtual void Render() = 0;
 };

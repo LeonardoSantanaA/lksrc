@@ -5,13 +5,12 @@
 #include <memory>
 #include <unordered_map>
 #include "GameEntity.h"
-#include "Layer.h"
 
 class EntityManager {
 public:
 	static EntityManager* GetInstance();
 
-	bool CreateEntity(const std::string& name, SDL_Renderer* renderer, const Layer& layer = Layer::END);
+	bool CreateEntity(const std::string& name, SDL_Renderer* renderer);
 
 	std::shared_ptr<GameEntity> GetEntityRef(const std::string& name);
 
@@ -19,7 +18,6 @@ public:
 
 	void UpdateAllEntities();
 
-	void RenderLayer(const Layer& layer);
 	void RenderAllEntities();
 
 

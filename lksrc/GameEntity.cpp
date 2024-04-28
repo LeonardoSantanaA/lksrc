@@ -6,7 +6,6 @@ GameEntity::GameEntity() {
 	mnoptrAnimatedSprite = nullptr;
 	mRender = nullptr;
 	mDebugMode = false;
-	mLayer = {};
 	mAngle = 0;
 	mCenterPoint = {};
 	mFrame = 0;
@@ -23,7 +22,6 @@ GameEntity::GameEntity(const std::string& name, SDL_Renderer* render) {
 	mnoptrAnimatedSprite = nullptr;
 	mRender = render;
 	mDebugMode = false;
-	mLayer = {};
 	mAngle = 0;
 	mCenterPoint = {};
 	mFrame = 0;

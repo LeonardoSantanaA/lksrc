@@ -3,7 +3,6 @@
 #include "TexturedRectangle.h"
 #include <vector>
 #include "Collider2D.h"
-#include "Layer.h"
 #include "AnimatedSprite.h"
 #include <unordered_map>
 
@@ -51,12 +50,9 @@ public:
 	inline void SetAnimationLoop(bool loop) { mLoop = loop; }
 	inline void SetAnimationSpeed(float speed) { mAnimationSpeed = speed; }
 	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
-	inline Layer GetLayer() const { return mLayer; }
-	inline void SetLayer(Layer layer) { mLayer = layer; }
 
 protected:
 	std::string mName;
-	Layer mLayer;
 	TexturedRectangle* mnoptrSprite;
 	AnimatedSprite* mnoptrAnimatedSprite;
 	std::vector<Collider2D*> mnoptrColliders;

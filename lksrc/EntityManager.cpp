@@ -11,9 +11,8 @@ EntityManager* EntityManager::GetInstance() {
 }
 
 
-bool EntityManager::CreateEntity(const std::string& name, SDL_Renderer* renderer, const Layer& layer) {
+bool EntityManager::CreateEntity(const std::string& name, SDL_Renderer* renderer) {
 	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name, renderer);
-	newEntity->SetLayer(layer);
 	std::cout << "new entity. entities: " << EntityManager::GetInstance()->GetEntityCount() << std::endl;
 	mEntities.insert(std::make_pair(name, newEntity));
 	mEntityCount++;
@@ -59,24 +58,17 @@ void EntityManager::UpdateAllEntities() {
 	}
 }
 
-void EntityManager::RenderLayer(const Layer& layer) {
+void EntityManager::RenderAllEntities() {
 	size_t index = 0;
 	for (auto it = mEntities.begin(); it != mEntities.end(); it++) {
-		if (mEntities[it->first] && mEntities[it->first]->GetLayer() == layer) {
+		if (mEntities[it->first]) {
 			mEntities[it->first]->Render();
 		}
-		else if(!mEntities[it->first]) {
+		else if (!mEntities[it->first]) {
 			std::cout << "unknown entity render entitymanager::renderallentities(): " << index << std::endl;
 		}
 		index++;
 	}
-}
-
-void EntityManager::RenderAllEntities() {
-	RenderLayer(Layer::BACKGROUND);
-	RenderLayer(Layer::MIDDLEGROUND);
-	RenderLayer(Layer::FOREGROUND);
-	RenderLayer(Layer::END);
 }
 
 

@@ -127,7 +127,7 @@ int main(int argc, char* argv[]) {
 	player = new Player("player", engine->GetRender());
 	EntityManager::GetInstance()->CreateEntity("entity1", engine->GetRender());
 	EntityManager::GetInstance()->CreateEntity("entity2", engine->GetRender());
-	EntityManager::GetInstance()->CreateEntity("background", engine->GetRender(), Layer::BACKGROUND);
+	EntityManager::GetInstance()->CreateEntity("background", engine->GetRender());
 
 	//get entities
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
