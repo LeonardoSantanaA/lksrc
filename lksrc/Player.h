@@ -9,7 +9,10 @@ public:
 
 	virtual void Update() override;
 	//virtual void Render() override;
+	void ChangeDirection(const char* dir);
 	
 private:
-
+	bool isMoving;
+	const char* mDirection;
+	float mVelocity;
 };

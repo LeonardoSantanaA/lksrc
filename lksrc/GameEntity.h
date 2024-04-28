@@ -31,6 +31,7 @@ public:
 	void MovePosition(int x, int y);
 	void SetDimensions(int w, int h, float scale = SCALE);
 	void AddAnimation(const std::string& animationName, int yStartPositionInSpritesheet, int numberFrames);
+	std::string GetCurrentAnimation() const;
 	void ChangeAnimation(const std::string& animationName);
 	
 	TexturedRectangle& GetTexturedRectangle() const;

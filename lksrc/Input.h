@@ -9,6 +9,7 @@ public:
 	void DestroyInput();
 	void Listen();
 	bool GetKeyDown(SDL_Scancode key);
+	bool GetKeyPress(SDL_Scancode key);
 
 private:
 	static Input* mInstance;
@@ -16,6 +17,5 @@ private:
 	Input();
 	void KeyUp();
 	void KeyDown();
-	
 
 };

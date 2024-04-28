@@ -213,12 +213,19 @@ void GameEntity::AddAnimation(const std::string& animationName, int yStartPositi
 }
 
 void GameEntity::ChangeAnimation(const std::string& animationName) {
-	mFrame = 0;
-	mCurrentAnimationName = animationName;
-	mAnimationDelayCount = 0;
-	if (mnoptrAnimatedSprite) {
-		mnoptrAnimatedSprite->SetCountSpeed(0);
+	if (mCurrentAnimationName != animationName) {
+		mFrame = 0;
+		mCurrentAnimationName = animationName;
+		mAnimationDelayCount = 0;
+		if (mnoptrAnimatedSprite) {
+			mnoptrAnimatedSprite->SetCountSpeed(0);
+		}
 	}
+
+}
+
+std::string GameEntity::GetCurrentAnimation() const {
+	return mCurrentAnimationName;
 }
 
 TexturedRectangle& GameEntity::GetTexturedRectangle() const {

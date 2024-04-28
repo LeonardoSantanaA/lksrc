@@ -21,7 +21,6 @@
 #include "GameEntity.h"
 #include "Sound.h"
 #include "EntityManager.h"
-#include "Transform.h"
 #include "Player.h"
 #include "Input.h"
 
@@ -41,9 +40,6 @@ void HandleEvents() {
 }
 
 void HandleUpdate() {
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A)) {
-		std::cout << "apertou o a aquii" << std::endl;
-	}
 	EntityManager::GetInstance()->UpdateAllEntities();
 	player->Update();
 
@@ -175,9 +171,6 @@ int main(int argc, char* argv[]) {
 	s = Sound::GetInstance()->LoadSound("assets/snd/GameOver.wav");
 	m = Sound::GetInstance()->LoadMusic("assets/snd/TetrisSoundTrack.wav");
 	Sound::GetInstance()->PlayMusic(m);
-
-	Transform tf;
-	tf.Log();
 
 	engine->RunLoop();
 
