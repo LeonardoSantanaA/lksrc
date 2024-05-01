@@ -2,7 +2,7 @@
 #include "EntityManager.h"
 #include "Input.h"
 
-Player::Player(const std::string& name, SDL_Renderer* render): GameEntity::GameEntity(name, render), mDirection("right"), mVelocity(2){
+Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirection("right"), mVelocity(2), isMoving(false){
 	std::cout << "chamando construtor de player" << std::endl;
 
 	//AddTexturedRectangleComponent("assets/images/mario.png", 0xFF, 0x00, 0xFF, FORMAT_PNG);

@@ -1,10 +1,11 @@
 #include "AnimatedSprite.h"
 #include <iostream>
+#include "Engine.h"
 
 
-AnimatedSprite::AnimatedSprite(SDL_Renderer* render, const std::string& filepath, const ImageFormat& format): mDst(), mSrc(), mCountSpeed(0) {
+AnimatedSprite::AnimatedSprite(const std::string& filepath, const ImageFormat& format) : mDst(), mSrc(), mCountSpeed(0), mAngle(0), mCenterPoint(SDL_Point{ 0,0 }), mDirectionFlip(SDL_FLIP_NONE) {
 	SDL_Surface* retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
-	mTexture = SDL_CreateTextureFromSurface(render, retrieveSurface);
+	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface);
 }
 
 AnimatedSprite::~AnimatedSprite() {
@@ -22,8 +23,8 @@ void AnimatedSprite::Update() {
 
 }
 
-void AnimatedSprite::Render(SDL_Renderer*& render) {
-	SDL_RenderCopyEx(render, mTexture, &mSrc, &mDst, mAngle, &mCenterPoint, mDirectionFlip);
+void AnimatedSprite::Render() {
+	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, &mSrc, &mDst, mAngle, &mCenterPoint, mDirectionFlip);
 }
 
 void AnimatedSprite::SetPosition(int x, int y) {

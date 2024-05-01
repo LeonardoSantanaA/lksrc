@@ -14,8 +14,6 @@ enum ImageFormat {
 	FORMAT_JPG,
 };
 
-
-
 class ResourceManager {
 private:
 	ResourceManager();

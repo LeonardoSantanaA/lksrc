@@ -1,4 +1,5 @@
 #include "EntityManager.h"
+#include "Engine.h"
 
 EntityManager* EntityManager::mInstance = nullptr;
 
@@ -11,8 +12,8 @@ EntityManager* EntityManager::GetInstance() {
 }
 
 
-bool EntityManager::CreateEntity(const std::string& name, SDL_Renderer* renderer) {
-	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name, renderer);
+bool EntityManager::CreateEntity(const std::string& name) {
+	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name);
 	std::cout << "new entity. entities: " << EntityManager::GetInstance()->GetEntityCount() << std::endl;
 	mEntities.insert(std::make_pair(name, newEntity));
 	mEntityCount++;

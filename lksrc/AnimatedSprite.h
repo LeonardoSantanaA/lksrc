@@ -8,13 +8,13 @@
 
 class AnimatedSprite {
 public:
-	AnimatedSprite(SDL_Renderer* render, const std::string& filepath, const ImageFormat& format = FORMAT_BMP);
+	AnimatedSprite(const std::string& filepath, const ImageFormat& format = FORMAT_BMP);
 	~AnimatedSprite();
 
 	void PlayFrame(int x, int y, int w, int h, int frame);
 
 	void Update();
-	void Render(SDL_Renderer*& render);
+	void Render();
 
 	void SetPosition(int x, int y);
 	void MovePosition(int x, int y);

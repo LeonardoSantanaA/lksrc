@@ -1,12 +1,13 @@
 #include "TexturedRectangle.h"
 #include <iostream>
+#include "Engine.h"
 
-TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& filepath, const ImageFormat& format, float scale)
+TexturedRectangle::TexturedRectangle(const std::string& filepath, const ImageFormat& format, float scale)
 : mRedColorKey(), mGreenColorKey(), mBlueColorKey(), mAngle(0), mDirectionFlip(SDL_FLIP_NONE){
 	SDL_Surface* retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
 	SDL_SetColorKey(retrieveSurface, SDL_FALSE, SDL_MapRGB(retrieveSurface->format, 0xFF, 0xFF, 0xFF));
 
-	mTexture = SDL_CreateTextureFromSurface(renderer, retrieveSurface); //copy the surface to texture
+	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface); //copy the surface to texture
 	if (mTexture == NULL) {
 		std::cout << "Couldnt create texture from surface." << SDL_GetError() << std::endl;
 	}
@@ -20,11 +21,11 @@ TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& 
 	mCenterPoint.y = mRect.h / 2;
 }
 
-TexturedRectangle::TexturedRectangle(SDL_Renderer* renderer, const std::string& filepath, int redColorKey, int greenColorKey, int blueColorKey, const ImageFormat& format, float scale) {
+TexturedRectangle::TexturedRectangle(const std::string& filepath, int redColorKey, int greenColorKey, int blueColorKey, const ImageFormat& format, float scale) {
 	SDL_Surface* retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
 	SDL_SetColorKey(retrieveSurface, SDL_TRUE, SDL_MapRGB(retrieveSurface->format, redColorKey, greenColorKey, blueColorKey));
 
-	mTexture = SDL_CreateTextureFromSurface(renderer, retrieveSurface); //copy the surface to texture
+	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface); //copy the surface to texture
 	if (mTexture == NULL) {
 		std::cout << "Couldnt create texture from surface." << SDL_GetError() << std::endl;
 	}
@@ -101,8 +102,8 @@ void TexturedRectangle::SetDimensions(int w, int h, float scale) {
 }
 
 
-void TexturedRectangle::Render(SDL_Renderer* renderer) {
-	SDL_RenderCopyEx(renderer, mTexture, nullptr, &mRect, mAngle, &mCenterPoint, mDirectionFlip);
+void TexturedRectangle::Render() {
+	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, nullptr, &mRect, mAngle, &mCenterPoint, mDirectionFlip);
 }
 
 void TexturedRectangle::FlipImageHorizontal() {

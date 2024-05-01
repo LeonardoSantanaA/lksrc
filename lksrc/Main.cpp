@@ -23,11 +23,16 @@
 #include "EntityManager.h"
 #include "Player.h"
 #include "Input.h"
+#include "TextureManager.h"
+#include "GameMap.h"
+#include "MapParser.h"
 
 //global variables
 Engine* engine; 
 Font* font;
 Player* player;
+
+std::shared_ptr<GameMap> map = std::make_shared<GameMap>();
 
 std::string spriteName;
 
@@ -40,6 +45,7 @@ void HandleEvents() {
 }
 
 void HandleUpdate() {
+	map->Update();
 	EntityManager::GetInstance()->UpdateAllEntities();
 	player->Update();
 
@@ -100,10 +106,10 @@ void HandleUpdate() {
 
 void HandleRendering() {
 	//Draw here
-	
+	map->Render();
 	EntityManager::GetInstance()->RenderAllEntities();
 
-	font->Render(engine->GetRender());
+	font->Render();
 	player->Render();
 }
 
@@ -123,16 +129,19 @@ int main(int argc, char* argv[]) {
 
 	engine->AddTimer(2000, mCallbackFun, (char*)"timer called");
 	
+	if (!MapParser::GetInstance()->Load("mapDemo")) {
+		std::cout << "failed to load map." << std::endl;
+	}
+	map = MapParser::GetInstance()->GetMap("mapDemo");
+
 	//create entities
-	player = new Player("player", engine->GetRender());
-	EntityManager::GetInstance()->CreateEntity("entity1", engine->GetRender());
-	EntityManager::GetInstance()->CreateEntity("entity2", engine->GetRender());
-	EntityManager::GetInstance()->CreateEntity("background", engine->GetRender());
+	player = new Player("player");
+	EntityManager::GetInstance()->CreateEntity("entity1");
+	EntityManager::GetInstance()->CreateEntity("entity2");
 
 	//get entities
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
 	std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
-	std::shared_ptr<GameEntity> background = EntityManager::GetInstance()->GetEntityRef("background");
 
 	//object1 = new TexturedRectangle(engine->GetRender(), "assets/images/mario.png", FORMAT_PNG);
 	//entity->AddTexturedRectangleComponent("assets/images/megaman.bmp");
@@ -141,7 +150,6 @@ int main(int argc, char* argv[]) {
 	entity->AddAnimation("idle", 0, 12);
 	entity->AddAnimation("run", 32, 7);
 	entity->ChangeAnimation("idle");
-
 	
 	entity->SetDimensions(100, 100, 1);
 	entity->AddCollider2D();
@@ -158,15 +166,13 @@ int main(int argc, char* argv[]) {
 	entity2->SetDimensions(64, 64, 2);
 	entity2->SetDebugMode(true);
 
-	std::cout << "width:" << engine->GetWidth() << std::endl;
-	background->AddTexturedRectangleComponent("assets/images/tom.bmp", FORMAT_BMP);
-	background->SetPosition(0, 0);
-	background->SetDimensions(engine->GetWidth(), engine->GetHeight(), 1);
 
-	font = new Font(engine->GetRender(), "assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
-	font->SetColor(engine->GetRender(), { 255, 0, 255 });
+	font = new Font("assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
+	font->SetColor({ 255, 0, 255 });
 	*font = "hello world! lksrc.";
 	font->SetPosition(50, 50);
+
+	TextureManager::GetInstance()->Load("test", "assets/maps/mapDemoTileset.png");
 
 	s = Sound::GetInstance()->LoadSound("assets/snd/GameOver.wav");
 	m = Sound::GetInstance()->LoadMusic("assets/snd/TetrisSoundTrack.wav");
@@ -176,9 +182,9 @@ int main(int argc, char* argv[]) {
 
 	
 	delete font;
+	
 	delete engine;
 	delete player;
-
 
 	return 0;
 }

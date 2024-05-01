@@ -1,12 +1,12 @@
-#include "Map.h"
+#include "GameMap.h"
 
-void Map::Update() {
+void GameMap::Update() {
 	for (unsigned int i = 0; i < mMapLayers.size(); i++) {
 		mMapLayers[i]->Update();
 	}
 }
 
-void Map::Render() {
+void GameMap::Render() {
 	for (unsigned int i = 0; i < mMapLayers.size(); i++) {
 		mMapLayers[i]->Render();
 	}

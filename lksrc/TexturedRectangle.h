@@ -9,9 +9,9 @@
 
 class TexturedRectangle {
 public:
-	TexturedRectangle(SDL_Renderer* renderer, const std::string& filepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
+	TexturedRectangle(const std::string& filepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 
-	TexturedRectangle(SDL_Renderer* renderer, const std::string& filepath, int redColorKey, int greenColorKey, int blueColorKey, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
+	TexturedRectangle(const std::string& filepath, int redColorKey, int greenColorKey, int blueColorKey, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 
 	void Init();
 	TexturedRectangle(const TexturedRectangle& other);
@@ -24,7 +24,7 @@ public:
 	void MovePosition(int x, int y);
 	void MovePosition(const Vec2D& vec);
 	void SetDimensions(int w, int h, float scale = SCALE);
-	void Render(SDL_Renderer* renderer);
+	void Render();
 
 	inline int GetX() const { return mRect.x; }
 	inline int GetY() const { return mRect.y; }

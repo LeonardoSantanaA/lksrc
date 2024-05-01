@@ -1,10 +1,10 @@
 #include "GameEntity.h"
 #include "Collider2D.h"
+#include "Engine.h"
 
 GameEntity::GameEntity() {
 	mnoptrSprite = nullptr;
 	mnoptrAnimatedSprite = nullptr;
-	mRender = nullptr;
 	mDebugMode = false;
 	mAngle = 0;
 	mCenterPoint = {};
@@ -16,11 +16,10 @@ GameEntity::GameEntity() {
 	mAnimationDelayCount = 0;
 }
 
-GameEntity::GameEntity(const std::string& name, SDL_Renderer* render) {
+GameEntity::GameEntity(const std::string& name) {
 	mName = name;
 	mnoptrSprite = nullptr;
 	mnoptrAnimatedSprite = nullptr;
-	mRender = render;
 	mDebugMode = false;
 	mAngle = 0;
 	mCenterPoint = {};
@@ -58,16 +57,16 @@ void GameEntity::Update() {
 
 void GameEntity::Render() {
 	if (mnoptrSprite) {
-		mnoptrSprite->Render(mRender);
+		mnoptrSprite->Render();
 	}else if (mnoptrAnimatedSprite) {
-		mnoptrAnimatedSprite->Render(mRender);
+		mnoptrAnimatedSprite->Render();
 	}
 
 	if (mDebugMode) {
 		for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
 			if (mnoptrColliders[i]) {
-				SDL_SetRenderDrawColor(mRender, 255, 255, 255, SDL_ALPHA_OPAQUE);
-				SDL_RenderDrawRect(mRender, mnoptrColliders[i]->GetColliderBoundingBox());
+				SDL_SetRenderDrawColor(Engine::GetInstance()->GetRender(), 255, 255, 255, SDL_ALPHA_OPAQUE);
+				SDL_RenderDrawRect(Engine::GetInstance()->GetRender(), mnoptrColliders[i]->GetColliderBoundingBox());
 			}
 			else {
 				std::cout << "trying access nullptr mnoptrcolliders, index: " << i << " gameentity::render()." << std::endl;
@@ -106,15 +105,15 @@ void GameEntity::UpdateSpriteSheet() {
 }
 
 void GameEntity::AddTexturedRectangleComponent(const std::string& filepath, const ImageFormat& format, float scale) {
-	mnoptrSprite = new TexturedRectangle(mRender, filepath, format, scale);
+	mnoptrSprite = new TexturedRectangle(filepath, format, scale);
 }
 
 void GameEntity::AddTexturedRectangleComponent(const std::string& filepath, int red, int green, int blue, const ImageFormat& format, float scale) {
-	mnoptrSprite = new TexturedRectangle(mRender, filepath, red, green, blue, format, scale);
+	mnoptrSprite = new TexturedRectangle(filepath, red, green, blue, format, scale);
 }
 
 void GameEntity::AddAnimatedSprite(const std::string& filepath, const ImageFormat& format) {
-	mnoptrAnimatedSprite = new AnimatedSprite(mRender, filepath, format);
+	mnoptrAnimatedSprite = new AnimatedSprite(filepath, format);
 }
 
 

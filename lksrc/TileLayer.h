@@ -17,6 +17,7 @@ using TileMap = std::vector<std::vector<int> >;
 class TileLayer: public Layer {
 public:
 	TileLayer(int tileSize, int rowCount, int columnCount, TileMap tilemap, TilesetList tilesets);
+	TileLayer(TileLayer&& other) noexcept;
 	virtual void Update();
 	virtual void Render();
 	inline TileMap GetTilemap() { return mTilemap; }

@@ -9,7 +9,7 @@
 class GameEntity {
 public:
 	GameEntity();
-	GameEntity(const std::string& name, SDL_Renderer* render);
+	GameEntity(const std::string& name);
 
 	~GameEntity();
 
@@ -56,8 +56,6 @@ protected:
 	TexturedRectangle* mnoptrSprite;
 	AnimatedSprite* mnoptrAnimatedSprite;
 	std::vector<Collider2D*> mnoptrColliders;
-	SDL_Renderer* mRender;
-
 	std::string mCurrentAnimationName;
 	int mAnimationDelayCount;
 	bool mLoop;

@@ -1,21 +1,22 @@
 #include "MapParser.h"
 
-MapParser* MapParser::mInstance = nullptr;
+std::unique_ptr<MapParser> MapParser::mInstance = nullptr;
 
 MapParser* MapParser::GetInstance() {
 	if (!mInstance) {
-		mInstance = new MapParser;
-		std::cout << "new mapParser instance." << std::endl;
+		mInstance = std::make_unique<MapParser>();
+		std::cout << "mapparser instance created." << std::endl;
 	}
-	return mInstance;
+	return mInstance.get();
 }
 
-bool MapParser::Load() {
-	return Parse("levelDemo", "assets/maps/mapDemo.tmx");
+//dont need to write format file.
+bool MapParser::Load(const std::string& path) {
+	return Parse("mapDemo", "assets/maps/" + path+ ".tmx");
 }
 
 void MapParser::Clean() {
-
+	mMapDict.clear();
 }
 
 bool MapParser::Parse(const std::string& id, const std::string& source) {
@@ -44,16 +45,18 @@ bool MapParser::Parse(const std::string& id, const std::string& source) {
 	}
 
 	//parse layers
-	Map* gameMap = new Map();
+	std::unique_ptr<GameMap> gameMap = std::make_unique<GameMap>(GameMap());
 	for (TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
 		if (e->Value() == std::string("layer")) {
-			TileLayer* tileLayer = ParseTileLayer(e, tileset, tileSize, rowCount, colCount);
-			gameMap->mMapLayers.push_back(tileLayer);
+			std::unique_ptr<TileLayer> tileLayer = ParseTileLayer(e, tileset, tileSize, rowCount, colCount);
+			gameMap->mMapLayers.push_back(std::move(tileLayer));
+			
 		}
 	}
 
-	mMapDict[id] = gameMap;
+	mMapDict[id] = std::move(gameMap);
 	return true;
+	
 }
 
 Tileset MapParser::ParseTiteset(TiXmlElement* xmlTileset) {
@@ -71,7 +74,7 @@ Tileset MapParser::ParseTiteset(TiXmlElement* xmlTileset) {
 	return tileset;
 }
 
-TileLayer* MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tilesets, int tileSize, int rowCount, int colCount) {
+std::unique_ptr<TileLayer> MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tilesets, int tileSize, int rowCount, int colCount) {
 	TiXmlElement* data{};
 	for (TiXmlElement* e = xmlLayer->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
 		if (e->Value() == std::string("data")) {
@@ -86,8 +89,8 @@ TileLayer* MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tileset
 
 	TileMap tilemap(rowCount, std::vector<int>(colCount, 0));
 	
-	for (int row = 0; row <= rowCount; row++) {
-		for (int col = 0; col <= colCount; col++) {
+	for (int row = 0; row < rowCount; row++) {
+		for (int col = 0; col < colCount; col++) {
 			std::getline(iss, id, ',');
 			std::istringstream convertor(id);
 			convertor >> tilemap[row][col];
@@ -98,6 +101,6 @@ TileLayer* MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tileset
 		}
 	}
 
-	return (new TileLayer(tileSize, rowCount, colCount, tilemap, tilesets));
+	return std::make_unique<TileLayer>(TileLayer(tileSize, rowCount, colCount, tilemap, tilesets));
 
 }

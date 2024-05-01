@@ -4,8 +4,7 @@
 
 class Player : public GameEntity {
 public:
-	Player();
-	Player(const std::string& name, SDL_Renderer* render);
+	Player(const std::string& name);
 
 	virtual void Update() override;
 	//virtual void Render() override;

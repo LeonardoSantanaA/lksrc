@@ -51,11 +51,6 @@ void Input::Listen() {
 				Engine::GetInstance()->SetWidth(width);
 				Engine::GetInstance()->SetHeight(height);
 				SDL_RenderSetLogicalSize(Engine::GetInstance()->GetRender(), Engine::GetInstance()->GetWidth(), Engine::GetInstance()->GetHeight());
-
-				std::shared_ptr<GameEntity> background = EntityManager::GetInstance()->GetEntityRef("background");
-
-				background->SetDimensions(Engine::GetInstance()->GetWidth(), Engine::GetInstance()->GetHeight(), 1);
-
 			}
 			break;
 

@@ -10,7 +10,7 @@ class EntityManager {
 public:
 	static EntityManager* GetInstance();
 
-	bool CreateEntity(const std::string& name, SDL_Renderer* renderer);
+	bool CreateEntity(const std::string& name);
 
 	std::shared_ptr<GameEntity> GetEntityRef(const std::string& name);
 

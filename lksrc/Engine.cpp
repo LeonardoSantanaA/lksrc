@@ -7,8 +7,10 @@
 #include <functional>
 #include "EntityManager.h"
 #include "ResourceManager.h"
+#include "TextureManager.h"
 #include "Sound.h"
 #include "Input.h"
+#include "MapParser.h"
 
 Engine* Engine::mInstance = nullptr;
 
@@ -34,7 +36,9 @@ void Engine::Init() {
 		std::cout << "SDL initialized." << std::endl;
 	}
 
-	mWindow = SDL_CreateWindow("lksrc", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mWidth, mHeight, SDL_WINDOW_RESIZABLE); //| SDL_WINDOW_OPENGL);)
+	SDL_WindowFlags windowFlags = (SDL_WindowFlags)(SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+
+	mWindow = SDL_CreateWindow("lksrc", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mWidth, mHeight, windowFlags); //| SDL_WINDOW_OPENGL);)
 	if (mWindow == NULL) {
 		std::cerr << "Couldn't create window: " << SDL_GetError() << std::endl;
 	}
@@ -44,14 +48,16 @@ void Engine::Init() {
 }
 
 Engine::~Engine() {
-	SDL_DestroyWindow(mWindow);
-	SDL_DestroyRenderer(mRender); 
-	
 	Sound::QuitMixer();
 	ResourceManager::GetInstance()->ClearResourceManager();
 	EntityManager::GetInstance()->DeleteAllEntities();
+	TextureManager::GetInstance()->Clean();
+	MapParser::GetInstance()->Clean();
 	Sound::GetInstance()->ClearSound();
 	Input::GetInstance()->DestroyInput();
+	
+	SDL_DestroyWindow(mWindow);
+	SDL_DestroyRenderer(mRender);
 	SDL_Quit();
 }
 
