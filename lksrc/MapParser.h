@@ -11,11 +11,11 @@ public:
 	static MapParser* GetInstance();
 	bool Load();
 	void Clean();
-	inline Map* GetMaps();
+	inline Map* GetMaps(const std::string& id) { return mMapDict[id]; }
 	
 
 private:
-	MapParser();
+	//MapParser();
 	static MapParser* mInstance;
 	std::map<std::string, Map*> mMapDict;
 

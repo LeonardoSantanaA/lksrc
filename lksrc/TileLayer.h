@@ -5,9 +5,9 @@
 #include <vector>
 
 struct Tileset {
-	int firstID, lastID;
-	int rowCount, columnCount;
-	int tileCount, tileSize;
+	int firstID = 0, lastID = 0;
+	int rowCount = 0, columnCount = 0;
+	int tileCount = 0, tileSize = 0;
 	std::string name, source;
 };
 

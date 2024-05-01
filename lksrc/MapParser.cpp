@@ -1,8 +1,11 @@
 #include "MapParser.h"
 
+MapParser* MapParser::mInstance = nullptr;
+
 MapParser* MapParser::GetInstance() {
 	if (!mInstance) {
-		mInstance = new MapParser();
+		mInstance = new MapParser;
+		std::cout << "new mapParser instance." << std::endl;
 	}
 	return mInstance;
 }
@@ -15,12 +18,42 @@ void MapParser::Clean() {
 
 }
 
-inline Map* MapParser::GetMaps() {
-
-}
-
 bool MapParser::Parse(const std::string& id, const std::string& source) {
 
+	TiXmlDocument xml;
+	xml.LoadFile(source);
+	if (xml.Error()) {
+		std::cerr << "failed to load xml map: " << source << std::endl;
+		return false;
+	}
+
+	TiXmlElement* root = xml.RootElement();
+
+	//parse sizes
+	int rowCount = 0, colCount = 0, tileSize = 0;
+	root->Attribute("width", &colCount);
+	root->Attribute("height", &rowCount);
+	root->Attribute("tilewidth", &tileSize);
+
+	//parse tilesets
+	TilesetList tileset;
+	for (TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+		if (e->Value() == std::string("tileset")) {
+			tileset.push_back(ParseTiteset(e));
+		}
+	}
+
+	//parse layers
+	Map* gameMap = new Map();
+	for (TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+		if (e->Value() == std::string("layer")) {
+			TileLayer* tileLayer = ParseTileLayer(e, tileset, tileSize, rowCount, colCount);
+			gameMap->mMapLayers.push_back(tileLayer);
+		}
+	}
+
+	mMapDict[id] = gameMap;
+	return true;
 }
 
 Tileset MapParser::ParseTiteset(TiXmlElement* xmlTileset) {
@@ -39,5 +72,32 @@ Tileset MapParser::ParseTiteset(TiXmlElement* xmlTileset) {
 }
 
 TileLayer* MapParser::ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tilesets, int tileSize, int rowCount, int colCount) {
+	TiXmlElement* data{};
+	for (TiXmlElement* e = xmlLayer->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+		if (e->Value() == std::string("data")) {
+			data = e;
+			break;
+		}
+	}
+
+	std::string matrix(data->GetText());
+	std::istringstream iss(matrix);
+	std::string id;
+
+	TileMap tilemap(rowCount, std::vector<int>(colCount, 0));
+	
+	for (int row = 0; row <= rowCount; row++) {
+		for (int col = 0; col <= colCount; col++) {
+			std::getline(iss, id, ',');
+			std::istringstream convertor(id);
+			convertor >> tilemap[row][col];
+
+			if (!iss.good()) {
+				break;
+			}
+		}
+	}
+
+	return (new TileLayer(tileSize, rowCount, colCount, tilemap, tilesets));
 
 }
