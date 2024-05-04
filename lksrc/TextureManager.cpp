@@ -1,6 +1,7 @@
 #include "TextureManager.h"
 #include "ResourceManager.h"
 #include "Engine.h"
+#include "Camera.h"
 
 TextureManager* TextureManager::mInstance = nullptr;
 
@@ -56,7 +57,8 @@ void TextureManager::RenderFrame(const std::string& id, int x, int y, int w, int
 }
 
 void TextureManager::RenderTile(const std::string& tilesetID, int tileSize, int x, int y, int row, int frame, const SDL_RendererFlip& flip) {
-	SDL_Rect dstRect = { x, y, tileSize, tileSize };
 	SDL_Rect srcRect = { tileSize * frame, tileSize * (row), tileSize, tileSize };
+	Vec2D cam = Camera::GetInstance()->GetPosition();
+	SDL_Rect dstRect = { x - cam.x, y - cam.y, tileSize, tileSize };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[tilesetID], &srcRect, &dstRect, 0, 0, flip);
 }

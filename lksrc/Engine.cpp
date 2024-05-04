@@ -11,6 +11,7 @@
 #include "Sound.h"
 #include "Input.h"
 #include "MapParser.h"
+#include "Camera.h"
 
 Engine* Engine::mInstance = nullptr;
 
@@ -55,6 +56,7 @@ Engine::~Engine() {
 	MapParser::GetInstance()->Clean();
 	Sound::GetInstance()->ClearSound();
 	Input::GetInstance()->DestroyInput();
+	Camera::GetInstance()->Clean();
 	
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRender);

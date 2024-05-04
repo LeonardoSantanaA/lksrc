@@ -26,6 +26,7 @@
 #include "TextureManager.h"
 #include "GameMap.h"
 #include "MapParser.h"
+#include "Camera.h"
 
 //global variables
 Engine* engine; 
@@ -54,6 +55,7 @@ void HandleUpdate() {
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
 	std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
 
+	Camera::GetInstance()->Update();
 
 	if (entity) {
 		entity->UpdateSpriteSheet();
@@ -95,11 +97,6 @@ void HandleUpdate() {
 		entity2->SetDimensions(100, 100, 1);
 	}
 
-
-	if (entity) {
-		
-		entity->SetPosition(engine->GetMouseX(), engine->GetMouseY());
-	}
 	
 
 }
@@ -136,6 +133,7 @@ int main(int argc, char* argv[]) {
 
 	//create entities
 	player = new Player("player");
+	Camera::GetInstance()->SetTarget(player->GetPoint());
 	EntityManager::GetInstance()->CreateEntity("entity1");
 	EntityManager::GetInstance()->CreateEntity("entity2");
 

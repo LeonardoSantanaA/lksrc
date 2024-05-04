@@ -1,6 +1,7 @@
 #include "AnimatedSprite.h"
 #include <iostream>
 #include "Engine.h"
+#include "Camera.h"
 
 
 AnimatedSprite::AnimatedSprite(const std::string& filepath, const ImageFormat& format) : mDst(), mSrc(), mCountSpeed(0), mAngle(0), mCenterPoint(SDL_Point{ 0,0 }), mDirectionFlip(SDL_FLIP_NONE) {
@@ -24,7 +25,9 @@ void AnimatedSprite::Update() {
 }
 
 void AnimatedSprite::Render() {
-	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, &mSrc, &mDst, mAngle, &mCenterPoint, mDirectionFlip);
+	Vec2D cam = Camera::GetInstance()->GetPosition();
+	SDL_Rect newDstRect = {mDst.x - cam.x, mDst.y - cam.y, mDst.w, mDst.h};
+	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, &mSrc, &newDstRect, mAngle, &mCenterPoint, mDirectionFlip);
 }
 
 void AnimatedSprite::SetPosition(int x, int y) {
@@ -33,7 +36,7 @@ void AnimatedSprite::SetPosition(int x, int y) {
 }
 
 void AnimatedSprite::MovePosition(int x, int y) {
-	mDst.x += x;
+	mDst.x += x ;
 	mDst.y += y;
 }
 

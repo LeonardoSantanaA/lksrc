@@ -4,6 +4,7 @@
 #include <vector>
 #include "Collider2D.h"
 #include "AnimatedSprite.h"
+#include "Point.h"
 #include <unordered_map>
 
 class GameEntity {
@@ -32,6 +33,7 @@ public:
 	void AddAnimation(const std::string& animationName, int yStartPositionInSpritesheet, int numberFrames);
 	std::string GetCurrentAnimation() const;
 	void ChangeAnimation(const std::string& animationName);
+	void AddPoint();
 	
 	TexturedRectangle& GetTexturedRectangle() const;
 	Collider2D* GetCollider2D(size_t index);
@@ -50,6 +52,7 @@ public:
 	inline void SetAnimationLoop(bool loop) { mLoop = loop; }
 	inline void SetAnimationSpeed(float speed) { mAnimationSpeed = speed; }
 	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
+	inline Point* GetPoint() { return mPoint; }
 
 protected:
 	std::string mName;
@@ -70,4 +73,5 @@ protected:
 	float mAngle;
 	SDL_Point mCenterPoint;
 
+	Point* mPoint;
 };

@@ -1,13 +1,13 @@
 #include "MapParser.h"
 
-std::unique_ptr<MapParser> MapParser::mInstance = nullptr;
+MapParser* MapParser::mInstance = nullptr;
 
 MapParser* MapParser::GetInstance() {
 	if (!mInstance) {
-		mInstance = std::make_unique<MapParser>();
+		mInstance = new MapParser;
 		std::cout << "mapparser instance created." << std::endl;
 	}
-	return mInstance.get();
+	return mInstance;
 }
 
 //dont need to write format file.
@@ -17,6 +17,11 @@ bool MapParser::Load(const std::string& path) {
 
 void MapParser::Clean() {
 	mMapDict.clear();
+
+	if (mInstance) {
+		delete mInstance;
+		mInstance = nullptr;
+	}
 }
 
 bool MapParser::Parse(const std::string& id, const std::string& source) {

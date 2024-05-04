@@ -19,8 +19,9 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 	SetOffsetPositionCollision(0, 17, 30);
 	SetPosition(50, 150);
 
-	
 	SetAnimationLoop(true);
+
+	//AddPoint();
 }
 
 void Player::Update() {

@@ -48,7 +48,4 @@ public:
         std::cout << msg << "(X, Y) = (" << x << ", " << y << ")" << std::endl;
     }
 
-private:
-
-
 };

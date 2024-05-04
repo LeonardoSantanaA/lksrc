@@ -1,6 +1,7 @@
 #include "TexturedRectangle.h"
 #include <iostream>
 #include "Engine.h"
+#include "Camera.h"
 
 TexturedRectangle::TexturedRectangle(const std::string& filepath, const ImageFormat& format, float scale)
 : mRedColorKey(), mGreenColorKey(), mBlueColorKey(), mAngle(0), mDirectionFlip(SDL_FLIP_NONE){
@@ -103,6 +104,8 @@ void TexturedRectangle::SetDimensions(int w, int h, float scale) {
 
 
 void TexturedRectangle::Render() {
+	Vec2D cam = Camera::GetInstance()->GetPosition();
+	SDL_Rect newDstRect = { mRect.x - cam.x, mRect.y - cam.y, mRect.w, mRect.h };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, nullptr, &mRect, mAngle, &mCenterPoint, mDirectionFlip);
 }
 

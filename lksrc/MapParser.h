@@ -24,7 +24,7 @@ public:
 
 private:
 	//MapParser();
-	static std::unique_ptr<MapParser> mInstance;
+	static MapParser* mInstance;
 	std::map<std::string, std::shared_ptr<GameMap>> mMapDict;
 
 	bool Parse(const std::string& id, const std::string& source);

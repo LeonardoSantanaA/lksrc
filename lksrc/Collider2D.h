@@ -30,7 +30,7 @@ public:
 	void Render() {}
 
 	inline SDL_Rect* GetColliderBoundingBox() { return mnoptrColliderRect; }
-	inline void SetXOffset(int x) { xOffset = x; std::cout << "setado para: " << xOffset << std::endl; }
+	inline void SetXOffset(int x) { xOffset = x; }
 	inline void SetYOffset(int y) { yOffset = y; }
 
 

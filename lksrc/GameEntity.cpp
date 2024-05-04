@@ -5,6 +5,7 @@
 GameEntity::GameEntity() {
 	mnoptrSprite = nullptr;
 	mnoptrAnimatedSprite = nullptr;
+	mPoint = nullptr;
 	mDebugMode = false;
 	mAngle = 0;
 	mCenterPoint = {};
@@ -14,12 +15,14 @@ GameEntity::GameEntity() {
 	mAnimationSpeed = 1.0f;
 	mLoop = false;
 	mAnimationDelayCount = 0;
+	AddPoint();
 }
 
 GameEntity::GameEntity(const std::string& name) {
 	mName = name;
 	mnoptrSprite = nullptr;
 	mnoptrAnimatedSprite = nullptr;
+	mPoint = nullptr;
 	mDebugMode = false;
 	mAngle = 0;
 	mCenterPoint = {};
@@ -29,6 +32,7 @@ GameEntity::GameEntity(const std::string& name) {
 	mAnimationSpeed = 1.0f;
 	mLoop = false;
 	mAnimationDelayCount = 0;
+	AddPoint();
 }
 
 GameEntity::~GameEntity() {
@@ -42,6 +46,11 @@ GameEntity::~GameEntity() {
 		mnoptrAnimatedSprite = nullptr;
 	}
 
+	if (mPoint) {
+		delete mPoint;
+		mPoint = nullptr;
+	}
+
 	for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
 		if (mnoptrColliders[i]) {
 			delete mnoptrColliders[i];
@@ -52,7 +61,11 @@ GameEntity::~GameEntity() {
 }
 
 void GameEntity::Update() {
-
+	if (mPoint) {
+		mPoint->x = GetX() + GetWidth() / 2;
+		mPoint->y = GetY() + GetHeight() / 2;
+		//std::cout << "x atualizado: " << mPoint->x << std::endl;
+	}
 }
 
 void GameEntity::Render() {
@@ -121,6 +134,14 @@ void GameEntity::AddCollider2D() {
 	mnoptrColliders.push_back(new Collider2D());
 }
 
+void GameEntity::AddPoint() {
+	if (!mPoint) {
+		float x = GetX() + GetWidth() / 2;
+		float y = GetY() + GetHeight() / 2;
+		mPoint = new Point(x, y);
+	}
+}
+
 SDL_bool GameEntity::IsColliding(const GameEntity& otherEntity, size_t index, size_t otherIndex) {
 	if (mnoptrColliders[index] && otherEntity.mnoptrColliders[otherIndex]) {
 		return this->GetCollider2D(index)->IsColliding(*otherEntity.mnoptrColliders[otherIndex]);
@@ -176,6 +197,7 @@ void GameEntity::MovePosition(int x, int y) {
 
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
 		if (mnoptrColliders[i]) {
+
 			mnoptrColliders[i]->MovePosition(x, y);
 		}
 		else {
