@@ -106,7 +106,7 @@ void TexturedRectangle::SetDimensions(int w, int h, float scale) {
 void TexturedRectangle::Render() {
 	Vec2D cam = Camera::GetInstance()->GetPosition();
 	SDL_Rect newDstRect = { mRect.x - cam.x, mRect.y - cam.y, mRect.w, mRect.h };
-	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, nullptr, &mRect, mAngle, &mCenterPoint, mDirectionFlip);
+	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, nullptr, &newDstRect, mAngle, &mCenterPoint, mDirectionFlip);
 }
 
 void TexturedRectangle::FlipImageHorizontal() {

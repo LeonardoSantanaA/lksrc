@@ -13,7 +13,7 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 	AddAnimation("run", 32, 7);
 	AddCollider2D();
 	SetDimensions(32, 32, 3);
-	//SetDebugMode(true); //turn on debug mode to see collisors
+	SetDebugMode(true); //turn on debug mode to see collisors
 
 	GetCollider2D(0)->SetDimensions(49, 63);
 	SetOffsetPositionCollision(0, 17, 30);

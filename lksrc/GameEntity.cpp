@@ -78,8 +78,9 @@ void GameEntity::Render() {
 	if (mDebugMode) {
 		for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
 			if (mnoptrColliders[i]) {
-				SDL_SetRenderDrawColor(Engine::GetInstance()->GetRender(), 255, 255, 255, SDL_ALPHA_OPAQUE);
-				SDL_RenderDrawRect(Engine::GetInstance()->GetRender(), mnoptrColliders[i]->GetColliderBoundingBox());
+				mnoptrColliders[i]->Render();
+				//SDL_SetRenderDrawColor(Engine::GetInstance()->GetRender(), 255, 255, 255, SDL_ALPHA_OPAQUE);
+				//SDL_RenderDrawRect(Engine::GetInstance()->GetRender(), mnoptrColliders[i]->GetColliderBoundingBox());
 			}
 			else {
 				std::cout << "trying access nullptr mnoptrcolliders, index: " << i << " gameentity::render()." << std::endl;

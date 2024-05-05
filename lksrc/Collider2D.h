@@ -27,7 +27,7 @@ public:
 	void Update() { //not really needed... 
 	}
 
-	void Render() {}
+	void Render();
 
 	inline SDL_Rect* GetColliderBoundingBox() { return mnoptrColliderRect; }
 	inline void SetXOffset(int x) { xOffset = x; }

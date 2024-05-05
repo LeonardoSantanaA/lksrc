@@ -1,6 +1,8 @@
 #include "Collider2D.h"
 
 #include <iostream>
+#include "Engine.h"
+#include "Camera.h"
 
 Collider2D::Collider2D(): mnoptrColliderRect() {
 	mnoptrColliderRect = new SDL_Rect;
@@ -83,3 +85,9 @@ int Collider2D::GetHeight() {
     }
 }
 
+void Collider2D::Render() {
+    Vec2D cam = Camera::GetInstance()->GetPosition();
+    SDL_Rect newDstRect = { mnoptrColliderRect->x - cam.x, mnoptrColliderRect->y - cam.y, mnoptrColliderRect->w, mnoptrColliderRect->h };
+    SDL_SetRenderDrawColor(Engine::GetInstance()->GetRender(), 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_RenderDrawRect(Engine::GetInstance()->GetRender(), &newDstRect);
+}

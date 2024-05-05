@@ -79,25 +79,31 @@ void HandleUpdate() {
 	entity2->SetAngleRotate(angle);
 
 	if (up) {
-		posY--;
+		//posY--;
 	}
 	else {
-		posY++;
+		//posY++;
 	}
 
 	if (right) {
-		posX++;
+		//posX++;
 	}
 	else {
-		posX--;
+		//posX--;
 	}
 
 	if (entity2) {
-		entity2->SetPosition(posX, posY);
+		entity2->SetPosition(850, 100);
 		entity2->SetDimensions(100, 100, 1);
 	}
 
+	if (player->GetCollider2D(0)->IsColliding(*entity2->GetCollider2D(0))) {
+		std::cout << "colliding" << std::endl;
+	}
 	
+	if (player->GetCollider2D(0)->IsColliding(*entity->GetCollider2D(0))) {
+		std::cout << "colliding" << std::endl;
+	}
 
 }
 
@@ -154,6 +160,7 @@ int main(int argc, char* argv[]) {
 	entity->AddCollider2D();
 	entity->GetCollider2D(0)->SetDimensions(70, 90);
 	entity->GetCollider2D(1)->SetDimensions(100, 100);
+	entity->SetPosition(200, 100);
 	entity->SetDebugMode(true);
 	entity->SetAnimationSpeed(10.0f);
 	entity->SetAnimationLoop(true);
