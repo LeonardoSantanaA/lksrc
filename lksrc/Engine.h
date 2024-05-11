@@ -4,10 +4,10 @@
 #include <functional>
 #include <set>
 #include "Input.h"
+#include "GameMap.h"
 
 class Engine {
 public:
-	Engine();
 	static Engine* GetInstance();
 	void Init();
 	~Engine();
@@ -35,15 +35,19 @@ public:
 		if (mWindow) { return mWindow; }
 		return nullptr;
 }
+	inline std::shared_ptr<GameMap> GetLevelMap() { return mLevelMap; }
+
 
 	SDL_TimerID AddTimer(uint32_t delay, SDL_TimerCallback callback, void* param);
 	SDL_TimerID AddRecurringTimer(uint32_t interval, SDL_TimerCallback callback, void* param);
 	void RemoveTimer(SDL_TimerID id);
 
 private:
+	Engine();
 	static Engine* mInstance;
 	SDL_Window* mWindow = nullptr;
 	SDL_Renderer* mRender = nullptr;
+	std::shared_ptr<GameMap> mLevelMap = std::make_shared<GameMap>();
 	bool mGameIsRunning = false;
 	std::function<void(void)> mEventCallback;
 	std::function<void(void)> mUpdateCallback;

@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "EntityManager.h"
 #include "Input.h"
+#include "Collisor.h"
 
 Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirection("right"), mVelocity(2), isMoving(false){
 	std::cout << "chamando construtor de player" << std::endl;
@@ -37,6 +38,9 @@ void Player::Update() {
 		SetAnimationSpeed(10.0f);
 	}
 
+	if (Collisor::GetInstance()->MapCollision(*GetCollider2D(0)->GetColliderBoundingBox())) {
+		std::cout << "Colliding." << std::endl;
+	}
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A)) {
 		MovePosition(-mVelocity, 0);
 		isMoving = true;

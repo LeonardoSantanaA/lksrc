@@ -2,13 +2,8 @@
 
 MapParser* MapParser::mInstance = nullptr;
 
-MapParser* MapParser::GetInstance() {
-	if (!mInstance) {
-		mInstance = new MapParser;
-		std::cout << "mapparser instance created." << std::endl;
-	}
-	return mInstance;
-}
+MapParser::MapParser() {}
+
 
 //dont need to write format file.
 bool MapParser::Load(const std::string& path) {

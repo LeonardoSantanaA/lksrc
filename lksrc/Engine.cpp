@@ -12,6 +12,7 @@
 #include "Input.h"
 #include "MapParser.h"
 #include "Camera.h"
+#include "Collisor.h"
 
 Engine* Engine::mInstance = nullptr;
 
@@ -46,6 +47,10 @@ void Engine::Init() {
 
 	mRender = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
+	if (!MapParser::GetInstance()->Load("mapDemo")) {
+		std::cout << "failed to load map." << std::endl;
+	}
+	mLevelMap = MapParser::GetInstance()->GetMap("mapDemo");
 }
 
 Engine::~Engine() {
@@ -57,6 +62,7 @@ Engine::~Engine() {
 	Sound::GetInstance()->ClearSound();
 	Input::GetInstance()->DestroyInput();
 	Camera::GetInstance()->Clean();
+	Collisor::GetInstance()->Clean();
 	
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRender);
@@ -85,6 +91,7 @@ void Engine::RunLoop() {
 		buttons = SDL_GetMouseState(&mMouseX, &mMouseY);
 
 		Input::GetInstance()->Listen();
+		mLevelMap->Update();
 		mUpdateCallback();
 
 		SDL_Event event{};
@@ -92,6 +99,7 @@ void Engine::RunLoop() {
 		SDL_SetRenderDrawColor(mRender, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(mRender);
 		//Draw
+		mLevelMap->Render();
 		mRenderCallback();
 
 		//show what draw

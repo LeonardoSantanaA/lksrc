@@ -33,7 +33,7 @@ Engine* engine;
 Font* font;
 Player* player;
 
-std::shared_ptr<GameMap> map = std::make_shared<GameMap>();
+
 
 std::string spriteName;
 
@@ -46,7 +46,6 @@ void HandleEvents() {
 }
 
 void HandleUpdate() {
-	map->Update();
 	EntityManager::GetInstance()->UpdateAllEntities();
 	player->Update();
 
@@ -109,7 +108,6 @@ void HandleUpdate() {
 
 void HandleRendering() {
 	//Draw here
-	map->Render();
 	EntityManager::GetInstance()->RenderAllEntities();
 
 	font->Render();
@@ -132,10 +130,7 @@ int main(int argc, char* argv[]) {
 
 	engine->AddTimer(2000, mCallbackFun, (char*)"timer called");
 	
-	if (!MapParser::GetInstance()->Load("mapDemo")) {
-		std::cout << "failed to load map." << std::endl;
-	}
-	map = MapParser::GetInstance()->GetMap("mapDemo");
+
 
 	//create entities
 	player = new Player("player");

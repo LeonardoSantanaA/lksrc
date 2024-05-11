@@ -8,7 +8,14 @@
 
 class MapParser {
 public:
-	static MapParser* GetInstance();
+	inline static MapParser* GetInstance() {
+		if (!mInstance) {
+			mInstance = new MapParser;
+			std::cout << "mapparser instance created." << std::endl;
+		}
+		return mInstance;
+	}
+
 	bool Load(const std::string& path);
 	void Clean();
 	std::shared_ptr<GameMap> GetMap(const std::string& id) const {
@@ -23,7 +30,7 @@ public:
 
 
 private:
-	//MapParser();
+	MapParser();
 	static MapParser* mInstance;
 	std::map<std::string, std::shared_ptr<GameMap>> mMapDict;
 
