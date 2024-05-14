@@ -1,6 +1,5 @@
 #pragma once
 
-#include "GlobalResources.h"
 #include <iostream>
 
 #include <SDL.h>
@@ -16,6 +15,7 @@ public:
 	Collider2D();
 	~Collider2D();
 
+	//return if is colliding with another collider
 	SDL_bool IsColliding(const Collider2D& collider);
 	void SetPosition(int x, int y);
 	void MovePosition(int x, int y);

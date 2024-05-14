@@ -4,8 +4,8 @@
 #include <SDL.h>
 #include <string>
 #include "ResourceManager.h"
-#include "GlobalResources.h"
 #include "Vec2D.h"
+#include "Engine.h"
 
 class TexturedRectangle {
 public:

@@ -48,13 +48,14 @@ void HandleEvents() {
 void HandleUpdate() {
 	EntityManager::GetInstance()->UpdateAllEntities();
 	player->Update();
+	Camera::GetInstance()->Update();
 
 
 	//get entities
+	/*
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
 	std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
 
-	Camera::GetInstance()->Update();
 
 	if (entity) {
 		entity->UpdateSpriteSheet();
@@ -66,13 +67,14 @@ void HandleUpdate() {
 	static bool up = 0;
 	static bool right = 0;
 	static float angle = 0;
-
+	
 	if (entity2) {
 		entity2->GetX() > engine->GetWidth() ? right = false : NULL;
 		entity2->GetX() < 0 ? right = true : NULL;
 		entity2->GetY() < 0 ? up = false : NULL;
 		entity2->GetX() > engine->GetHeight() ? up = true : NULL;
 	}
+	
 
 	angle++;
 	entity2->SetAngleRotate(angle);
@@ -95,22 +97,24 @@ void HandleUpdate() {
 		entity2->SetPosition(850, 100);
 		entity2->SetDimensions(100, 100, 1);
 	}
+	*/
 
 }
 
 void HandleRendering() {
 	//Draw here
+
 	EntityManager::GetInstance()->RenderAllEntities();
-
-	//font->Render();
 	player->Render();
-
-	Vec2D cam = Camera::GetInstance()->GetPosition();
-	SDL_Rect test = {};
-	test.x = player->rectTest.x - cam.x;
-	test.y = player->rectTest.y - cam.y;
-	test.w = player->rectTest.w;
-	test.h = player->rectTest.h;
+	
+	
+	//font->Render();
+	//Vec2D cam = Camera::GetInstance()->GetPosition();
+	//SDL_Rect test = {};
+	////test.x = player->rectTest.x - cam.x;
+	//test.y = player->rectTest.y - cam.y;
+	//test.w = player->rectTest.w;
+	//test.h = player->rectTest.h;
 	//SDL_RenderFillRect(Engine::GetInstance()->GetRender(), &test);
 }
 
@@ -131,14 +135,13 @@ int main(int argc, char* argv[]) {
 	engine->AddTimer(2000, mCallbackFun, (char*)"timer called");
 	
 
-
 	//create entities
 	player = new Player("player");
 	Camera::GetInstance()->SetTarget(player->GetPoint());
-	EntityManager::GetInstance()->CreateEntity("entity1");
-	EntityManager::GetInstance()->CreateEntity("entity2");
+	TextureManager::GetInstance()->Load("background", "assets/maps/background.png");
 
 	//get entities
+	/*
 	std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
 	std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity2");
 
@@ -165,7 +168,7 @@ int main(int argc, char* argv[]) {
 	entity2->AddCollider2D();
 	entity2->SetDimensions(64, 64, 2);
 	entity2->SetDebugMode(true);
-
+	*/
 
 	//font = new Font("assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
 	//font->SetColor({ 255, 0, 255 });
@@ -181,7 +184,6 @@ int main(int argc, char* argv[]) {
 	engine->RunLoop();
 	
 	//delete font;
-	
 	delete engine;
 	delete player;
 

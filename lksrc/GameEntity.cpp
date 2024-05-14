@@ -64,16 +64,15 @@ void GameEntity::Update() {
 	if (mPoint) {
 		mPoint->x = GetX() + GetWidth() / 2;
 		mPoint->y = GetY() + GetHeight() / 2;
-		//std::cout << "x atualizado: " << mPoint->x << std::endl;
 	}
 }
 
 void GameEntity::Render() {
-	if (mnoptrSprite) {
-		mnoptrSprite->Render();
-	}else if (mnoptrAnimatedSprite) {
+	if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->Render();
-	}
+	}else if (mnoptrSprite) {
+		mnoptrSprite->Render();
+	} 
 
 	if (mDebugMode) {
 		for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
@@ -154,7 +153,6 @@ SDL_bool GameEntity::IsColliding(const GameEntity& otherEntity, size_t index, si
 void GameEntity::SetOffsetPositionCollision(int indexColission, int xoffsetCollision, int yoffsetCollision) {
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
 		if (i == indexColission && mnoptrColliders[i]) {
-			std::cout << "setando offset " << xoffsetCollision << std::endl;
 			mnoptrColliders[i]->SetXOffset(xoffsetCollision);
 			mnoptrColliders[i]->SetYOffset(yoffsetCollision);
 		}
@@ -168,7 +166,6 @@ void GameEntity::SetPosition(int x, int y) {
 	else if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->SetPosition(x, y);
 	}
-	
 	else {
 		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
 	}
@@ -185,20 +182,16 @@ void GameEntity::SetPosition(int x, int y) {
 }
 
 void GameEntity::MovePosition(int x, int y) {
-	if (mnoptrSprite) {
-		mnoptrSprite->MovePosition(x, y);
-	}
-	else if (mnoptrAnimatedSprite) {
+	if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->MovePosition(x, y);
-	}
-
-	else {
+	}else if (mnoptrSprite) {
+		mnoptrSprite->MovePosition(x, y);
+	}else {
 		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
 	}
 
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
 		if (mnoptrColliders[i]) {
-
 			mnoptrColliders[i]->MovePosition(x, y);
 		}
 		else {
@@ -208,12 +201,12 @@ void GameEntity::MovePosition(int x, int y) {
 }
 
 void GameEntity::SetDimensions(int w, int h, float scale) {
-	if (mnoptrSprite) {
+	if (mnoptrAnimatedSprite) {
+		mnoptrAnimatedSprite->SetDimensions(w, h, scale);
+	} else if (mnoptrSprite) {
 		mnoptrSprite->SetDimensions(w, h, scale);
 	}
-	else if (mnoptrAnimatedSprite) {
-		mnoptrAnimatedSprite->SetDimensions(w, h, scale);
-	}
+	
 	else {
 		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
 	}

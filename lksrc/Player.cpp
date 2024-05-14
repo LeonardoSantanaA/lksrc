@@ -8,7 +8,7 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 	std::cout << "chamando construtor de player" << std::endl;
 
 	rectTest = {};
-	int scale = 3;
+	int scale = 2.5f;
 	AddAnimatedSprite("assets/images/spriteSheetPlayer.png", FORMAT_PNG);
 	SetAnimatedSpriteDimensionsInSpriteSheet(32, 32);
 	AddAnimation("idle", 0, 12);
@@ -16,13 +16,13 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 	AddAnimation("run", 32, 7);
 	AddCollider2D();
 	AddCollider2D();
-	SetDimensions(32, 32, 3);
-	//SetDebugMode(true); //turn on debug mode to see collisors
+	SetDimensions(32, 32, scale);
+	SetDebugMode(true); //turn on debug mode to see collisors
 
 	GetCollider2D(0)->SetDimensions(16 * scale, 20 * scale);
 	SetOffsetPositionCollision(0, 8 * scale, 11* scale);
 
-	GetCollider2D(1)->SetDimensions(16 * scale, 17 * scale);
+	GetCollider2D(1)->SetDimensions(16 * scale, 15 * scale);
 	SetOffsetPositionCollision(1, 8 * scale, 11 * scale);
 
 	SetPosition(200, 0);

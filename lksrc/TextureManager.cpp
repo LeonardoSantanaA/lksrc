@@ -43,16 +43,18 @@ void TextureManager::Clean() {
 	}
 }
 
-void TextureManager::Render(const std::string& id, int x, int y, int w, int h, const SDL_RendererFlip& flip) {
+void TextureManager::Render(const std::string& id, int x, int y, int w, int h, float scaleX, float scaleY, float scrollRatio, const SDL_RendererFlip& flip ) {
 	SDL_Rect srcRect = {0, 0, w, h};
-	SDL_Rect dstRect = { x, y ,w ,h };
+	Vec2D cam = Camera::GetInstance()->GetPosition() * scrollRatio;
+	SDL_Rect dstRect = { x - cam.x, y -cam.y, w * scaleX , h * scaleY };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 
 }
 
 void TextureManager::RenderFrame(const std::string& id, int x, int y, int w, int h, int row, int frame, const SDL_RendererFlip& flip) {
 	SDL_Rect srcRect = { w * frame, h * row, w, h };
-	SDL_Rect dstRect = { x, y, w, h };
+	Vec2D cam = Camera::GetInstance()->GetPosition();
+	SDL_Rect dstRect = { x - cam.x, y - cam.y, w, h };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 }
 

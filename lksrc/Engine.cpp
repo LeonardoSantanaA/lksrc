@@ -99,6 +99,7 @@ void Engine::RunLoop() {
 		SDL_SetRenderDrawColor(mRender, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(mRender);
 		//Draw
+		TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 2, 1, 0.5f);
 		mLevelMap->Render();
 		mRenderCallback();
 

@@ -4,7 +4,6 @@
 
 #include <SDL.h>
 #include "ResourceManager.h"
-#include "GlobalResources.h"
 
 class AnimatedSprite {
 public:

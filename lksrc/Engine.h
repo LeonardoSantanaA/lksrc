@@ -6,6 +6,8 @@
 #include "Input.h"
 #include "GameMap.h"
 
+#define SCALE 4
+
 class Engine {
 public:
 	static Engine* GetInstance();

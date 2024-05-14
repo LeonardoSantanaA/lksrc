@@ -24,7 +24,10 @@ public:
 
 	void AddCollider2D();
 
+	//return if is coliding with another entity
 	SDL_bool IsColliding(const GameEntity& otherEntity, size_t index, size_t otherIndex);
+
+	//set offset position for collider rectangle
 	void SetOffsetPositionCollision(int indexColission, int xoffsetCollision, int yoffsetColision);
 
 	void SetPosition(int x, int y);
