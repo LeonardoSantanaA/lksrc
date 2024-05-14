@@ -11,6 +11,9 @@ public:
 
 	inline const SDL_Rect GetViewBox() const { return mViewBox; }
 	inline const Vec2D GetPosition() const { return mPosition; }
+
+	//Set the target to camera follows.
+	//use the GetPoint() for GameEntity.
 	inline void SetTarget(Point* target) { mTarget = target; };
 
 	void Update();

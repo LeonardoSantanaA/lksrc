@@ -9,7 +9,10 @@
 class Engine {
 public:
 	static Engine* GetInstance();
+
+	//initialize the engine
 	void Init();
+
 	~Engine();
 
 	inline void SetWindowName(const char* name) { SDL_SetWindowTitle(mWindow, name); }

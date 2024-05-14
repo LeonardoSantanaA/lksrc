@@ -30,7 +30,7 @@
 
 //global variables
 Engine* engine; 
-Font* font;
+//Font* font;
 Player* player;
 
 
@@ -96,22 +96,22 @@ void HandleUpdate() {
 		entity2->SetDimensions(100, 100, 1);
 	}
 
-	if (player->GetCollider2D(0)->IsColliding(*entity2->GetCollider2D(0))) {
-		std::cout << "colliding" << std::endl;
-	}
-	
-	if (player->GetCollider2D(0)->IsColliding(*entity->GetCollider2D(0))) {
-		std::cout << "colliding" << std::endl;
-	}
-
 }
 
 void HandleRendering() {
 	//Draw here
 	EntityManager::GetInstance()->RenderAllEntities();
 
-	font->Render();
+	//font->Render();
 	player->Render();
+
+	Vec2D cam = Camera::GetInstance()->GetPosition();
+	SDL_Rect test = {};
+	test.x = player->rectTest.x - cam.x;
+	test.y = player->rectTest.y - cam.y;
+	test.w = player->rectTest.w;
+	test.h = player->rectTest.h;
+	//SDL_RenderFillRect(Engine::GetInstance()->GetRender(), &test);
 }
 
 uint32_t mCallbackFun(uint32_t interval, void* param) {
@@ -167,10 +167,10 @@ int main(int argc, char* argv[]) {
 	entity2->SetDebugMode(true);
 
 
-	font = new Font("assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
-	font->SetColor({ 255, 0, 255 });
-	*font = "hello world! lksrc.";
-	font->SetPosition(50, 50);
+	//font = new Font("assets/fonts/VCR_OSD_MONO.ttf", "lksrc", 58);
+	//font->SetColor({ 255, 0, 255 });
+	//*font = "hello world! lksrc.";
+	//font->SetPosition(50, 50);
 
 	TextureManager::GetInstance()->Load("test", "assets/maps/mapDemoTileset.png");
 
@@ -179,9 +179,8 @@ int main(int argc, char* argv[]) {
 	Sound::GetInstance()->PlayMusic(m);
 
 	engine->RunLoop();
-
 	
-	delete font;
+	//delete font;
 	
 	delete engine;
 	delete player;

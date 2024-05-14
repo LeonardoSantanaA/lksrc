@@ -12,9 +12,9 @@ public:
 	bool GetKeyPress(SDL_Scancode key);
 
 private:
+	Input();
 	static Input* mInstance;
 	const Uint8* mKeyStates;
-	Input();
 	void KeyUp();
 	void KeyDown();
 

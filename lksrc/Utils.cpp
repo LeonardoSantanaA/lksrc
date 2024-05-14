@@ -44,3 +44,13 @@ float Clamp(float val, float min, float max) {
 	}
 	return val;
 }
+
+int Sign(float val) {
+	if (val > 0) {
+		return 1;
+	}
+	else if (val < 0) {
+		return -1;
+	}
+	return 0;
+}

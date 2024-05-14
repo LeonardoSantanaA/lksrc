@@ -23,6 +23,8 @@ public:
 	//use the Collider2D(index)->GetColliderBoundingBox to check if collided.
 	bool MapCollision(const SDL_Rect& a);
 
+	bool PlaceFree(int x, int y, int w, int h);
+
 private:
 	Collisor();
 	static Collisor* mInstance;

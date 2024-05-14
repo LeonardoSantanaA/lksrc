@@ -15,6 +15,15 @@ enum ImageFormat {
 };
 
 class ResourceManager {
+public:
+	static ResourceManager* GetInstance();
+	void ClearResourceManager();
+
+	SDL_Surface* GetSurface(const std::string& filepath, const ImageFormat& format = FORMAT_BMP);
+	TTF_Font* GetFont(const std::string& filepath, int size);
+	Mix_Chunk* GetSound(const std::string& filepath);
+	Mix_Music* GetMusic(const std::string& filepath);
+
 private:
 	ResourceManager();
 	static ResourceManager* mInstance;
@@ -24,13 +33,4 @@ private:
 	std::unordered_multimap<std::pair<std::string, int>, TTF_Font*, hash_pair> mFonts;
 	std::unordered_map<std::string, Mix_Chunk*> mSounds;
 	std::unordered_map<std::string, Mix_Music*> mMusics;
-
-public:
-	static ResourceManager* GetInstance();
-	void ClearResourceManager();
-
-	SDL_Surface* GetSurface(const std::string& filepath, const ImageFormat& format = FORMAT_BMP);
-	TTF_Font* GetFont(const std::string& filepath, int size);
-	Mix_Chunk* GetSound(const std::string& filepath);
-	Mix_Music* GetMusic(const std::string& filepath);
 };

@@ -32,7 +32,6 @@ bool Collisor::MapCollision(const SDL_Rect& rectToCheck) {
 	int colCount = mCollisionLayer->GetColumnCount();//80;
 
 	int leftTile = rectToCheck.x / tileSize;
-	//std::cout << "left tile: " << leftTile << std::endl;
 	int rightTile = (rectToCheck.x + rectToCheck.w) / tileSize;
 
 	int topTile = rectToCheck.y / tileSize;
@@ -53,4 +52,13 @@ bool Collisor::MapCollision(const SDL_Rect& rectToCheck) {
 	}
 
 	return false;
+}
+
+bool Collisor::PlaceFree(int x, int y, int w, int h) {
+	SDL_Rect rectToVerify{};
+	rectToVerify.x = x;
+	rectToVerify.y = y;
+	rectToVerify.w = w;
+	rectToVerify.h = h;
+	return !MapCollision(rectToVerify);
 }
