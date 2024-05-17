@@ -117,6 +117,22 @@ void GameEntity::UpdateSpriteSheet() {
 	}
 }
 
+bool GameEntity::IsLastFrame() {
+	if (mnoptrAnimatedSprite) {
+		auto search = mAnimations.find(mCurrentAnimationName);
+		if (search != mAnimations.end()) {
+
+			if (mFrame+1 >= mAnimations[mCurrentAnimationName].second) {
+				
+				return true;
+			}
+		
+			return false;
+
+		}
+	}
+}
+
 void GameEntity::AddTexturedRectangleComponent(const std::string& filepath, const ImageFormat& format, float scale) {
 	mnoptrSprite = new TexturedRectangle(filepath, format, scale);
 }

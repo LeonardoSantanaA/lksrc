@@ -24,8 +24,11 @@ public:
 
 	void AddCollider2D();
 
-	//return if is coliding with another entity
+	//return true if is coliding with another entity
 	SDL_bool IsColliding(const GameEntity& otherEntity, size_t index, size_t otherIndex);
+
+	//return true if the current frame playing is the last
+	bool IsLastFrame();
 
 	//set offset position for collider rectangle
 	void SetOffsetPositionCollision(int indexColission, int xoffsetCollision, int yoffsetColision);

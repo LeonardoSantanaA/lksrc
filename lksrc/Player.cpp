@@ -12,12 +12,14 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 	AddAnimatedSprite("assets/images/spriteSheetPlayer.png", FORMAT_PNG);
 	SetAnimatedSpriteDimensionsInSpriteSheet(32, 32);
 	AddAnimation("idle", 0, 12);
-	ChangeAnimation("idle");
 	AddAnimation("run", 32, 7);
+	AddAnimation("jumpUp", 160, 1);
+	AddAnimation("jumpDown", 192, 1);
+	ChangeAnimation("idle");
 	AddCollider2D();
 	AddCollider2D();
 	SetDimensions(32, 32, scale);
-	SetDebugMode(true); //turn on debug mode to see collisors
+	//SetDebugMode(true); //turn on debug mode to see collisors
 
 	GetCollider2D(0)->SetDimensions(16 * scale, 20 * scale);
 	SetOffsetPositionCollision(0, 8 * scale, 11* scale);
@@ -26,8 +28,8 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 	SetOffsetPositionCollision(1, 8 * scale, 11 * scale);
 
 	SetPosition(200, 0);
-
 	SetAnimationLoop(true);
+
 }
 
 void Player::Update() {
@@ -35,30 +37,27 @@ void Player::Update() {
 	GameEntity::UpdateSpriteSheet();
 	GameEntity::Update();
 	Gravity();
-
-	if (isMoving) {
-		this->ChangeAnimation("run"); 
-		SetAnimationSpeed(5.0f);
-	}
-	else {
-		this->ChangeAnimation("idle");
-		SetAnimationSpeed(10.0f);
-	}
+	AnimationState();
 
 
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A) && !IsHorizontalColliding("left")) {
 		MovePosition(-mVelocity, 0);
-		isMoving = true;
 		ChangeDirection("left");
+		if (onGround) {
+			isMoving = true;
+		}
+
 	}
 	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D) && !IsHorizontalColliding("right")) {
 		MovePosition(mVelocity, 0);
-		isMoving = true;
 		ChangeDirection("right");
+		if (onGround) {
+			isMoving = true;
+		}
 	}
 
-	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE)) {
-		MovePosition(0, -10);
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE) && canJump) {
+		Jump();
 	}
 
 	if ((!Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A) && !Input::GetInstance()->GetKeyDown(SDL_SCANCODE_D)))	{
@@ -89,8 +88,16 @@ void Player::Gravity() {
 			GetCollider2D(1)->GetColliderBoundingBox()->h)) {
 			MovePosition(0, Sign(vSpd));
 		}
+		canJump = true;
+		onGround = true;
+		isJumping = false;
 		vSpd = 0;
 	}
+	else {
+		canJump = false;
+		
+	}
+
 	MovePosition(0, vSpd);
 
 }
@@ -142,4 +149,47 @@ bool Player::IsHorizontalColliding(const char* dir) {
 
 	
 	return false;
+}
+
+void Player::Jump() {
+	if (canJump) {
+		isJumping = true;
+	
+		vSpd = -15;
+		if (!Collisor::GetInstance()->PlaceFree(
+			GetCollider2D(1)->GetColliderBoundingBox()->x,
+			GetCollider2D(1)->GetColliderBoundingBox()->y - 1,
+			GetCollider2D(1)->GetColliderBoundingBox()->w,
+			GetCollider2D(1)->GetColliderBoundingBox()->h)) {
+			vSpd = 1;
+		}
+	}
+
+}
+
+void Player::AnimationState() {
+	if (!isMoving && !isJumping) {
+		this->ChangeAnimation("idle");
+		SetAnimationSpeed(10.0f);
+	}
+	if (isMoving) {
+		this->ChangeAnimation("run");
+		SetAnimationSpeed(5.0f);
+		SetAnimationLoop(true);
+	}
+	if (isJumping) {
+		isMoving = false;
+		if (vSpd <= 0) {
+			ChangeAnimation("jumpUp");
+			SetAnimationSpeed(1);
+			SetAnimationLoop(false);
+		}
+		else {
+			ChangeAnimation("jumpDown");
+			SetAnimationSpeed(2);
+			SetAnimationLoop(true);
+		}	
+		
+	}
+	
 }

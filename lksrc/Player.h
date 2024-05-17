@@ -13,13 +13,22 @@ public:
 	SDL_Rect rectTest;
 
 private:
+	bool onGround;
 	bool isMoving;
+
+	bool canJump;
+	bool isJumping;
+
+
 	const char* mDirection;
 	float mVelocity;
 
 	float vSpd;
 	float grvt;
 
+	void AnimationState();
+
 	void Gravity();
+	void Jump();
 	bool IsHorizontalColliding(const char* dir);
 };

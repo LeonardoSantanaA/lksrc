@@ -175,7 +175,7 @@ int main(int argc, char* argv[]) {
 	//*font = "hello world! lksrc.";
 	//font->SetPosition(50, 50);
 
-	TextureManager::GetInstance()->Load("test", "assets/maps/mapDemoTileset.png");
+	//TextureManager::GetInstance()->Load("test", "assets/maps/mapDemoTileset.png");
 
 	s = Sound::GetInstance()->LoadSound("assets/snd/GameOver.wav");
 	m = Sound::GetInstance()->LoadMusic("assets/snd/TetrisSoundTrack.wav");
@@ -184,8 +184,9 @@ int main(int argc, char* argv[]) {
 	engine->RunLoop();
 	
 	//delete font;
-	delete engine;
 	delete player;
+	delete engine;
+	
 
 	return 0;
 }
