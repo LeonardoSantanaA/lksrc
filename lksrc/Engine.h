@@ -5,6 +5,7 @@
 #include <set>
 #include "Input.h"
 #include "GameMap.h"
+#include "GameState.h"
 
 #define SCALE 4
 
@@ -17,15 +18,40 @@ public:
 
 	~Engine();
 
+	//change the name of window
 	inline void SetWindowName(const char* name) { SDL_SetWindowTitle(mWindow, name); }
 	void SetEventCallback(std::function<void(void)> func);
 	void SetUpdateCallback(std::function<void(void)> func);
 	void SetRenderCallback(std::function<void(void)> func);
 
+	//run the main loop
 	void RunLoop();
 
+	//set the max FPS
 	inline void SetMaxFrameRate(int fr) { mMaxFrameRate = fr; }
 
+	//pause the update of current game state
+	void PopState();
+
+	//add a new game state, follow the example:
+	// 
+	//class Play : public GameState
+	// 
+	//define in constructor the id name of game state:
+	//	Play::Play() { id = "play";}
+	// 
+	//in the Main.cpp:
+	//	Play play = new Play();
+	//	Engine::GetInstance()->PushState("play");
+	// 
+	//don't forget to delete the play in final of Main.cpp:
+	//	delete play;
+	void PushState(GameState* current);
+
+	//change the current game state
+	void ChangeState(const std::string& idTarget);
+
+	//returns the SDL_Renderer* of engine
 	SDL_Renderer* GetRender() const;
 
 	inline void CloseEngine() { mGameIsRunning = false; }
@@ -40,7 +66,7 @@ public:
 		if (mWindow) { return mWindow; }
 		return nullptr;
 }
-	inline std::shared_ptr<GameMap> GetLevelMap() { return mLevelMap; }
+	//inline std::shared_ptr<GameMap> GetLevelMap() { return mLevelMap; }
 
 
 	SDL_TimerID AddTimer(uint32_t delay, SDL_TimerCallback callback, void* param);
@@ -52,7 +78,7 @@ private:
 	static Engine* mInstance;
 	SDL_Window* mWindow = nullptr;
 	SDL_Renderer* mRender = nullptr;
-	std::shared_ptr<GameMap> mLevelMap = std::make_shared<GameMap>();
+	//std::shared_ptr<GameMap> mLevelMap = std::make_shared<GameMap>();
 	bool mGameIsRunning = false;
 	std::function<void(void)> mEventCallback;
 	std::function<void(void)> mUpdateCallback;
@@ -63,5 +89,7 @@ private:
 	int mMaxFrameRate;
 
 	std::set<SDL_TimerID> mTimers;
+	std::vector<GameState*> mStates;
+	GameState* mCurrentState;
 
 };

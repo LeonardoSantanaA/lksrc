@@ -27,6 +27,8 @@
 #include "GameMap.h"
 #include "MapParser.h"
 #include "Camera.h"
+#include "Play.h"
+#include "Menu.h"
 
 //global variables
 Engine* engine; 
@@ -131,15 +133,19 @@ int main(int argc, char* argv[]) {
 	engine->SetEventCallback(HandleEvents);
 	engine->SetUpdateCallback(HandleUpdate);
 	engine->SetRenderCallback(HandleRendering);
-
+	
 	engine->AddTimer(2000, mCallbackFun, (char*)"timer called");
 	
+	Menu* menu = new Menu();
+	Play* play = new Play();
+	engine->PushState(menu);
+	engine->PushState(play);
+	engine->ChangeState("play");
 
 	//create entities
 	//player = new Player("player");
 	//EntityManager::GetInstance()->CreateEntity(PLAYER);
-	EntityManager::GetInstance()->CreateEntityType("PLAYER");
-	TextureManager::GetInstance()->Load("background", "assets/maps/background.png");
+
 
 	//get entities
 	/*
@@ -186,6 +192,8 @@ int main(int argc, char* argv[]) {
 	
 	//delete font;
 	//delete player;
+	delete menu;
+	delete play;
 	delete engine;
 	
 

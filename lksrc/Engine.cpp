@@ -14,9 +14,13 @@
 #include "Camera.h"
 #include "Collisor.h"
 
+//states
+#include "Menu.h"
+#include "Play.h"
+
 Engine* Engine::mInstance = nullptr;
 
-Engine::Engine(): mMouseX(0), mMouseY(0), mWidth(800), mHeight(600), mMaxFrameRate(60) {
+Engine::Engine(): mMouseX(0), mMouseY(0), mWidth(800), mHeight(600), mMaxFrameRate(60), mCurrentState(nullptr){
 
 }
 
@@ -47,10 +51,9 @@ void Engine::Init() {
 
 	mRender = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	if (!MapParser::GetInstance()->Load("mapDemo")) {
-		std::cout << "failed to load map." << std::endl;
-	}
-	mLevelMap = MapParser::GetInstance()->GetMap("mapDemo");
+	//mState = new Menu();
+	//mState->Init();
+	//ChangeState(new Play());
 }
 
 Engine::~Engine() {
@@ -64,6 +67,11 @@ Engine::~Engine() {
 	Camera::GetInstance()->Clean();
 	Collisor::GetInstance()->Clean();
 	
+	//if (mState) {
+		//delete mState;
+		//mState = nullptr;
+	//}
+
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRender);
 	SDL_Quit();
@@ -81,6 +89,51 @@ void Engine::SetRenderCallback(std::function<void(void)> func) {
 	mRenderCallback = func;
 }
 
+void Engine::PopState() {
+	if (mCurrentState) {
+		mCurrentState->isPop = !mCurrentState->isPop;
+		std::cout << "pop state" << std::endl;
+	}
+}
+
+void Engine::PushState(GameState* current) {
+	bool canPush = true;
+	std::cout << "here" << std::endl;
+	//verify if can push new state
+	for (auto state : mStates) {
+		if (state->id == current->id) {
+			canPush = false;
+			break;
+		}
+	}
+
+	if (canPush) {
+		mStates.push_back(current);
+		std::cout << "adding new game state, key " << current->id << std::endl;
+	}
+}
+
+void Engine::ChangeState(const std::string& idTarget) {
+	bool canChange = false;
+	for (auto state : mStates) {
+		if (state->id == idTarget) {
+			if (mCurrentState) {
+				mCurrentState->Exit();
+				canChange = true;
+			}
+			mCurrentState = state;
+			mCurrentState->Init();
+		}
+	}
+
+	if (canChange) {
+		std::cout << "changing game state to " << idTarget << std::endl;;
+	}
+	else {
+		std::cout << "failed to changing game state to " << idTarget << std::endl;;
+	}
+}
+
 void Engine::RunLoop() {
 	uint64_t lastTime = 0, elapsedTime;
 
@@ -91,18 +144,37 @@ void Engine::RunLoop() {
 		buttons = SDL_GetMouseState(&mMouseX, &mMouseY);
 
 		Input::GetInstance()->Listen();
-		mLevelMap->Update();
-		mUpdateCallback();
+		//mLevelMap->Update();
+		//mUpdateCallback();
+		if (mCurrentState && !mCurrentState->isPop) {
+			mCurrentState->Update();
+		}
+
+		if (Input::GetInstance()->GetKeyPress(SDL_SCANCODE_ESCAPE)) {
+			PopState();
+		}
+
+		if (Input::GetInstance()->GetKeyPress(SDL_SCANCODE_LEFT)) {
+			ChangeState("menu");
+		}
+
+		if (Input::GetInstance()->GetKeyPress(SDL_SCANCODE_RIGHT)) {
+			ChangeState("play");
+		}
+	
 
 		SDL_Event event{};
 
 		SDL_SetRenderDrawColor(mRender, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(mRender);
-		//Draw
-		TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 2, 1, 0.5f);
-		mLevelMap->Render();
-		mRenderCallback();
 
+		//Draw
+		//TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 2, 1, 0.5f);
+		//mLevelMap->Render();
+		//mRenderCallback();
+		if (mCurrentState) {
+			mCurrentState->Render();
+		}
 		//show what draw
 		SDL_RenderPresent(mRender);
 

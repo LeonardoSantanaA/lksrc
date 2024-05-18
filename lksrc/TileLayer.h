@@ -21,9 +21,9 @@ public:
 	virtual void Update();
 	virtual void Render();
 	inline TileMap GetTilemap() { return mTilemap; }
-	inline int GetTileSize() { return mTileSize; }
-	inline int GetRowCount() { return mRowCount; }
-	inline int GetColumnCount() { return mColumnCount; }
+	inline int GetTileSize() const { return mTileSize; }
+	inline int GetRowCount() const { return mRowCount; }
+	inline int GetColumnCount() const { return mColumnCount; }
 
 
 private:

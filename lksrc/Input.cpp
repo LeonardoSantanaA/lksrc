@@ -32,12 +32,20 @@ Input::~Input() {
 	//DestroyInput();
 }
 
+void Input::Update() {
+	memcpy(mPrevKeyStates, mKeyStates, SDL_NUM_SCANCODES);
+	mKeyStates = SDL_GetKeyboardState(nullptr);
+}
+
 void Input::Listen() {
 	SDL_Event event;
+
+	Update();
 
 	//start event loop
 	while (SDL_PollEvent(&event)) {
 		//handle each especific event
+
 
 		switch (event.type) {
 		case SDL_QUIT:
@@ -79,9 +87,6 @@ void Input::Listen() {
 				std::cout << "mouse button left. single-click." << std::endl;
 				std::cout << "x: " << Engine::GetInstance()->GetMouseX() << std::endl;
 				std::cout << "y: " << Engine::GetInstance()->GetMouseY() << std::endl;
-
-				
-
 
 			}
 			else if (event.button.button == SDL_BUTTON_LEFT && event.button.clicks == 2) {
@@ -127,6 +132,8 @@ void Input::Listen() {
 		case SDL_KEYUP:
 			KeyUp();
 			break;
+
+	
 		}
 	}
 }
@@ -136,7 +143,7 @@ bool Input::GetKeyDown(SDL_Scancode key) {
 }
 
 bool Input::GetKeyPress(SDL_Scancode key) {
-	return (!mKeyStates[key] == 0);
+	return (mKeyStates[key] == 1 && mPrevKeyStates[key] == 0);
 }
 
 void Input::KeyUp() {

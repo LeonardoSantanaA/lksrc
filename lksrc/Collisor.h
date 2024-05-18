@@ -15,6 +15,8 @@ public:
 		return mInstance;
 	}
 
+	void SetCollisionLayer(TileLayer* tileLayer);
+
 	void Clean();
 
 	bool CheckCollision(const SDL_Rect& a, const SDL_Rect& b);
