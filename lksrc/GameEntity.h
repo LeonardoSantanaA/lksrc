@@ -6,6 +6,7 @@
 #include "AnimatedSprite.h"
 #include "Point.h"
 #include <unordered_map>
+#include "RenderEntityLayer.h"
 
 class GameEntity {
 public:
@@ -13,7 +14,6 @@ public:
 	GameEntity(const std::string& name);
 
 	virtual ~GameEntity();
-	//virtual GameEntity* Clone() const;
 
 	virtual void Update();
 	void UpdateSpriteSheet();
@@ -60,7 +60,8 @@ public:
 	inline void SetAnimationSpeed(float speed) { mAnimationSpeed = speed; }
 	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
 	inline Point* GetPoint() { return mPoint; }
-
+	inline RenderEntityLayer GetRenderLayer() const{ return mRenderLayer; }
+	inline void SetRenderLayer(const RenderEntityLayer& renderLayer) { mRenderLayer = renderLayer; }
 
 
 protected:
@@ -83,4 +84,5 @@ protected:
 	SDL_Point mCenterPoint;
 
 	Point* mPoint;
+	RenderEntityLayer mRenderLayer;
 };

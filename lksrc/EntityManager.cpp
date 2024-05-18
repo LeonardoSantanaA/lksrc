@@ -30,6 +30,7 @@ bool EntityManager::CreateEntity(const std::string& name) {
 	return (mEntities[name] != nullptr);
 }
 
+/*
 bool EntityManager::CreateEntity(const EntityType& type) {
 	switch (type) {
 	case PLAYER:
@@ -43,11 +44,26 @@ bool EntityManager::CreateEntity(const EntityType& type) {
 	}
 
 	default:
-		std::cout << "type not found. entitymanager::createEntity" << std::endl;
+		std::cout << "type not found. entitymanager::createentity()." << std::endl;
 		return false;
 	}
 }
+*/
 
+void EntityManager::RegisterType(const std::string& className, std::function < bool() > creator) {
+	mTypeRegistry[className] = creator;
+}
+
+bool EntityManager::CreateEntityType(const std::string& className) {
+	auto type = mTypeRegistry.find(className);
+	if (type != mTypeRegistry.end()) {
+		return type->second();
+	}
+	
+	std::cout << "trying get unknown type. entitymanager::createEntityType(). className: " << className << std::endl;
+	return false;
+	
+}
 
 std::shared_ptr<GameEntity> EntityManager::GetEntityRef(const std::string& name) {
 	auto entity = mEntities.find(name);
@@ -88,17 +104,25 @@ void EntityManager::UpdateAllEntities() {
 	}
 }
 
-void EntityManager::RenderAllEntities() {
+
+void EntityManager::RenderLayerEntity(const RenderEntityLayer& layer) {
 	size_t index = 0;
 	for (auto it = mEntities.begin(); it != mEntities.end(); it++) {
-		if (mEntities[it->first]) {
+		if (mEntities[it->first] && layer == mEntities[it->first]->GetRenderLayer()) {
 			mEntities[it->first]->Render();
 		}
 		else if (!mEntities[it->first]) {
-			std::cout << "unknown entity render entitymanager::renderallentities(): " << index << std::endl;
+			std::cout << "unknown entity render entitymanager::renderlayerentity(): " << index << std::endl;
 		}
 		index++;
 	}
+}
+
+void EntityManager::RenderAllEntities() {
+	RenderLayerEntity(RenderEntityLayer::BACKGROUND);
+	RenderLayerEntity(RenderEntityLayer::MIDDLEGROUND);
+	RenderLayerEntity(RenderEntityLayer::FOREGROUND);
+	RenderLayerEntity(RenderEntityLayer::END);
 }
 
 

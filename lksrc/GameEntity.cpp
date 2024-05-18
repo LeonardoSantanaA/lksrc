@@ -15,6 +15,7 @@ GameEntity::GameEntity() {
 	mAnimationSpeed = 1.0f;
 	mLoop = false;
 	mAnimationDelayCount = 0;
+	mRenderLayer = RenderEntityLayer::END;
 	AddPoint();
 }
 
@@ -32,6 +33,7 @@ GameEntity::GameEntity(const std::string& name) {
 	mAnimationSpeed = 1.0f;
 	mLoop = false;
 	mAnimationDelayCount = 0;
+	mRenderLayer = RenderEntityLayer::END;
 	AddPoint();
 }
 

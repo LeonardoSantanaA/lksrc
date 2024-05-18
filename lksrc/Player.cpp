@@ -3,6 +3,10 @@
 #include "Input.h"
 #include "Collisor.h"
 #include "Utils.h"
+#include "Camera.h"
+#include "EntityManager.h"
+
+static Register<Player> registerPlayer("PLAYER");
 
 Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirection("right"), mVelocity(3), isMoving(false), vSpd(0), grvt(.8f){
 	std::cout << "chamando construtor de player" << std::endl;
@@ -29,7 +33,7 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 
 	SetPosition(200, 0);
 	SetAnimationLoop(true);
-
+	Camera::GetInstance()->SetTarget(GetPoint());
 }
 
 void Player::Update() {

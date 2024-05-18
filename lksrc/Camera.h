@@ -13,7 +13,7 @@ public:
 	inline const Vec2D GetPosition() const { return mPosition; }
 
 	//Set the target to camera follows.
-	//use the GetPoint() for GameEntity.
+	//use the GetPoint() for GameEntity to set the target.
 	inline void SetTarget(Point* target) { mTarget = target; };
 
 	void Update();

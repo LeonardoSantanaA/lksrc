@@ -137,8 +137,8 @@ int main(int argc, char* argv[]) {
 
 	//create entities
 	//player = new Player("player");
-	EntityManager::GetInstance()->CreateEntity(PLAYER);
-	Camera::GetInstance()->SetTarget(EntityManager::GetInstance()->GetEntityRef("player")->GetPoint());
+	//EntityManager::GetInstance()->CreateEntity(PLAYER);
+	EntityManager::GetInstance()->CreateEntityType("PLAYER");
 	TextureManager::GetInstance()->Load("background", "assets/maps/background.png");
 
 	//get entities
