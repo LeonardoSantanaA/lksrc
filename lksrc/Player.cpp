@@ -19,7 +19,7 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 	AddCollider2D();
 	AddCollider2D();
 	SetDimensions(32, 32, scale);
-	//SetDebugMode(true); //turn on debug mode to see collisors
+	SetDebugMode(true); //turn on debug mode to see collisors
 
 	GetCollider2D(0)->SetDimensions(16 * scale, 20 * scale);
 	SetOffsetPositionCollision(0, 8 * scale, 11* scale);
@@ -33,7 +33,6 @@ Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirectio
 }
 
 void Player::Update() {
-	
 	GameEntity::UpdateSpriteSheet();
 	GameEntity::Update();
 	Gravity();

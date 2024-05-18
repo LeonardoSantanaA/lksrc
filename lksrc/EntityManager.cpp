@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include "Engine.h"
+#include "Player.h"
 
 EntityManager* EntityManager::mInstance = nullptr;
 
@@ -12,6 +13,15 @@ EntityManager* EntityManager::GetInstance() {
 }
 
 
+bool EntityManager::CreateEntity() {
+	std::string name = "entity_" + std::to_string(GetEntityCount());
+	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name);
+	std::cout << "new entity. entities: " << EntityManager::GetInstance()->GetEntityCount() << std::endl;
+	mEntities.insert(std::make_pair(name, newEntity));
+	mEntityCount++;
+	return (mEntities[name] != nullptr);
+}
+
 bool EntityManager::CreateEntity(const std::string& name) {
 	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name);
 	std::cout << "new entity. entities: " << EntityManager::GetInstance()->GetEntityCount() << std::endl;
@@ -19,6 +29,25 @@ bool EntityManager::CreateEntity(const std::string& name) {
 	mEntityCount++;
 	return (mEntities[name] != nullptr);
 }
+
+bool EntityManager::CreateEntity(const EntityType& type) {
+	switch (type) {
+	case PLAYER:
+	{
+		std::string name = "player";
+		std::shared_ptr<Player> newPlayer = std::make_shared<Player>(name);
+		mEntities.insert(std::make_pair(name, newPlayer));
+		mEntityCount++;
+		std::cout << "new player instantiate. type: " << name << std::endl;
+		return (mEntities[name] != nullptr);
+	}
+
+	default:
+		std::cout << "type not found. entitymanager::createEntity" << std::endl;
+		return false;
+	}
+}
+
 
 std::shared_ptr<GameEntity> EntityManager::GetEntityRef(const std::string& name) {
 	auto entity = mEntities.find(name);
@@ -86,3 +115,4 @@ void EntityManager::DeleteAllEntities() {
 long long EntityManager::GetEntityCount() const{
 	return mEntityCount;
 }
+

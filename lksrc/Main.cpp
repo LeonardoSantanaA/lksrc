@@ -31,7 +31,7 @@
 //global variables
 Engine* engine; 
 //Font* font;
-Player* player;
+//Player* player;
 
 
 
@@ -47,7 +47,7 @@ void HandleEvents() {
 
 void HandleUpdate() {
 	EntityManager::GetInstance()->UpdateAllEntities();
-	player->Update();
+	//player->Update();
 	Camera::GetInstance()->Update();
 
 
@@ -105,7 +105,7 @@ void HandleRendering() {
 	//Draw here
 
 	EntityManager::GetInstance()->RenderAllEntities();
-	player->Render();
+	//player->Render();
 	
 	
 	//font->Render();
@@ -136,8 +136,9 @@ int main(int argc, char* argv[]) {
 	
 
 	//create entities
-	player = new Player("player");
-	Camera::GetInstance()->SetTarget(player->GetPoint());
+	//player = new Player("player");
+	EntityManager::GetInstance()->CreateEntity(PLAYER);
+	Camera::GetInstance()->SetTarget(EntityManager::GetInstance()->GetEntityRef("player")->GetPoint());
 	TextureManager::GetInstance()->Load("background", "assets/maps/background.png");
 
 	//get entities
@@ -184,7 +185,7 @@ int main(int argc, char* argv[]) {
 	engine->RunLoop();
 	
 	//delete font;
-	delete player;
+	//delete player;
 	delete engine;
 	
 

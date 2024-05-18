@@ -12,7 +12,8 @@ public:
 	GameEntity();
 	GameEntity(const std::string& name);
 
-	~GameEntity();
+	virtual ~GameEntity();
+	//virtual GameEntity* Clone() const;
 
 	virtual void Update();
 	void UpdateSpriteSheet();
@@ -59,6 +60,8 @@ public:
 	inline void SetAnimationSpeed(float speed) { mAnimationSpeed = speed; }
 	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
 	inline Point* GetPoint() { return mPoint; }
+
+
 
 protected:
 	std::string mName;
