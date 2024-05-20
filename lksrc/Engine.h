@@ -7,7 +7,7 @@
 #include "GameMap.h"
 #include "GameState.h"
 
-#define SCALE 4
+#define SCALE 2
 
 class Engine {
 public:

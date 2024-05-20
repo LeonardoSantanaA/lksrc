@@ -5,6 +5,7 @@
 #include "GameEntity.h"
 #include "EntityManager.h"
 #include "Engine.h"
+#include "Camera.h"
 
 
 Input* Input::mInstance = nullptr;
@@ -58,6 +59,7 @@ void Input::Listen() {
 				SDL_GetWindowSize(Engine::GetInstance()->GetWindow(), &width, &height);
 				Engine::GetInstance()->SetWidth(width);
 				Engine::GetInstance()->SetHeight(height);
+				Camera::GetInstance()->Reload();
 				SDL_RenderSetLogicalSize(Engine::GetInstance()->GetRender(), Engine::GetInstance()->GetWidth(), Engine::GetInstance()->GetHeight());
 			}
 			break;

@@ -29,6 +29,7 @@ bool Play::Init() {
 	TileLayer* mCollisionLayer = dynamic_cast<TileLayer*>(mapLayers.back().get());
 
 	Collisor::GetInstance()->SetCollisionLayer(mCollisionLayer);
+	Camera::GetInstance()->SetZoom(2.0f);
 
 	std::cout << "play initialized" << std::endl;
 
@@ -41,24 +42,15 @@ void Play::Update() {
 	EntityManager::GetInstance()->UpdateAllEntities();
 	Camera::GetInstance()->Update();
 
-
 }
 
 void Play::Render() {
-	//SDL_SetRenderDrawColor(mRender, 48, 96, 130, 255);
-	//SDL_RenderClear(mRender);
-
-	TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 2, 1, 0.5f);
+	TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 2, 1, .5f);
 
 	mLevelMap->Render();
 
 	EntityManager::GetInstance()->RenderAllEntities();
 
-	SDL_Rect camera = Camera::GetInstance()->GetViewBox();
-		
-	//show what draw
-	//SDL_RenderCopy(mRender, nullptr, &camera, nullptr);
-	//SDL_RenderPresent(mRender);
 }
 
 bool Play::Exit() {

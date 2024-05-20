@@ -25,8 +25,9 @@ void AnimatedSprite::Update() {
 }
 
 void AnimatedSprite::Render() {
-	Vec2D cam = Camera::GetInstance()->GetPosition();
-	SDL_Rect newDstRect = {mDst.x - cam.x, mDst.y - cam.y, mDst.w, mDst.h};
+	Camera* camera = Camera::GetInstance();
+	Vec2D cam = camera->GetPosition();
+	SDL_Rect newDstRect = {(mDst.x - cam.x) * camera->GetZoom(), (mDst.y - cam.y) * camera->GetZoom(), mDst.w * camera->GetZoom(), mDst.h * camera->GetZoom() };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, &mSrc, &newDstRect, mAngle, &mCenterPoint, mDirectionFlip);
 }
 

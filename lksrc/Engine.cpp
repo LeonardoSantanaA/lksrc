@@ -51,9 +51,6 @@ void Engine::Init() {
 
 	mRender = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	//mState = new Menu();
-	//mState->Init();
-	//ChangeState(new Play());
 }
 
 Engine::~Engine() {
@@ -167,16 +164,22 @@ void Engine::RunLoop() {
 
 		SDL_SetRenderDrawColor(mRender, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(mRender);
-
+		//show what draw
+		// 
 		//Draw
 		//TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 2, 1, 0.5f);
 		//mLevelMap->Render();
 		//mRenderCallback();
+
+
+
 		if (mCurrentState) {
 			mCurrentState->Render();
 		}
-		//show what draw
+
 		SDL_RenderPresent(mRender);
+	
+
 
 		elapsedTime = SDL_GetTicks64() - start;
 

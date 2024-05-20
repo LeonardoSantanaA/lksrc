@@ -1,5 +1,6 @@
 #include "Collisor.h"
 #include "Engine.h"
+#include "Camera.h"
 #include <iostream>
 
 Collisor* Collisor::mInstance = nullptr;
@@ -13,6 +14,10 @@ Collisor::Collisor() {
 void Collisor::SetCollisionLayer(TileLayer* tileLayer) {
 	mCollisionLayer = tileLayer;
 	mCollisionTilemap = mCollisionLayer->GetTilemap();
+	int tileSize = tileLayer->GetTileSize();
+	int width = tileLayer->GetColumnCount() * tileSize;
+	int height = tileLayer->GetRowCount() * tileSize;
+	Camera::GetInstance()->SetSceneLimit(width, height);
 }
 
 void Collisor::Clean() {
@@ -34,9 +39,9 @@ bool Collisor::CheckCollision(const SDL_Rect& a, const SDL_Rect& b) {
 bool Collisor::MapCollision(const SDL_Rect& rectToCheck) { 
 	if (mCollisionLayer) {
 
-		int tileSize = mCollisionLayer->GetTileSize();//32; 
-		int rowCount = mCollisionLayer->GetRowCount();//20;
-		int colCount = mCollisionLayer->GetColumnCount();//80;
+		int tileSize = mCollisionLayer->GetTileSize(); 
+		int rowCount = mCollisionLayer->GetRowCount(); //map height
+		int colCount = mCollisionLayer->GetColumnCount(); //map width
 
 		int leftTile = rectToCheck.x / tileSize;
 		int rightTile = (rectToCheck.x + rectToCheck.w) / tileSize;

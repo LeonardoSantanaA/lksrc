@@ -104,8 +104,9 @@ void TexturedRectangle::SetDimensions(int w, int h, float scale) {
 
 
 void TexturedRectangle::Render() {
-	Vec2D cam = Camera::GetInstance()->GetPosition();
-	SDL_Rect newDstRect = { mRect.x - cam.x, mRect.y - cam.y, mRect.w, mRect.h };
+	Camera* camera = Camera::GetInstance();
+	Vec2D cam = camera->GetPosition();
+	SDL_Rect newDstRect = { (mRect.x - cam.x) - camera->GetZoom(), (mRect.y - cam.y) - camera->GetZoom(), mRect.w * camera->GetZoom(), mRect.h * camera->GetZoom() };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, nullptr, &newDstRect, mAngle, &mCenterPoint, mDirectionFlip);
 }
 

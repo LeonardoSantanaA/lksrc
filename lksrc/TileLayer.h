@@ -22,7 +22,11 @@ public:
 	virtual void Render();
 	inline TileMap GetTilemap() { return mTilemap; }
 	inline int GetTileSize() const { return mTileSize; }
+
+	//returns height of TileLayer
 	inline int GetRowCount() const { return mRowCount; }
+
+	//returns width of TileLayer
 	inline int GetColumnCount() const { return mColumnCount; }
 
 

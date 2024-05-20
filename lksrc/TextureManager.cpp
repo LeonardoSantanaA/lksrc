@@ -45,22 +45,25 @@ void TextureManager::Clean() {
 
 void TextureManager::Render(const std::string& id, int x, int y, int w, int h, float scaleX, float scaleY, float scrollRatio, const SDL_RendererFlip& flip ) {
 	SDL_Rect srcRect = {0, 0, w, h};
-	Vec2D cam = Camera::GetInstance()->GetPosition() * scrollRatio;
-	SDL_Rect dstRect = { x - cam.x, y -cam.y, w * scaleX , h * scaleY };
+	Camera* camera = Camera::GetInstance();
+	Vec2D cam = camera->GetPosition() * scrollRatio;
+	SDL_Rect dstRect = { (x - cam.x) * camera->GetZoom(), (y -cam.y) * camera->GetZoom(), (w * scaleX) * camera->GetZoom() , (h * scaleY) * camera->GetZoom() };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 
 }
 
 void TextureManager::RenderFrame(const std::string& id, int x, int y, int w, int h, int row, int frame, const SDL_RendererFlip& flip) {
 	SDL_Rect srcRect = { w * frame, h * row, w, h };
-	Vec2D cam = Camera::GetInstance()->GetPosition();
-	SDL_Rect dstRect = { x - cam.x, y - cam.y, w, h };
+	Camera* camera = Camera::GetInstance();
+	Vec2D cam = camera->GetPosition();
+	SDL_Rect dstRect = { (x - cam.x) * camera->GetZoom(), (y - cam.y) * camera->GetZoom(), w * camera->GetZoom(), h * camera->GetZoom() };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 }
 
 void TextureManager::RenderTile(const std::string& tilesetID, int tileSize, int x, int y, int row, int frame, const SDL_RendererFlip& flip) {
 	SDL_Rect srcRect = { tileSize * frame, tileSize * (row), tileSize, tileSize };
-	Vec2D cam = Camera::GetInstance()->GetPosition();
-	SDL_Rect dstRect = { x - cam.x, y - cam.y, tileSize, tileSize };
+	Camera* camera = Camera::GetInstance();
+	Vec2D cam = camera->GetPosition();
+	SDL_Rect dstRect = { (x - cam.x) * camera->GetZoom(), (y - cam.y) * camera->GetZoom(), tileSize * camera->GetZoom(), tileSize * camera->GetZoom() };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[tilesetID], &srcRect, &dstRect, 0, 0, flip);
 }

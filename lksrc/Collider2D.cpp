@@ -86,8 +86,9 @@ int Collider2D::GetHeight() {
 }
 
 void Collider2D::Render() {
-    Vec2D cam = Camera::GetInstance()->GetPosition();
-    SDL_Rect newDstRect = { mnoptrColliderRect->x - cam.x, mnoptrColliderRect->y - cam.y, mnoptrColliderRect->w, mnoptrColliderRect->h };
+    Camera* camera = Camera::GetInstance();
+    Vec2D cam = camera->GetPosition();
+    SDL_Rect newDstRect = { (mnoptrColliderRect->x - cam.x) * camera->GetZoom(), (mnoptrColliderRect->y - cam.y) * camera->GetZoom(), mnoptrColliderRect->w * camera->GetZoom(), mnoptrColliderRect->h * camera->GetZoom()};
     SDL_SetRenderDrawColor(Engine::GetInstance()->GetRender(), 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderDrawRect(Engine::GetInstance()->GetRender(), &newDstRect);
 }

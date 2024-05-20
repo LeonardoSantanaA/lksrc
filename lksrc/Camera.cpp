@@ -4,8 +4,8 @@
 Camera* Camera::mInstance = nullptr;
 
 Camera::Camera()
-:mTarget(nullptr) {
-	mViewBox = { 0, 0, Engine::GetInstance()->GetWidth(), Engine::GetInstance()->GetHeight() };
+:mTarget(nullptr), mZoom(1), mCameraWidth(Engine::GetInstance()->GetWidth()),mCameraHeight(Engine::GetInstance()->GetHeight())  {
+	mViewBox = { 0, 0, mCameraWidth, mCameraHeight };
 }
 
 void Camera::Clean() {
@@ -26,10 +26,19 @@ Camera* Camera::GetInstance() {
 	return mInstance;
 }
 
+
+void Camera::SetZoom(float zoom) {
+	mZoom = zoom;
+	mCameraWidth = static_cast<int>(Engine::GetInstance()->GetWidth() / mZoom);
+	mCameraHeight = static_cast<int>(Engine::GetInstance()->GetHeight() / mZoom);
+	mViewBox.w = mCameraWidth;
+	mViewBox.h = mCameraHeight;
+}
+
 void Camera::Update() {
 	if (mTarget) {
-		mViewBox.x = mTarget->x - Engine::GetInstance()->GetWidth() / 2;
-		mViewBox.y = mTarget->y - Engine::GetInstance()->GetHeight() / 2;
+		mViewBox.x = mTarget->x - mCameraWidth / 2.0f;
+		mViewBox.y = mTarget->y - mCameraHeight / 2.0f;
 
 		if (mViewBox.x < 0) {
 			mViewBox.x = 0;
@@ -38,13 +47,20 @@ void Camera::Update() {
 			mViewBox.y = 0;
 		}
 
-		if (mViewBox.x > (2 * Engine::GetInstance()->GetWidth() - mViewBox.w)) {
-			mViewBox.x = (2 * Engine::GetInstance()->GetWidth() - mViewBox.w);
+		if (mViewBox.x > mSceneWidth - mCameraWidth) {
+			mViewBox.x = mSceneWidth - mCameraWidth;
 		}
-		if (mViewBox.y > (2 * Engine::GetInstance()->GetHeight() - mViewBox.h)) {
-			mViewBox.y = (2 * Engine::GetInstance()->GetHeight() - mViewBox.h);
+		if (mViewBox.y > mSceneHeight - mCameraHeight) {
+			mViewBox.y = mSceneHeight - mCameraHeight;
 		}
 
 		mPosition = Vec2D(mViewBox.x, mViewBox.y);
 	}
+}
+
+void Camera::Reload() {
+	mCameraWidth = static_cast<int>(Engine::GetInstance()->GetWidth() / mZoom);
+	mCameraHeight = static_cast<int>(Engine::GetInstance()->GetHeight() / mZoom);
+	mViewBox.w = mCameraWidth;
+	mViewBox.h = mCameraHeight;
 }
