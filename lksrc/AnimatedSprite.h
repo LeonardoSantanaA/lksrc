@@ -32,7 +32,7 @@ public:
 	void FlipImageVertical();
 
 private:
-	int mCountSpeed;
+	float mCountSpeed;
 	SDL_Rect mSrc;	//where we're selecting from
 	SDL_Rect mDst;	//where we're rendering
 	SDL_Texture* mTexture;

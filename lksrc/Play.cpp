@@ -19,6 +19,7 @@ bool Play::Init() {
 
 	Register<Player> registerPlayer("PLAYER");
 	EntityManager::GetInstance()->CreateEntityType("PLAYER");
+	EntityManager::GetInstance()->ParseEntities("assets/maps/objectsLevel1");
 
 	if (!MapParser::GetInstance()->Load("mapDemo")) {
 		std::cout << "failed to load map." << std::endl;
@@ -29,6 +30,8 @@ bool Play::Init() {
 	TileLayer* mCollisionLayer = dynamic_cast<TileLayer*>(mapLayers.back().get());
 
 	Collisor::GetInstance()->SetCollisionLayer(mCollisionLayer);
+
+	
 	Camera::GetInstance()->SetZoom(2.0f);
 
 	std::cout << "play initialized" << std::endl;

@@ -133,6 +133,8 @@ bool GameEntity::IsLastFrame() {
 
 		}
 	}
+	std::cout << "trying get nullptr in gameentity::islastframe()" << std::endl;
+	return false;
 }
 
 void GameEntity::AddTexturedRectangleComponent(const std::string& filepath, const ImageFormat& format, float scale) {
@@ -185,7 +187,7 @@ void GameEntity::SetPosition(int x, int y) {
 		mnoptrAnimatedSprite->SetPosition(x, y);
 	}
 	else {
-		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
+		std::cout << "trying access a null pointer. gameentity::SetPosition()." << std::endl;
 	}
 
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
@@ -264,6 +266,7 @@ TexturedRectangle& GameEntity::GetTexturedRectangle() const {
 		return *mnoptrSprite;
 	}
 	std::cout << "trying access a nullptr. gameentity::gettexturedrectangle()." << std::endl;
+	
 }
 
 Collider2D* GameEntity::GetCollider2D(size_t index) {

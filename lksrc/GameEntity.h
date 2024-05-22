@@ -15,6 +15,9 @@ public:
 
 	virtual ~GameEntity();
 
+	//you can configure a init() function to call after file load .lkobj, the ParseEntities() will try to call this function.
+	virtual void Init() {};
+
 	virtual void Update();
 	void UpdateSpriteSheet();
 	virtual void Render();

@@ -47,7 +47,7 @@ void TextureManager::Render(const std::string& id, int x, int y, int w, int h, f
 	SDL_Rect srcRect = {0, 0, w, h};
 	Camera* camera = Camera::GetInstance();
 	Vec2D cam = camera->GetPosition() * scrollRatio;
-	SDL_Rect dstRect = { (x - cam.x) * camera->GetZoom(), (y -cam.y) * camera->GetZoom(), (w * scaleX) * camera->GetZoom() , (h * scaleY) * camera->GetZoom() };
+	SDL_Rect dstRect = { static_cast<int>((x - cam.x) * camera->GetZoom()), static_cast<int>((y -cam.y) * camera->GetZoom()), static_cast<int>((w * scaleX) * camera->GetZoom()) , static_cast<int>((h * scaleY) * camera->GetZoom()) };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 
 }
@@ -56,7 +56,7 @@ void TextureManager::RenderFrame(const std::string& id, int x, int y, int w, int
 	SDL_Rect srcRect = { w * frame, h * row, w, h };
 	Camera* camera = Camera::GetInstance();
 	Vec2D cam = camera->GetPosition();
-	SDL_Rect dstRect = { (x - cam.x) * camera->GetZoom(), (y - cam.y) * camera->GetZoom(), w * camera->GetZoom(), h * camera->GetZoom() };
+	SDL_Rect dstRect = { static_cast<int>((x - cam.x) * camera->GetZoom()), static_cast<int>((y - cam.y) * camera->GetZoom()), static_cast<int>(w * camera->GetZoom()), static_cast<int>(h * camera->GetZoom()) };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
 }
 
@@ -64,6 +64,6 @@ void TextureManager::RenderTile(const std::string& tilesetID, int tileSize, int 
 	SDL_Rect srcRect = { tileSize * frame, tileSize * (row), tileSize, tileSize };
 	Camera* camera = Camera::GetInstance();
 	Vec2D cam = camera->GetPosition();
-	SDL_Rect dstRect = { (x - cam.x) * camera->GetZoom(), (y - cam.y) * camera->GetZoom(), tileSize * camera->GetZoom(), tileSize * camera->GetZoom() };
+	SDL_Rect dstRect = { static_cast<int>((x - cam.x) * camera->GetZoom()), static_cast<int>((y - cam.y) * camera->GetZoom()), static_cast<int>(tileSize * camera->GetZoom()), static_cast<int>(tileSize * camera->GetZoom()) };
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[tilesetID], &srcRect, &dstRect, 0, 0, flip);
 }

@@ -9,7 +9,6 @@
 Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirection("right"), mVelocity(3), isMoving(false), vSpd(0), grvt(.8f){
 	std::cout << "chamando construtor de player" << std::endl;
 
-	rectTest = {};
 	int scale = 2.5f;
 	AddAnimatedSprite("assets/images/spriteSheetPlayer.png", FORMAT_PNG);
 	SetAnimatedSpriteDimensionsInSpriteSheet(32, 32);
@@ -106,10 +105,6 @@ void Player::Gravity() {
 bool Player::IsHorizontalColliding(const char* dir) {
 
 	if (dir == "left") {
-		rectTest.x = GetCollider2D(1)->GetColliderBoundingBox()->x - mVelocity;
-		rectTest.y = GetCollider2D(1)->GetColliderBoundingBox()->y ;
-		rectTest.w = GetCollider2D(1)->GetColliderBoundingBox()->w;
-		rectTest.h = GetCollider2D(1)->GetColliderBoundingBox()->h;
 		if (!Collisor::GetInstance()->PlaceFree(
 			GetCollider2D(1)->GetColliderBoundingBox()->x - mVelocity,
 			GetCollider2D(1)->GetColliderBoundingBox()->y,
@@ -125,10 +120,6 @@ bool Player::IsHorizontalColliding(const char* dir) {
 			return true;
 		}
 	}else if (dir == "right") {
-		rectTest.x = GetCollider2D(1)->GetColliderBoundingBox()->x + mVelocity;
-		rectTest.y = GetCollider2D(1)->GetColliderBoundingBox()->y;
-		rectTest.w = GetCollider2D(1)->GetColliderBoundingBox()->w;
-		rectTest.h = GetCollider2D(1)->GetColliderBoundingBox()->h;
 		if (!Collisor::GetInstance()->PlaceFree(
 			GetCollider2D(1)->GetColliderBoundingBox()->x + mVelocity,
 			GetCollider2D(1)->GetColliderBoundingBox()->y,

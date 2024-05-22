@@ -32,7 +32,7 @@ public:
 
 private:
 	int mTileSize;
-	int mRowCount, mColumnCount;
+	unsigned int mRowCount, mColumnCount;
 	TileMap mTilemap;
 	TilesetList mTilesets;
 

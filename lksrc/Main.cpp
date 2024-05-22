@@ -107,17 +107,7 @@ void HandleRendering() {
 	//Draw here
 
 	EntityManager::GetInstance()->RenderAllEntities();
-	//player->Render();
 	
-	
-	//font->Render();
-	//Vec2D cam = Camera::GetInstance()->GetPosition();
-	//SDL_Rect test = {};
-	////test.x = player->rectTest.x - cam.x;
-	//test.y = player->rectTest.y - cam.y;
-	//test.w = player->rectTest.w;
-	//test.h = player->rectTest.h;
-	//SDL_RenderFillRect(Engine::GetInstance()->GetRender(), &test);
 }
 
 uint32_t mCallbackFun(uint32_t interval, void* param) {
@@ -142,9 +132,6 @@ int main(int argc, char* argv[]) {
 	engine->PushState(play);
 	engine->ChangeState("play");
 
-	//create entities
-	//player = new Player("player");
-	//EntityManager::GetInstance()->CreateEntity(PLAYER);
 
 
 	//get entities
@@ -182,7 +169,6 @@ int main(int argc, char* argv[]) {
 	//*font = "hello world! lksrc.";
 	//font->SetPosition(50, 50);
 
-	//TextureManager::GetInstance()->Load("test", "assets/maps/mapDemoTileset.png");
 
 	s = Sound::GetInstance()->LoadSound("assets/snd/GameOver.wav");
 	m = Sound::GetInstance()->LoadMusic("assets/snd/TetrisSoundTrack.wav");

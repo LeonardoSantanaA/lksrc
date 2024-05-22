@@ -95,7 +95,6 @@ void Engine::PopState() {
 
 void Engine::PushState(GameState* current) {
 	bool canPush = true;
-	std::cout << "here" << std::endl;
 	//verify if can push new state
 	for (auto state : mStates) {
 		if (state->id == current->id) {

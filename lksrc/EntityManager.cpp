@@ -1,6 +1,7 @@
 #include "EntityManager.h"
 #include "Engine.h"
 #include "Player.h"
+#include "thirdpart/TinyXML/tinyxml.h"
 
 EntityManager* EntityManager::mInstance = nullptr;
 
@@ -63,6 +64,58 @@ bool EntityManager::CreateEntityType(const std::string& className) {
 	std::cout << "trying get unknown type. entitymanager::createEntityType(). className: " << className << std::endl;
 	return false;
 	
+}
+
+void EntityManager::ParseEntities(const std::string& path) {
+	TiXmlDocument xml;
+
+	xml.LoadFile(path + ".lkobj");
+	if (xml.Error()) {
+		std::cout << "failed to load entitymanager::parseentities in " << path + ".lkobj" << " - " << xml.ErrorDesc() << std::endl;
+		return;
+	}
+	else {
+		std::cout << "reading entities from " << path + ".lkobj" << std::endl;
+	}
+
+	TiXmlElement* root = xml.RootElement();
+
+	for (TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+		if (e->Value() == std::string("entity")) {
+			int x = 0, y = 0, w = 0, h = 0, layer=0, flip = 0, animated=0;
+			double scale = 0;
+			const char* entityType = nullptr;
+			const char* resource = nullptr;
+
+			entityType = e->Attribute("type");
+			resource = e->Attribute("resource");
+			e->Attribute("animated", &animated);
+			e->Attribute("layer", &layer);
+			e->Attribute("x", &x);
+			e->Attribute("y", &y);
+			e->Attribute("w", &w);
+			e->Attribute("h", &h);
+			e->Attribute("scale", &scale);
+			e->Attribute("flip", &flip);
+
+			CreateEntityType(entityType);
+			std::string newEntityName = "entity_" + std::to_string(GetEntityCount() - 1);
+			std::cout << "configuring entity: " << newEntityName << std::endl;
+			std::shared_ptr<GameEntity> newEntity = GetEntityRef(newEntityName);
+			newEntity->SetDimensions(w, h, scale);
+			newEntity->SetPosition(x, y);
+			if (flip == 1) {
+				newEntity->FlipHorizontal();
+			}
+			else if (flip == 2) {
+				newEntity->FlipVertical();
+			}
+
+			newEntity->Init();
+
+			std::cout << "new entity parsed, id: " << newEntityName << std::endl;
+		}
+	}
 }
 
 std::shared_ptr<GameEntity> EntityManager::GetEntityRef(const std::string& name) {

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities>
+	<entity type="PLAYER" layer="0" x="600" y="10" w="32" h="32" scale="2.0" flip=""/>
+</Entities>

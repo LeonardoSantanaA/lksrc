@@ -71,18 +71,19 @@ int Collider2D::GetWidth() {
     if (mnoptrColliderRect) {
         return mnoptrColliderRect->w;
     }
-    else {
-        std::cout << "trying access nullptr mnoptrcolliderrect. collider2d::hetwidth()." << std::endl;
-    }
+    
+     std::cout << "trying access nullptr mnoptrcolliderrect. collider2d::hetwidth()." << std::endl;
+     return 0;
 }
 
 int Collider2D::GetHeight() {
     if (mnoptrColliderRect) {
         return mnoptrColliderRect->h;
     }
-    else {
-        std::cout << "trying access nullptr mnoptrcolliderrect. collider2d::hetheight()." << std::endl;
-    }
+  
+    std::cout << "trying access nullptr mnoptrcolliderrect. collider2d::hetheight()." << std::endl;
+    return 0;
+    
 }
 
 void Collider2D::Render() {

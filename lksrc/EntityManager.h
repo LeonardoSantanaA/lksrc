@@ -36,6 +36,17 @@ public:
 	// EntityManager::GetInstance()->CreateEntityType("PLAYER");
 	bool CreateEntityType(const std::string& className);
 
+	//load entities from .tml file
+	//example of .tml file:
+	// //
+	//<?xml version="1.0" encoding="UTF-8"?>
+	//<Objects>
+	//	< object type = "PLAYER" layer = "0" x = "450" y = "10" w = "32 h="32" scale="1" flip="0"/>
+	//	< / Objects
+	//
+	//You can override Init() function in your entity, will call this function after constructor
+	void ParseEntities(const std::string& path);
+
 	//get a shared_ptr of a specific entity.
 	std::shared_ptr<GameEntity> GetEntityRef(const std::string& name);
 
@@ -63,6 +74,7 @@ private:
 	std::unordered_map<std::string, std::shared_ptr<GameEntity>> mEntities;
 	std::unordered_map<std::string, std::function<bool()>> mTypeRegistry;
 	long long mEntityCount;
+	void ConfigEntitiesParsed(const std::string& path, long long index);
 
 	template<class Type>
 	friend class Register;

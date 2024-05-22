@@ -11,7 +11,6 @@ public:
 	
 	//virtual void Render() override;
 	void ChangeDirection(const char* dir);
-	SDL_Rect rectTest;
 
 private:
 	bool onGround;

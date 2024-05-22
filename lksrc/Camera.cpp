@@ -4,7 +4,7 @@
 Camera* Camera::mInstance = nullptr;
 
 Camera::Camera()
-:mTarget(nullptr), mZoom(1), mCameraWidth(Engine::GetInstance()->GetWidth()),mCameraHeight(Engine::GetInstance()->GetHeight())  {
+:mTarget(nullptr), mZoom(1), mCameraWidth(Engine::GetInstance()->GetWidth()),mCameraHeight(Engine::GetInstance()->GetHeight()), mSceneHeight(Engine::GetInstance()->GetHeight()), mSceneWidth(Engine::GetInstance()->GetWidth())  {
 	mViewBox = { 0, 0, mCameraWidth, mCameraHeight };
 }
 
