@@ -32,6 +32,7 @@ public:
 
 	//pause the update of current game state
 	void PopState();
+	void PopState(const std::string& key);
 
 	//add a new game state, follow the example:
 	// 
@@ -91,5 +92,6 @@ private:
 	std::set<SDL_TimerID> mTimers;
 	std::vector<GameState*> mStates;
 	GameState* mCurrentState;
+	GameState* mCurrentStatePoped;
 
 };

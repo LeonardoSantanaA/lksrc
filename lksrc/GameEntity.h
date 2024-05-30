@@ -35,7 +35,7 @@ public:
 	bool IsLastFrame();
 
 	//set offset position for collider rectangle
-	void SetOffsetPositionCollision(int indexColission, int xoffsetCollision, int yoffsetColision);
+	void SetOffsetPositionCollision(int indexCollision, int xoffsetCollision, int yoffsetCollision);
 
 	void SetPosition(int x, int y);
 	void MovePosition(int x, int y);

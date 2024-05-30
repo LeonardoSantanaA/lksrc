@@ -43,14 +43,46 @@ void TextureManager::Clean() {
 	}
 }
 
-void TextureManager::Render(const std::string& id, int x, int y, int w, int h, float scaleX, float scaleY, float scrollRatio, const SDL_RendererFlip& flip ) {
-	SDL_Rect srcRect = {0, 0, w, h};
+void TextureManager::Render(const std::string& id, int x, int y, int w, int h, float scaleX, float scaleY, float scrollRatio, bool loop, const SDL_RendererFlip& flip) {
+	SDL_Rect srcRect = { 0, 0, w, h };
 	Camera* camera = Camera::GetInstance();
 	Vec2D cam = camera->GetPosition() * scrollRatio;
-	SDL_Rect dstRect = { static_cast<int>((x - cam.x) * camera->GetZoom()), static_cast<int>((y -cam.y) * camera->GetZoom()), static_cast<int>((w * scaleX) * camera->GetZoom()) , static_cast<int>((h * scaleY) * camera->GetZoom()) };
-	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
+	SDL_Renderer* renderer = Engine::GetInstance()->GetRender();
 
+	int scaledW = static_cast<int>((w * scaleX) * camera->GetZoom());
+	int scaledH = static_cast<int>((h * scaleY) * camera->GetZoom());
+
+	int startX = static_cast<int>((x - cam.x) * camera->GetZoom());
+	int startY = static_cast<int>((y - cam.y) * camera->GetZoom());
+
+	if (loop) {
+		int firstX = startX % scaledW;
+		int secondX = firstX + scaledW;
+
+		SDL_Rect dstRect1 = { firstX, startY, scaledW, scaledH };
+		SDL_Rect dstRect2 = { secondX, startY, scaledW, scaledH };
+
+		SDL_RenderCopyEx(renderer, mTextureMap[id], &srcRect, &dstRect1, 0, nullptr, flip);
+		SDL_RenderCopyEx(renderer, mTextureMap[id], &srcRect, &dstRect2, 0, nullptr, flip);
+
+
+		if (firstX + scaledW <= 0) {
+			firstX = secondX + scaledW;
+		}
+		if (secondX + scaledW <= 0) {
+			secondX = firstX + scaledW;
+		}
+
+	}
+	else {
+		//render without loop
+		SDL_Rect dstRect = { startX, startY, scaledW, scaledH };
+		SDL_RenderCopyEx(renderer, mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
+	}
 }
+
+
+
 
 void TextureManager::RenderFrame(const std::string& id, int x, int y, int w, int h, int row, int frame, const SDL_RendererFlip& flip) {
 	SDL_Rect srcRect = { w * frame, h * row, w, h };

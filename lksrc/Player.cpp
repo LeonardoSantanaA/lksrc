@@ -6,9 +6,8 @@
 #include "Camera.h"
 #include "EntityManager.h"
 
-Player::Player(const std::string& name): GameEntity::GameEntity(name), mDirection("right"), mVelocity(3), isMoving(false), vSpd(0), grvt(.8f){
-	std::cout << "chamando construtor de player" << std::endl;
-
+Player::Player(const std::string& name): GameEntity::GameEntity(name), 
+mDirection("right"), mVelocity(3), isMoving(false), vSpd(0), grvt(.8f), canJump(false), isJumping(false), onGround(false), delayJump(0){
 	int scale = 2.5f;
 	AddAnimatedSprite("assets/images/spriteSheetPlayer.png", FORMAT_PNG);
 	SetAnimatedSpriteDimensionsInSpriteSheet(32, 32);
@@ -88,7 +87,9 @@ void Player::Gravity() {
 			GetCollider2D(1)->GetColliderBoundingBox()->h)) {
 			MovePosition(0, Sign(vSpd));
 		}
-		canJump = true;
+		if (delayJump >= 20) {
+			canJump = true;
+		}
 		onGround = true;
 		isJumping = false;
 		vSpd = 0;
@@ -96,6 +97,13 @@ void Player::Gravity() {
 	else {
 		canJump = false;
 		
+	}
+
+	if (delayJump <= 20) {
+		delayJump++;
+		if (delayJump < 20) {
+			canJump = false;
+		}
 	}
 
 	MovePosition(0, vSpd);
@@ -146,7 +154,7 @@ bool Player::IsHorizontalColliding(const char* dir) {
 void Player::Jump() {
 	if (canJump) {
 		isJumping = true;
-	
+		delayJump = 0;
 		vSpd = -15;
 		if (!Collisor::GetInstance()->PlaceFree(
 			GetCollider2D(1)->GetColliderBoundingBox()->x,

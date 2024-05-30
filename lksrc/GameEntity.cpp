@@ -170,11 +170,12 @@ SDL_bool GameEntity::IsColliding(const GameEntity& otherEntity, size_t index, si
 	return SDL_FALSE;
 }
 
-void GameEntity::SetOffsetPositionCollision(int indexColission, int xoffsetCollision, int yoffsetCollision) {
+void GameEntity::SetOffsetPositionCollision(int indexCollision, int xoffsetCollision, int yoffsetCollision) {
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
-		if (i == indexColission && mnoptrColliders[i]) {
+		if (i == indexCollision && mnoptrColliders[i]) {
 			mnoptrColliders[i]->SetXOffset(xoffsetCollision);
 			mnoptrColliders[i]->SetYOffset(yoffsetCollision);
+			break;
 		}
 	}
 }
@@ -223,11 +224,13 @@ void GameEntity::MovePosition(int x, int y) {
 void GameEntity::SetDimensions(int w, int h, float scale) {
 	if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->SetDimensions(w, h, scale);
-	} else if (mnoptrSprite) {
-		mnoptrSprite->SetDimensions(w, h, scale);
+	}else {
+	std::cout << "trying access a null pointer. SetPosition()." << std::endl;
 	}
-	
-	else {
+
+	if (mnoptrSprite) {
+		mnoptrSprite->SetDimensions(w, h, scale);
+	}else {
 		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
 	}
 
@@ -251,7 +254,7 @@ void GameEntity::ChangeAnimation(const std::string& animationName) {
 		mCurrentAnimationName = animationName;
 		mAnimationDelayCount = 0;
 		if (mnoptrAnimatedSprite) {
-			mnoptrAnimatedSprite->SetCountSpeed(0);
+			mnoptrAnimatedSprite->SetCountSpeed(0.0f);
 		}
 	}
 
@@ -278,45 +281,45 @@ Collider2D* GameEntity::GetCollider2D(size_t index) {
 }
 
 int GameEntity::GetX() { 
-	if (mnoptrSprite) { 
+	if (mnoptrAnimatedSprite) {
+		return mnoptrAnimatedSprite->GetX();
+	}else if (mnoptrSprite) {
 		return mnoptrSprite->GetX(); 
 	}
-	else if (mnoptrAnimatedSprite) {
-		return mnoptrAnimatedSprite->GetX();
-	}
+	 
 	std::cout << "gameentity::getx() from nullptr sprite." << std::endl;  
 	return -1; 
 }
 
 int GameEntity::GetY() {
-	if (mnoptrSprite) { 
+	if (mnoptrAnimatedSprite) {
+		return mnoptrAnimatedSprite->GetY();
+	}else if (mnoptrSprite) {
 		return mnoptrSprite->GetY(); 
 	}
-	else if (mnoptrAnimatedSprite) {
-		return mnoptrAnimatedSprite->GetY();
-	}
+	 
 	std::cout << "gameentity::gety() from nullptr sprite." << std::endl; 
 	return -1; 
 }
 
 int GameEntity::GetWidth() {
-	if (mnoptrSprite) { 
+	if (mnoptrAnimatedSprite) {
+		return mnoptrAnimatedSprite->GetWidth();
+	}else if (mnoptrSprite) {
 		return mnoptrSprite->GetWidth(); 
 	}
-	else if (mnoptrAnimatedSprite) {
-		return mnoptrAnimatedSprite->GetWidth();
-	}
+	 
 	std::cout << "gameentity::getwidth() from nullptr sprite." << std::endl;  
 	return -1; 
 }
 
 int GameEntity::GetHeight() {
-	if (mnoptrSprite) { 
+	if (mnoptrAnimatedSprite) {
+		return mnoptrAnimatedSprite->GetHeight();
+	}else if (mnoptrSprite) {
 		return mnoptrSprite->GetHeight(); 
 	}
-	else if (mnoptrAnimatedSprite) {
-		return mnoptrAnimatedSprite->GetHeight();
-	}
+	 
 	std::cout << "gameentity::getheight() from nullptr sprite." << std::endl;  
 	return -1; 
 }
@@ -340,12 +343,13 @@ void GameEntity::SetAngleRotate(float angle) {
 void GameEntity::SetCenterPointRotate(const SDL_Point& point) { 
 	mCenterPoint = point;
 
-	if (mnoptrSprite) {
-		mnoptrSprite->SetCenterPointRotate(point);
-	}
-	else if (mnoptrAnimatedSprite) {
+	if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->SetCenterPointRotate(point);
 	}
+	else if (mnoptrSprite) {
+		mnoptrSprite->SetCenterPointRotate(point);
+	}
+	 
 	else {
 		std::cout << "gameentity::setcenterpointrotate() from nullptr sprite." << std::endl;
 	}
@@ -355,11 +359,11 @@ void GameEntity::SetCenterPointRotate(const SDL_Point& point) {
 }
 
 void GameEntity::FlipHorizontal() { 
-	if (mnoptrSprite) {
-		mnoptrSprite->FlipImageHorizontal();
-	}
-	else if (mnoptrAnimatedSprite) {
+	
+	if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->FlipImageHorizontal();
+	}else if (mnoptrSprite) {
+		mnoptrSprite->FlipImageHorizontal();
 	}
 	else {
 		std::cout << "gameentity::fliphorizontal() from nullptr sprite." << std::endl;

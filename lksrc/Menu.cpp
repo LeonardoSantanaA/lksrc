@@ -12,12 +12,11 @@ bool Menu::Init() {
 void Menu::Render() {
 	SDL_SetRenderDrawColor(mRender, 16, 54, 70, 255);
 	SDL_RenderClear(mRender);
-
+	
 	SDL_RenderPresent(mRender);
 }
 
 void Menu::Update() {
-
 }
 
 bool Menu::Exit() {

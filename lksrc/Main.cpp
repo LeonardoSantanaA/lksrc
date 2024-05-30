@@ -29,6 +29,7 @@
 #include "Camera.h"
 #include "Play.h"
 #include "Menu.h"
+#include "Pause.h"
 
 //global variables
 Engine* engine; 
@@ -128,8 +129,10 @@ int main(int argc, char* argv[]) {
 	
 	Menu* menu = new Menu();
 	Play* play = new Play();
+	Pause* pause = new Pause();
 	engine->PushState(menu);
 	engine->PushState(play);
+	engine->PushState(pause);
 	engine->ChangeState("play");
 
 
@@ -180,7 +183,9 @@ int main(int argc, char* argv[]) {
 	//delete player;
 	delete menu;
 	delete play;
+	delete pause;
 	delete engine;
+
 	
 
 	return 0;

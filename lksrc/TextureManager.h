@@ -16,7 +16,9 @@ public:
 
 	void Clean();
 
-	void Render(const std::string& id, int x, int y, int w, int h, float xScale = 1, float yScale = 1, float scrollRatio = 0, const SDL_RendererFlip& flip = SDL_FLIP_NONE);
+	//render a background or another image with scroll ratio, its perfect to draw backgrounds
+	void Render(const std::string& id, int x, int y, int w, int h, float xScale = 1, float yScale = 1, float scrollRatio = 0, bool loop = false, const SDL_RendererFlip& flip = SDL_FLIP_NONE);
+
 	void RenderFrame(const std::string& id, int x, int y, int w, int h, int row, int frame, const SDL_RendererFlip& flip = SDL_FLIP_NONE);
 	void RenderTile(const std::string& tilesetID, int tileSize, int x, int y, int row, int frame, const SDL_RendererFlip& flip = SDL_FLIP_NONE);
 

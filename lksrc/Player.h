@@ -18,7 +18,7 @@ private:
 
 	bool canJump;
 	bool isJumping;
-
+	int delayJump;
 
 	const char* mDirection;
 	float mVelocity;

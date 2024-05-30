@@ -64,10 +64,6 @@ Engine::~Engine() {
 	Camera::GetInstance()->Clean();
 	Collisor::GetInstance()->Clean();
 	
-	//if (mState) {
-		//delete mState;
-		//mState = nullptr;
-	//}
 
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRender);
@@ -90,6 +86,30 @@ void Engine::PopState() {
 	if (mCurrentState) {
 		mCurrentState->isPop = !mCurrentState->isPop;
 		std::cout << "pop state" << std::endl;
+	}
+}
+
+void Engine::PopState(const std::string& key) {
+	for (auto state : mStates) {
+		if (state->id == key) {
+			//doesn`t exists a current state poped
+			if (!mCurrentStatePoped) {
+			
+				mCurrentState->isPop = true;
+				mCurrentStatePoped = state;
+				mCurrentStatePoped->Init();
+				std::cout << "paused" << std::endl;
+			}
+			else {
+				mCurrentStatePoped->Exit();
+				mCurrentStatePoped = nullptr;
+				mCurrentState->isPop = false;
+				
+				std::cout << "unpaused" << std::endl;
+			}
+		
+			break;
+		}
 	}
 }
 
@@ -145,9 +165,17 @@ void Engine::RunLoop() {
 		if (mCurrentState && !mCurrentState->isPop) {
 			mCurrentState->Update();
 		}
+		if (mCurrentStatePoped) {
+			mCurrentStatePoped->Update();
+		}
+
+
+		if (mCurrentStatePoped) {
+			mCurrentStatePoped;
+		}
 
 		if (Input::GetInstance()->GetKeyPress(SDL_SCANCODE_ESCAPE)) {
-			PopState();
+			PopState("pause");
 		}
 
 		if (Input::GetInstance()->GetKeyPress(SDL_SCANCODE_LEFT)) {
@@ -164,17 +192,14 @@ void Engine::RunLoop() {
 		SDL_SetRenderDrawColor(mRender, 0, 0, 0, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(mRender);
 		//show what draw
-		// 
-		//Draw
-		//TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 2, 1, 0.5f);
-		//mLevelMap->Render();
-		//mRenderCallback();
-
-
 
 		if (mCurrentState) {
 			mCurrentState->Render();
 		}
+		if (mCurrentStatePoped) {
+			mCurrentStatePoped->Render();
+		}
+	
 
 		SDL_RenderPresent(mRender);
 	

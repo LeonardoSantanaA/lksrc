@@ -102,8 +102,10 @@ void EntityManager::ParseEntities(const std::string& path) {
 			std::string newEntityName = "entity_" + std::to_string(GetEntityCount() - 1);
 			std::cout << "configuring entity: " << newEntityName << std::endl;
 			std::shared_ptr<GameEntity> newEntity = GetEntityRef(newEntityName);
-			newEntity->SetDimensions(w, h, scale);
 			newEntity->SetPosition(x, y);
+			
+			if(w > 0 && h > 0 && scale > 0) newEntity->SetDimensions(w, h, scale);
+
 			if (flip == 1) {
 				newEntity->FlipHorizontal();
 			}
@@ -111,7 +113,21 @@ void EntityManager::ParseEntities(const std::string& path) {
 				newEntity->FlipVertical();
 			}
 
+			if (layer == 0) {
+				newEntity->SetRenderLayer(RenderEntityLayer::BACKGROUND);
+			}
+			else if (layer == 1) {
+				newEntity->SetRenderLayer(RenderEntityLayer::MIDDLEGROUND);
+			}
+			else if (layer == 2) {
+				newEntity->SetRenderLayer(RenderEntityLayer::FOREGROUND);
+			}
+			else if (layer == 3) {
+				newEntity->SetRenderLayer(RenderEntityLayer::END);
+			}
+
 			newEntity->Init();
+			
 
 			std::cout << "new entity parsed, id: " << newEntityName << std::endl;
 		}

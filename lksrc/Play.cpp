@@ -18,7 +18,7 @@ bool Play::Init() {
 	TextureManager::GetInstance()->Load("background", "assets/maps/background.png");
 
 	Register<Player> registerPlayer("PLAYER");
-	EntityManager::GetInstance()->CreateEntityType("PLAYER");
+	//EntityManager::GetInstance()->CreateEntityType("PLAYER");
 	EntityManager::GetInstance()->ParseEntities("assets/maps/objectsLevel1");
 
 	if (!MapParser::GetInstance()->Load("mapDemo")) {
@@ -31,7 +31,6 @@ bool Play::Init() {
 
 	Collisor::GetInstance()->SetCollisionLayer(mCollisionLayer);
 
-	
 	Camera::GetInstance()->SetZoom(2.0f);
 
 	std::cout << "play initialized" << std::endl;
@@ -48,7 +47,7 @@ void Play::Update() {
 }
 
 void Play::Render() {
-	TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 2, 1, .5f);
+	TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 1, 1, 1.2f, true);
 
 	mLevelMap->Render();
 
