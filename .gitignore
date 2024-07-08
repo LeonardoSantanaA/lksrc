@@ -1,8 +1,5 @@
 *.vs
-*.vcxproj
 *.users
-*.user
-*.filters
 *.pdb
 *.idb
 lksrc/x64
