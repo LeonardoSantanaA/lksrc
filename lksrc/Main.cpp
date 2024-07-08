@@ -133,7 +133,7 @@ int main(int argc, char* argv[]) {
 	engine->PushState(menu);
 	engine->PushState(play);
 	engine->PushState(pause);
-	engine->ChangeState("play");
+	engine->ChangeState("menu");
 
 
 

@@ -7,6 +7,7 @@
 class Play : public GameState {
 public:
 	Play();
+	~Play() { mLevelMap.reset(); };
 	virtual bool Init() override;
 	virtual bool Exit() override;
 	virtual void Update() override;

@@ -134,8 +134,17 @@ void Engine::ChangeState(const std::string& idTarget) {
 	for (auto state : mStates) {
 		if (state->id == idTarget) {
 			if (mCurrentState) {
+				
 				mCurrentState->Exit();
 				canChange = true;
+				//ResourceManager::GetInstance()->ClearResourceManager();
+				EntityManager::GetInstance()->DeleteAllEntities();
+				TextureManager::GetInstance()->Clean();
+				MapParser::GetInstance()->Clean();
+				Sound::GetInstance()->ClearSound();
+
+				Camera::GetInstance()->Reset();
+				Collisor::GetInstance()->Clean();
 			}
 			mCurrentState = state;
 			mCurrentState->Init();

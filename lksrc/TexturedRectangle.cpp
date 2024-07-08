@@ -70,7 +70,7 @@ TexturedRectangle& TexturedRectangle::operator=(const TexturedRectangle& other) 
 }
 
 TexturedRectangle::~TexturedRectangle() {
-	SDL_DestroyTexture(mTexture);
+		SDL_DestroyTexture(mTexture);
 }
 
 void TexturedRectangle::Update() {

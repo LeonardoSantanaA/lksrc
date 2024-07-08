@@ -8,7 +8,7 @@
 
 Player::Player(const std::string& name): GameEntity::GameEntity(name), 
 mDirection("right"), mVelocity(3), isMoving(false), vSpd(0), grvt(.8f), canJump(false), isJumping(false), onGround(false), delayJump(0){
-	int scale = 2.5f;
+	float scale = 1.9f;
 	AddAnimatedSprite("assets/images/spriteSheetPlayer.png", FORMAT_PNG);
 	SetAnimatedSpriteDimensionsInSpriteSheet(32, 32);
 	AddAnimation("idle", 0, 12);

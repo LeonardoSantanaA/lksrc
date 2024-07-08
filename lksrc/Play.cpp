@@ -48,18 +48,12 @@ void Play::Update() {
 
 void Play::Render() {
 	TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 1, 1, 1.2f, true);
-
 	mLevelMap->Render();
-
 	EntityManager::GetInstance()->RenderAllEntities();
 
 }
 
 bool Play::Exit() {
-	MapParser::GetInstance()->Clean();
-	EntityManager::GetInstance()->DeleteAllEntities();
-	TextureManager::GetInstance()->Clean();
-	Collisor::GetInstance()->Clean();
 
 	std::cout << "exit play" << std::endl;
 	return true; 

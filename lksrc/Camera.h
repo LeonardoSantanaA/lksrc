@@ -9,6 +9,7 @@ public:
 	static Camera* GetInstance();
 	void Clean();
 
+	void Reset();
 	inline int GetSceneWidth() const { return mSceneWidth; }
 	inline int GetSceneHeight() const { return mSceneHeight; }
 	inline const SDL_Rect GetViewBox() const { return mViewBox; }

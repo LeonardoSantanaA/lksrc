@@ -8,6 +8,17 @@ Camera::Camera()
 	mViewBox = { 0, 0, mCameraWidth, mCameraHeight };
 }
 
+void Camera::Reset() {
+	mTarget = nullptr;
+	SetZoom(1);
+	mPosition = Vec2D(0, 0);
+	mViewBox.w = Engine::GetInstance()->GetWidth();
+	mViewBox.h = Engine::GetInstance()->GetHeight();
+	
+	mCameraWidth = Engine::GetInstance()->GetWidth();
+	mCameraHeight = Engine::GetInstance()->GetHeight();
+}
+
 void Camera::Clean() {
 	if (mInstance) {
 		delete mInstance;
