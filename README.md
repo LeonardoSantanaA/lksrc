@@ -11,7 +11,7 @@ First, you need to install the following packages: **SDL2**, **SDL_Image**, **SD
 ### Windows
 
 You can find a zipped file named **SDL2.rar** in the path **lksrc/cmake/sdl2**. Extract it to **C:/** or any other location of your preference.
-> This zipped file contains the SDL library with SDL_Image, SDL_Mixer, and SDL_TTF .lib and include files.
+This zipped file contains the SDL library with SDL_Image, SDL_Mixer, and SDL_TTF .lib and include files.
 You can use **Visual Studio Community** for Windows and open the CMake with it.
 
 > **Note:** Check the CMake logs in the Terminal if the paths are not empty:
@@ -29,13 +29,13 @@ You can use **Visual Studio Community** for Windows and open the CMake with it.
 #### Debian/Ubuntu-based Systems
 
 - **SDL2**
-  > sudo apt install libsdl2-dev
+  ``` sudo apt install libsdl2-dev```
 - **SDL2_Image**
-  > sudo apt install libsdl2-image-dev
+  ``` sudo apt install libsdl2-image-dev```
 - **SDL2_Mixer**
-  > sudo apt install libsdl2-mixer-dev
+  ``` sudo apt install libsdl2-mixer-dev```
 - **SDL2_TTF**
-  > sudo apt install libsdl2-ttf-dev
+  ``` sudo apt install libsdl2-ttf-dev```
 
 Once installed, navigate to your cloned folder and follow these steps:
 ```shell
