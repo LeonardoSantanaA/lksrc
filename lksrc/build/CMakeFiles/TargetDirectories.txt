@@ -1,3 +1,0 @@
-/c/users/lekao/source/repos/lksouls/lksrc/lksrc/build/CMakeFiles/SDL2Test.dir
-/c/users/lekao/source/repos/lksouls/lksrc/lksrc/build/CMakeFiles/edit_cache.dir
-/c/users/lekao/source/repos/lksouls/lksrc/lksrc/build/CMakeFiles/rebuild_cache.dir
