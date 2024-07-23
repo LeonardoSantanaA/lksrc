@@ -100,11 +100,23 @@
     <Filter Include="Arquivos de Recurso\src\GameStates">
       <UniqueIdentifier>{c1de8049-1f5b-4aa3-a21a-e570c24dfc70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos de Recurso\assets\images\enemies">
+      <UniqueIdentifier>{d4fe6742-a3c6-4369-8444-1ca69848b2cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Recurso\src\Entities\Enemies">
+      <UniqueIdentifier>{9d1ca433-ae5b-40f5-919e-8f5c5571b5ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Entities\Enemies">
+      <UniqueIdentifier>{93505a29-d2d0-42da-b679-eb81832cdeaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Recurso\assets\map">
+      <UniqueIdentifier>{8e21d72b-6655-4a84-b351-a5065b16fc42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Recurso\thirdPart\SDL_finders">
+      <UniqueIdentifier>{54145382-4f51-4cdb-b075-7cb48ddb2a12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Arquivos de Recurso\src</Filter>
-    </ClCompile>
     <ClCompile Include="glad\src\glad.c">
       <Filter>Arquivos de Recurso\lib\glad</Filter>
     </ClCompile>
@@ -120,74 +132,80 @@
     <ClCompile Include="thirdpart\TinyXML\tinyxmlparser.cpp">
       <Filter>Arquivos de Recurso\thirdPart\TinyXML</Filter>
     </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Arquivos de Recurso\src\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Arquivos de Recurso\src\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound.cpp">
-      <Filter>Arquivos de Recurso\src\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider2D.cpp">
-      <Filter>Arquivos de Recurso\src\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="Collisor.cpp">
-      <Filter>Arquivos de Recurso\src\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMap.cpp">
-      <Filter>Arquivos de Recurso\src\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLayer.cpp">
-      <Filter>Arquivos de Recurso\src\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="MapParser.cpp">
-      <Filter>Arquivos de Recurso\src\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
-      <Filter>Arquivos de Recurso\src\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEntity.cpp">
-      <Filter>Arquivos de Recurso\src\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Arquivos de Recurso\src\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Arquivos de Recurso\src\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Arquivos de Recurso\src\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Arquivos de Recurso\src\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimatedSprite.cpp">
-      <Filter>Arquivos de Recurso\src\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Arquivos de Recurso\src\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TexturedRectangle.cpp">
-      <Filter>Arquivos de Recurso\src\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="src\cpp\Camera\Camera.cpp">
       <Filter>Arquivos de Recurso\src\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Vec2D.cpp">
+    <ClCompile Include="src\cpp\Collision\Collider2D.cpp">
+      <Filter>Arquivos de Recurso\src\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Collision\Collisor.cpp">
+      <Filter>Arquivos de Recurso\src\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Core\Button.cpp">
+      <Filter>Arquivos de Recurso\src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Core\Engine.cpp">
+      <Filter>Arquivos de Recurso\src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Core\Input.cpp">
+      <Filter>Arquivos de Recurso\src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Core\Sound.cpp">
+      <Filter>Arquivos de Recurso\src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Entities\Enemies\Zombie.cpp">
+      <Filter>Arquivos de Recurso\src\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Entities\Player.cpp">
+      <Filter>Arquivos de Recurso\src\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GameStates\Menu.cpp">
+      <Filter>Arquivos de Recurso\src\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GameStates\Pause.cpp">
+      <Filter>Arquivos de Recurso\src\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GameStates\Play.cpp">
+      <Filter>Arquivos de Recurso\src\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Graphics\AnimatedSprite.cpp">
+      <Filter>Arquivos de Recurso\src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Graphics\Font.cpp">
+      <Filter>Arquivos de Recurso\src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Graphics\TexturedRectangle.cpp">
+      <Filter>Arquivos de Recurso\src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Managers\EntityManager.cpp">
+      <Filter>Arquivos de Recurso\src\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Managers\GameEntity.cpp">
+      <Filter>Arquivos de Recurso\src\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Managers\ResourceManager.cpp">
+      <Filter>Arquivos de Recurso\src\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Managers\TextureManager.cpp">
+      <Filter>Arquivos de Recurso\src\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Managers\Utils.cpp">
+      <Filter>Arquivos de Recurso\src\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Map\GameMap.cpp">
+      <Filter>Arquivos de Recurso\src\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Map\MapParser.cpp">
+      <Filter>Arquivos de Recurso\src\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Map\TileLayer.cpp">
+      <Filter>Arquivos de Recurso\src\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\Physics\Vec2D.cpp">
       <Filter>Arquivos de Recurso\src\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Arquivos de Recurso\src\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="Play.cpp">
-      <Filter>Arquivos de Recurso\src\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="Pause.cpp">
-      <Filter>Arquivos de Recurso\src\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Arquivos de Recurso\src\Core</Filter>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>Arquivos de Recurso\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,124 +215,97 @@
     <ClInclude Include="thirdpart\TinyXML\tinyxml.h">
       <Filter>Arquivos de Recurso\thirdPart\TinyXML</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatedSprite.h">
-      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Arquivos de Cabeçalho\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider2D.h">
-      <Filter>Arquivos de Cabeçalho\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="TileLayer.h">
-      <Filter>Arquivos de Cabeçalho\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec2D.h">
-      <Filter>Arquivos de Cabeçalho\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="src\header\Camera\Camera.h">
       <Filter>Arquivos de Cabeçalho\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Arquivos de Cabeçalho\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Arquivos de Cabeçalho\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMap.h">
-      <Filter>Arquivos de Cabeçalho\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Point.h">
+    <ClInclude Include="src\header\Camera\Point.h">
       <Filter>Arquivos de Cabeçalho\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Arquivos de Cabeçalho\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEntity.h">
-      <Filter>Arquivos de Cabeçalho\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="MapParser.h">
-      <Filter>Arquivos de Cabeçalho\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Collisor.h">
+    <ClInclude Include="src\header\Collision\Collider2D.h">
       <Filter>Arquivos de Cabeçalho\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
+    <ClInclude Include="src\header\Collision\Collisor.h">
+      <Filter>Arquivos de Cabeçalho\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    <ClInclude Include="src\header\Core\Button.h">
+      <Filter>Arquivos de Cabeçalho\Core</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    <ClInclude Include="src\header\Core\Engine.h">
+      <Filter>Arquivos de Cabeçalho\Core</Filter>
     </ClInclude>
-    <ClInclude Include="TexturedRectangle.h">
-      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
+    <ClInclude Include="src\header\Core\GameState.h">
+      <Filter>Arquivos de Cabeçalho\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    <ClInclude Include="src\header\Core\GlobalResources.h">
+      <Filter>Arquivos de Cabeçalho\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="src\header\Core\Input.h">
+      <Filter>Arquivos de Cabeçalho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Core\Sound.h">
+      <Filter>Arquivos de Cabeçalho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Entities\Player.h">
       <Filter>Arquivos de Cabeçalho\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
-      <Filter>Arquivos de Cabeçalho\Core</Filter>
+    <ClInclude Include="src\header\Entities\Enemies\Zombie.h">
+      <Filter>Arquivos de Cabeçalho\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="RenderEntityLayer.h">
+    <ClInclude Include="src\header\GameStates\Menu.h">
+      <Filter>Arquivos de Cabeçalho\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\GameStates\Pause.h">
+      <Filter>Arquivos de Cabeçalho\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\GameStates\Play.h">
+      <Filter>Arquivos de Cabeçalho\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Graphics\AnimatedSprite.h">
       <Filter>Arquivos de Cabeçalho\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Arquivos de Cabeçalho\Core</Filter>
+    <ClInclude Include="src\header\Graphics\Font.h">
+      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Arquivos de Cabeçalho\GameStates</Filter>
+    <ClInclude Include="src\header\Graphics\RenderEntityLayer.h">
+      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Play.h">
-      <Filter>Arquivos de Cabeçalho\GameStates</Filter>
+    <ClInclude Include="src\header\Graphics\TexturedRectangle.h">
+      <Filter>Arquivos de Cabeçalho\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Pause.h">
-      <Filter>Arquivos de Cabeçalho\GameStates</Filter>
+    <ClInclude Include="src\header\Managers\EntityManager.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Arquivos de Cabeçalho\Core</Filter>
+    <ClInclude Include="src\header\Managers\GameEntity.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Managers\ResourceManager.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Managers\TextureManager.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Managers\Utils.h">
+      <Filter>Arquivos de Cabeçalho\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Map\GameMap.h">
+      <Filter>Arquivos de Cabeçalho\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Map\Layer.h">
+      <Filter>Arquivos de Cabeçalho\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Map\MapParser.h">
+      <Filter>Arquivos de Cabeçalho\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Map\TileLayer.h">
+      <Filter>Arquivos de Cabeçalho\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Physics\Vec2D.h">
+      <Filter>Arquivos de Cabeçalho\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\images\mario.bmp">
-      <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
-    <Image Include="assets\images\mario.png">
-      <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
-    <Image Include="assets\images\sonic.jpg">
-      <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
-    <Image Include="assets\images\tom.bmp">
-      <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
-    <Image Include="assets\images\waterTexture.bmp">
-      <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
-    <Image Include="assets\images\waterTexture2.bmp">
-      <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
     <Image Include="assets\images\spriteSheetPlayer.png">
       <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
-    <Image Include="assets\images\kong.bmp">
-      <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
-    <Image Include="assets\images\megaman.bmp">
-      <Filter>Arquivos de Recurso\assets\images</Filter>
-    </Image>
-    <Image Include="assets\maps\mapDemoTileset.png">
-      <Filter>Arquivos de Recurso\maps</Filter>
-    </Image>
-    <Image Include="assets\maps\objectsDemo.png">
-      <Filter>Arquivos de Recurso\maps</Filter>
-    </Image>
-    <Image Include="assets\maps\background.png">
-      <Filter>Arquivos de Recurso\maps</Filter>
     </Image>
     <Image Include="assets\images\buttonPlay.png">
       <Filter>Arquivos de Recurso\assets\images</Filter>
@@ -327,6 +318,21 @@
     </Image>
     <Image Include="assets\images\buttonQuitPressed.png">
       <Filter>Arquivos de Recurso\assets\images</Filter>
+    </Image>
+    <Image Include="assets\images\player.png">
+      <Filter>Arquivos de Recurso\assets\images</Filter>
+    </Image>
+    <Image Include="assets\images\enemies\zombie.png">
+      <Filter>Arquivos de Recurso\assets\images\enemies</Filter>
+    </Image>
+    <Image Include="assets\maps\background.png">
+      <Filter>Arquivos de Recurso\assets\map</Filter>
+    </Image>
+    <Image Include="assets\maps\mapDemoTileset.png">
+      <Filter>Arquivos de Recurso\assets\map</Filter>
+    </Image>
+    <Image Include="assets\maps\objectsDemo.png">
+      <Filter>Arquivos de Recurso\assets\map</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -344,10 +350,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\maps\mapDemo.tmx">
-      <Filter>Arquivos de Recurso\maps</Filter>
+      <Filter>Arquivos de Recurso\assets\map</Filter>
     </None>
     <None Include="assets\maps\objectsLevel1.lkobj">
-      <Filter>Arquivos de Recurso\maps</Filter>
+      <Filter>Arquivos de Recurso\assets\map</Filter>
     </None>
+    <None Include="thirdpart\SDL_finders\FindSDL2TTF.cmake">
+      <Filter>Arquivos de Recurso\thirdPart\SDL_finders</Filter>
+    </None>
+    <None Include="thirdpart\SDL_finders\FindSDL2.cmake">
+      <Filter>Arquivos de Recurso\thirdPart\SDL_finders</Filter>
+    </None>
+    <None Include="thirdpart\SDL_finders\FindSDL2_image.cmake">
+      <Filter>Arquivos de Recurso\thirdPart\SDL_finders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt">
+      <Filter>Arquivos de Recurso</Filter>
+    </Text>
   </ItemGroup>
 </Project>
