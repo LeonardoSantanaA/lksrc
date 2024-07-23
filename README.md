@@ -29,12 +29,16 @@ You can use **Visual Studio Community** for Windows and open the CMake with it.
 #### Debian/Ubuntu-based Systems
 
 - **SDL2**
+  
   ``` sudo apt install libsdl2-dev```
 - **SDL2_Image**
+  
   ``` sudo apt install libsdl2-image-dev```
 - **SDL2_Mixer**
+  
   ``` sudo apt install libsdl2-mixer-dev```
 - **SDL2_TTF**
+  
   ``` sudo apt install libsdl2-ttf-dev```
 
 Once installed, navigate to your cloned folder and follow these steps:
