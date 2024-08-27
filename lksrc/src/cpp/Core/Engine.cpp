@@ -12,6 +12,7 @@
 #include "Map/MapParser.h"
 #include "Camera/Camera.h"
 #include "Collision/Collisor.h"
+#include "Managers/EnemyManager.h"
 
 //states
 #include "GameStates/Menu.h"
@@ -55,13 +56,13 @@ Engine::~Engine() {
 	Sound::QuitMixer();
 	ResourceManager::GetInstance()->ClearResourceManager();
 	EntityManager::GetInstance()->DeleteAllEntities();
+	EnemyManager::GetInstance()->Clean();
 	TextureManager::GetInstance()->Clean();
 	MapParser::GetInstance()->Clean();
 	Sound::GetInstance()->ClearSound();
 	Input::GetInstance()->DestroyInput();
 	Camera::GetInstance()->Clean();
 	Collisor::GetInstance()->Clean();
-	
 
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRender);

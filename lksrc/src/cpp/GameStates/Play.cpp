@@ -7,20 +7,31 @@
 #include "Core/Input.h"
 #include "Entities/Player.h"
 #include "Entities/Enemies/Zombie.h"
+#include "Entities/Enemies/Wolf.h"
+#include "Entities/Enemies/Skeleton.h"
+#include "Entities/Enemies/Dead.h"
+#include "Entities/Enemies/DeadFire.h"
+#include "Managers/EnemyManager.h"
 
 Play::Play() {
 	id = "play";
 }
 
 bool Play::Init() {
-	//mEditMode = false;
 	Engine::GetInstance()->ShowCursor(false);
 	mRender = Engine::GetInstance()->GetRender();
 
-	TextureManager::GetInstance()->Load("background", "assets/maps/background.png");
+	TextureManager::GetInstance()->Load("background_1", "assets/maps/backgroundLayer1.png");
+	TextureManager::GetInstance()->Load("background_2", "assets/maps/backgroundLayer2.png");
+	TextureManager::GetInstance()->Load("background_3", "assets/maps/backgroundLayer3.png");
 
-	Register<Player> registerPlayer("PLAYER", false);
+	Register<Player> registerPlayer("PLAYER", true);
 	Register<Zombie> registerZombie("ZOMBIE");
+	Register<Wolf> registerWolf("WOLF");
+	Register<Skeleton> registerSkeleton("SKELETON");
+	Register<Dead> registerDead("DEAD");
+	Register<DeadFire> registerDeadFire("DEADFIRE", true);
+
 	EntityManager::GetInstance()->CreateEntityType("PLAYER");
 	EntityManager::GetInstance()->ParseEntities("assets/maps/objectsLevel1");
 
@@ -28,6 +39,8 @@ bool Play::Init() {
 		std::cout << "failed to load map." << std::endl;
 	}
 	mLevelMap = MapParser::GetInstance()->GetMap("mapDemo");
+
+	mGUI = std::make_unique<PlayerGUI>();
 
 	auto& mapLayers = mLevelMap->GetMapLayers();
 	TileLayer* mCollisionLayer = dynamic_cast<TileLayer*>(mapLayers.back().get());
@@ -50,14 +63,16 @@ void Play::Update() {
 }
 
 void Play::Render() {
-	TextureManager::GetInstance()->Render("background", 0, 0, 2541, 798, 1, 1, 1.2f, true);
+	TextureManager::GetInstance()->Render("background_1", 0, 0, 320, 180, 5.0f, 5.0f, 1.3f, true);
+	TextureManager::GetInstance()->Render("background_2", 0, 400, 320, 131, 3.0f, 2.5f, 1.1f, true);
+	TextureManager::GetInstance()->Render("background_3", 0, 500, 320, 30, 5.0f, 5.0f, 1.1f, true);
 	mLevelMap->Render();
+	mGUI->Render();
 	EntityManager::GetInstance()->RenderAllEntities();
-
 }
 
 bool Play::Exit() {
-
+	EnemyManager::GetInstance()->ClearEnemies();
 	std::cout << "exit play" << std::endl;
 	return true; 
 }

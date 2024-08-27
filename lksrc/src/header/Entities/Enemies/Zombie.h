@@ -6,7 +6,7 @@
 class Zombie : public Enemy {
 public:
 	Zombie(const std::string& name);
-	virtual void Update() override;
+	virtual ~Zombie() override {};
 
 private:
 

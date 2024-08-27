@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "Physics/Vec2D.h"
 #include "Camera/Point.h"
+#include "Managers/EntityManager.h"
 
 class Camera {
 public:
@@ -29,6 +30,11 @@ public:
 
 	void Update();
 
+	bool IsInCamera(GameEntity& entity, int xOffset = 0, int yOffset = 0 );
+	bool IsInCamera(const SDL_Rect& rect, int xOffset = 0, int yOffset = 0 );
+
+	void Screenshake(float magnetude, float duration);
+
 	//reload the camera resolution
 	void Reload();
 
@@ -42,4 +48,5 @@ private:
 	int mSceneWidth, mSceneHeight;
 	float mZoom;
 
+	float mScreenShakeDuration, mScreenShakeMagnetude;
 };

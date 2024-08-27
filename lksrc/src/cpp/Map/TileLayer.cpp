@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Map/TileLayer.h"
 #include "Managers/TextureManager.h"
+#include "Camera/Camera.h"
 
 TileLayer::TileLayer(int tileSize, int rowCount, int columnCount, TileMap tilemap, TilesetList tilesets)
 :mTileSize(tileSize), mRowCount(rowCount), mColumnCount(columnCount), mTilemap(tilemap), mTilesets(tilesets){
@@ -46,6 +47,7 @@ void TileLayer::Render() {
 				Tileset ts = mTilesets[tsIndex];
 				int tileRow = tileID / ts.columnCount;
 				int tileCol = tileID - tileRow * ts.columnCount - 1;
+				
 
 				//if this tile is on the last column
 				if (tileID % ts.columnCount == 0) {
@@ -53,7 +55,19 @@ void TileLayer::Render() {
 					tileCol = ts.columnCount - 1;
 				}
 
-				TextureManager::GetInstance()->RenderTile(ts.name, ts.tileSize, j * ts.tileSize, i * ts.tileSize, tileRow, tileCol);
+				SDL_Rect tileRect = { j * ts.tileSize , i * ts.tileSize, ts.tileSize, ts.tileSize };
+
+				auto camera = Camera::GetInstance();
+				
+				if (camera) {
+					if (camera->IsInCamera(tileRect)) {
+						TextureManager::GetInstance()->RenderTile(ts.name, ts.tileSize, j * ts.tileSize, i * ts.tileSize, tileRow, tileCol);
+					}
+				}
+				else {
+					TextureManager::GetInstance()->RenderTile(ts.name, ts.tileSize, j * ts.tileSize, i * ts.tileSize, tileRow, tileCol);
+				}
+				
 				
 			}
 

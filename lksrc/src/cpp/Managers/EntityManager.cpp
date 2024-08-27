@@ -2,6 +2,8 @@
 #include "Core/Engine.h"
 #include "Entities/Player.h"
 #include "../../thirdpart/TinyXML/includes/tinyxml.h"
+#include "Camera/Camera.h"
+#include "Map/MapParser.h"
 
 EntityManager* EntityManager::mInstance = nullptr;
 
@@ -13,11 +15,10 @@ EntityManager* EntityManager::GetInstance() {
 	return mInstance;
 }
 
-
 bool EntityManager::CreateEntity() {
 	std::string name = "entity_" + std::to_string(GetEntityCount());
 	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name);
-	std::cout << "new entity. entities: " << EntityManager::GetInstance()->GetEntityCount() << std::endl;
+	std::cout << "new entity. entities: " << GetEntityCount() << std::endl;
 	mEntities.insert(std::make_pair(name, newEntity));
 	mEntityCount++;
 	return (mEntities[name] != nullptr);
@@ -25,31 +26,12 @@ bool EntityManager::CreateEntity() {
 
 bool EntityManager::CreateEntity(const std::string& name) {
 	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name);
-	std::cout << "new entity. entities: " << EntityManager::GetInstance()->GetEntityCount() << std::endl;
+	std::cout << "new entity. entities: " << GetEntityCount() << std::endl;
 	mEntities.insert(std::make_pair(name, newEntity));
 	mEntityCount++;
 	return (mEntities[name] != nullptr);
 }
 
-/*
-bool EntityManager::CreateEntity(const EntityType& type) {
-	switch (type) {
-	case PLAYER:
-	{
-		std::string name = "player";
-		std::shared_ptr<Player> newPlayer = std::make_shared<Player>(name);
-		mEntities.insert(std::make_pair(name, newPlayer));
-		mEntityCount++;
-		std::cout << "new player instantiate. type: " << name << std::endl;
-		return (mEntities[name] != nullptr);
-	}
-
-	default:
-		std::cout << "type not found. entitymanager::createentity()." << std::endl;
-		return false;
-	}
-}
-*/
 
 void EntityManager::RegisterType(const std::string& className, std::function < bool() > creator) {
 	mTypeRegistry[className] = creator;
@@ -79,8 +61,14 @@ void EntityManager::ParseEntities(const std::string& path) {
 	}
 
 	TiXmlElement* root = xml.RootElement();
+	int tileSize = 1;
 
 	for (TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+		if (e->Value() == std::string("config")) {
+			e->Attribute("tilesize", &tileSize);
+			std::cout << "tileSize of entities:" << tileSize << std::endl;
+		}
+
 		if (e->Value() == std::string("entity")) {
 			int x = 0, y = 0, w = 0, h = 0, layer=0, flip = 0, animated=0;
 			double scale = 0;
@@ -101,8 +89,9 @@ void EntityManager::ParseEntities(const std::string& path) {
 			CreateEntityType(entityType);
 			std::string newEntityName = "entity_" + std::to_string(GetEntityCount() - 1);
 			std::cout << "configuring entity: " << newEntityName << std::endl;
-			std::shared_ptr<GameEntity> newEntity = GetEntityRef(newEntityName);
-			newEntity->SetPosition(x, y);
+			std::shared_ptr<GameEntity> newEntity = GetEntityRef<GameEntity>(newEntityName);
+
+			newEntity->SetPosition(x * tileSize, y * tileSize);
 			
 			if(w > 0 && h > 0 && scale > 0) newEntity->SetDimensions(w, h, static_cast<float>(scale));
 
@@ -113,77 +102,111 @@ void EntityManager::ParseEntities(const std::string& path) {
 				newEntity->FlipVertical();
 			}
 
-			if (layer == 0) {
-				newEntity->SetRenderLayer(RenderEntityLayer::BACKGROUND);
-			}
-			else if (layer == 1) {
-				newEntity->SetRenderLayer(RenderEntityLayer::MIDDLEGROUND);
-			}
-			else if (layer == 2) {
-				newEntity->SetRenderLayer(RenderEntityLayer::FOREGROUND);
-			}
-			else if (layer == 3) {
-				newEntity->SetRenderLayer(RenderEntityLayer::END);
+			switch (layer) {
+				case 0:
+					newEntity->SetRenderLayer(RenderEntityLayer::BACKGROUND);
+					break;
+
+				case 1:
+					newEntity->SetRenderLayer(RenderEntityLayer::MIDDLEGROUND);
+					break;
+
+				case 2:
+					newEntity->SetRenderLayer(RenderEntityLayer::FOREGROUND);
+					break;
+
+				case 3:
+					newEntity->SetRenderLayer(RenderEntityLayer::END);
+					break;
+
+				default:
+					newEntity->SetRenderLayer(RenderEntityLayer::BACKGROUND);
+					break;
 			}
 
 			newEntity->Init();
-			
-
 			std::cout << "new entity parsed, id: " << newEntityName << std::endl;
 		}
 	}
 }
 
-std::shared_ptr<GameEntity> EntityManager::GetEntityRef(const std::string& name) {
-	auto entity = mEntities.find(name);
-	if (entity != mEntities.end()) {
-		return (mEntities[name]);
-	}
-	else {
-		std::cout << "trying get unknown entity. entitymanager::getentityref(). key: " << name << std::endl;
-		return nullptr;
-	}
 
-}
 
 void EntityManager::RemoveEntity(const std::string& name) {
 	auto entity = mEntities.find(name);
 	if (entity != mEntities.end()) {
-		std::cout << "entity removed. entities: " << EntityManager::GetInstance()->GetEntityCount() << std::endl;
-		mEntities.erase(entity);
-		mEntityCount--;
-	}
-	else {
-		std::cout << "trying remove entity that doesnt exist. entitymanager::removeentity(). key: " << name << std::endl;
-	}
-	
-	
-}
+		if (entity->second) {
+			try {
+				mEntities.erase(entity);
+				mEntityCount--;
 
-void EntityManager::UpdateAllEntities() {
-	size_t index = 0;
-	for (auto it = mEntities.begin(); it != mEntities.end(); it++) {
-		if (mEntities[it->first]) {
-			mEntities[it->first]->Update();
+				std::cout << "Entity removed (" << name << "). Entities: " << mEntityCount << std::endl;
+			}
+			catch (const std::exception& e) {
+				std::cerr << "Exception during entity removal: " << e.what() << std::endl;
+			}
 		}
 		else {
-			std::cout << "unknown entity update entitymanager::updateallentities(): " << index << std::endl;
+			std::cerr << "Warning: Entity exists but is null. Key: " << name << std::endl;
 		}
-		index++;
+	}
+	else {
+		std::cerr << "Trying to remove entity that doesn't exist. EntityManager::RemoveEntity(). Key: " << name << std::endl;
 	}
 }
 
+
+
+void EntityManager::UpdateAllEntities() {
+	std::vector<std::shared_ptr<GameEntity>> entitiesToUpdate;
+	entitiesToUpdate.reserve(mEntities.size()); 
+
+	auto camera = Camera::GetInstance();
+
+	for (const auto& [key, entity] : mEntities) {
+		if (entity) {
+			if (camera) { //if camera exists, update only entities colliding with camera
+				if (camera->IsInCamera(*entity, 100, 100)) {
+					entitiesToUpdate.push_back(entity);
+				}
+			}
+			else {
+				entitiesToUpdate.push_back(entity);
+			}
+			
+		}
+		else {
+			std::cerr << "Unknown entity in EntityManager::UpdateAllEntities(). Key: " << key << std::endl;
+		}
+	}
+
+	for (const auto& entity : entitiesToUpdate) {
+		if (entity) {
+			entity->Update();
+		}
+	}
+}
 
 void EntityManager::RenderLayerEntity(const RenderEntityLayer& layer) {
 	size_t index = 0;
+	auto camera = Camera::GetInstance();
 	for (auto it = mEntities.begin(); it != mEntities.end(); it++) {
 		if (mEntities[it->first] && layer == mEntities[it->first]->GetRenderLayer()) {
-			mEntities[it->first]->Render();
+			if (camera) {
+				if (camera->IsInCamera(*mEntities[it->first], 50, 50)) {
+					mEntities[it->first]->Render();
+				}
+			}
+			else {
+				mEntities[it->first]->Render();
+			}
 		}
 		else if (!mEntities[it->first]) {
 			std::cout << "unknown entity render entitymanager::renderlayerentity(): " << index << std::endl;
 		}
+
 		index++;
+
 	}
 }
 
@@ -193,8 +216,6 @@ void EntityManager::RenderAllEntities() {
 	RenderLayerEntity(RenderEntityLayer::FOREGROUND);
 	RenderLayerEntity(RenderEntityLayer::END);
 }
-
-
 
 void EntityManager::DeleteAllEntities() {
 	mEntities.erase(mEntities.begin(), mEntities.end());

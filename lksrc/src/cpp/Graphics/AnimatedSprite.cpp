@@ -21,7 +21,7 @@ void AnimatedSprite::PlayFrame(int x, int y, int w, int h, int frame) {
 }
 
 void AnimatedSprite::Update() {
-
+	
 }
 
 void AnimatedSprite::Render() {

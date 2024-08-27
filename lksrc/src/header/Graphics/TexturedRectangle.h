@@ -26,7 +26,8 @@ public:
 	void MovePosition(float x, float y);
 	void MovePosition(const Vec2D& vec);
 	void SetDimensions(int w, int h, float scale = SCALE);
-	void Render();
+	void SetDimensions(float w, float h, float scale = SCALE);
+	void Render(bool isStatic = false);
 
 	inline int GetX() const { return mRect.x; }
 	inline int GetY() const { return mRect.y; }

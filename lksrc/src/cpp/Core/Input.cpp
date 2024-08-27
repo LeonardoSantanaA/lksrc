@@ -22,6 +22,7 @@ void Input::DestroyInput() {
         delete mInstance;
         mInstance = nullptr;
     }
+    std::cout << "input cleared." << std::endl;
 }
 
 Input::Input() {
@@ -90,40 +91,24 @@ void Input::Listen() {
         case SDL_MOUSEBUTTONDOWN:
             MouseButtonDown();
             if (event.button.button == SDL_BUTTON_LEFT && event.button.clicks == 1) {
-                std::cout << "mouse button left. single-click." << std::endl;
-                std::cout << "x: " << Engine::GetInstance()->GetMouseX() << std::endl;
-                std::cout << "y: " << Engine::GetInstance()->GetMouseY() << std::endl;
             }
             else if (event.button.button == SDL_BUTTON_LEFT && event.button.clicks == 2) {
-                std::cout << "mouse button left. double-click." << std::endl;
+                //std::cout << "mouse button left. double-click." << std::endl;
             }
             else if (event.button.button == SDL_BUTTON_LEFT && event.button.clicks == 3) {
             }
 
             if (event.button.button == SDL_BUTTON_RIGHT) {
-                std::cout << "mouse button right." << std::endl;
-                EntityManager::GetInstance()->RemoveEntity("entity1");
+               // std::cout << "mouse button right." << std::endl;
             }
             if (event.button.button == SDL_BUTTON_MIDDLE) {
-                std::cout << "mouse scroll button." << std::endl;
-                std::shared_ptr<GameEntity> entity2 = EntityManager::GetInstance()->GetEntityRef("entity1");
-                if (entity2) {
-                    entity2->FlipHorizontal();
-                }
+               // std::cout << "mouse scroll button." << std::endl;
             }
             if (event.button.button == SDL_BUTTON_X1) {
-                std::cout << "mouse button x1." << std::endl;
-                std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
-                if (entity) {
-                    entity->ChangeAnimation("idle");
-                }
+               // std::cout << "mouse button x1." << std::endl;
             }
             if (event.button.button == SDL_BUTTON_X2) {
-                std::cout << "mouse button x2." << std::endl;
-                std::shared_ptr<GameEntity> entity = EntityManager::GetInstance()->GetEntityRef("entity1");
-                if (entity) {
-                    entity->ChangeAnimation("run");
-                }
+                //std::cout << "mouse button x2." << std::endl;
             }
             break;
 

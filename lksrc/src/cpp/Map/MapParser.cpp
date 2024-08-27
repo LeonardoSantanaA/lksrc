@@ -17,6 +17,7 @@ void MapParser::Clean() {
 		delete mInstance;
 		mInstance = nullptr;
 	}
+	std::cout << "mapparser cleaned." << std::endl;
 }
 
 bool MapParser::Parse(const std::string& id, const std::string& source) {
@@ -86,7 +87,6 @@ std::unique_ptr<TileLayer> MapParser::ParseTileLayer(TiXmlElement* xmlLayer, Til
 	std::string matrix(data->GetText());
 	std::istringstream iss(matrix);
 	std::string id;
-
 	TileMap tilemap(rowCount, std::vector<int>(colCount, 0));
 	
 	for (int row = 0; row < rowCount; row++) {

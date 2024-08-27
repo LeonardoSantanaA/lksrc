@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: LkSrc
+# Project: LkSouls
 # Configurations: Debug
 # =============================================================================
 
@@ -41,273 +41,345 @@ include CMakeFiles\rules.ninja
 
 cmake_ninja_workdir = C$:\Users\lekao\source\repos\lksrc\lksrc\out\build\x64-Debug\
 # =============================================================================
-# Object build statements for EXECUTABLE target LkSrc
+# Object build statements for EXECUTABLE target LkSouls
 
 
 #############################################
-# Order-only phony target for LkSrc
+# Order-only phony target for LkSouls
 
-build cmake_object_order_depends_target_LkSrc: phony || CMakeFiles\LkSrc.dir
+build cmake_object_order_depends_target_LkSouls: phony || CMakeFiles\LkSouls.dir
 
-build CMakeFiles\LkSrc.dir\src\Main.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\Main.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\Main.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\Main.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Camera\Camera.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Camera\Camera.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Camera\Camera.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Camera\Camera.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Camera
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Camera
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Collision\Collider2D.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Collision\Collider2D.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Collision\Collider2D.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Collision\Collider2D.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Collision
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Collision
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Collision\Collisor.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Collision\Collisor.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Collision\Collisor.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Collision\Collisor.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Collision
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Collision
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Core\Button.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Core\Button.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Core\Button.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Core\Button.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Core
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Core
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Core\Engine.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Core\Engine.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Core\Engine.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Core\Engine.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Core
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Core
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Core\Input.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Core\Input.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Core\Input.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Core\Input.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Core
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Core
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Core\Sound.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Core\Sound.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Core\Sound.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Core\Sound.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Core
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Core
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Entities\Enemies\Enemy.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\Enemy.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Dead.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\Dead.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Entities\Enemies
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Entities\Enemies\Zombie.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\Zombie.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\DeadFire.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\DeadFire.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Entities\Enemies
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Entities\Player.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Player.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Enemy.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\Enemy.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Entities
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\GameStates\Menu.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\GameStates\Menu.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\EnemyHit.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\EnemyHit.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\GameStates
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\GameStates\Pause.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\GameStates\Pause.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Skeleton.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\Skeleton.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\GameStates
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\GameStates\Play.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\GameStates\Play.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Wolf.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\Wolf.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\GameStates
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Graphics\AnimatedSprite.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Graphics\AnimatedSprite.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Zombie.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Enemies\Zombie.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Graphics\Font.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Graphics\Font.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\Player.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\Player.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Graphics\TexturedRectangle.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Graphics\TexturedRectangle.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Entities\PlayerHit.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Entities\PlayerHit.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Graphics
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Entities
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Managers\EntityManager.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\EntityManager.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\GameStates\GameOver.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\GameStates\GameOver.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Managers
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\GameStates
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Managers\GameEntity.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\GameEntity.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\GameStates\Menu.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\GameStates\Menu.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Managers
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\GameStates
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Managers\ResourceManager.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\ResourceManager.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\GameStates\Pause.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\GameStates\Pause.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Managers
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\GameStates
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Managers\TextureManager.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\TextureManager.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\GameStates\Play.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\GameStates\Play.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Managers
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\GameStates
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Managers\Utils.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\Utils.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Graphics\AnimatedSprite.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Graphics\AnimatedSprite.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Managers
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Map\GameMap.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Map\GameMap.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Graphics\Font.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Graphics\Font.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Map
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Map\MapParser.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Map\MapParser.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Graphics\PlayerGUI.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Graphics\PlayerGUI.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Map
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Map\TileLayer.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Map\TileLayer.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Graphics\TexturedRectangle.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Graphics\TexturedRectangle.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Map
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Graphics
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\src\cpp\Physics\Vec2D.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Physics\Vec2D.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Managers\EnemyManager.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\EnemyManager.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\src\cpp\Physics
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Managers
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\thirdpart\TinyXML\tinystr.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\tinystr.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Managers\EntityManager.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\EntityManager.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\thirdpart\TinyXML
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Managers
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\thirdpart\TinyXML\tinyxml.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\tinyxml.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Managers\GameEntity.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\GameEntity.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\thirdpart\TinyXML
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Managers
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\thirdpart\TinyXML\tinyxmlerror.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\tinyxmlerror.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Managers\ResourceManager.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\ResourceManager.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\thirdpart\TinyXML
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Managers
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
-build CMakeFiles\LkSrc.dir\thirdpart\TinyXML\tinyxmlparser.cpp.obj: CXX_COMPILER__LkSrc_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\tinyxmlparser.cpp || cmake_object_order_depends_target_LkSrc
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+build CMakeFiles\LkSouls.dir\src\cpp\Managers\TextureManager.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\TextureManager.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
   INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
-  OBJECT_FILE_DIR = CMakeFiles\LkSrc.dir\thirdpart\TinyXML
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_PDB = LkSrc.pdb
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Managers
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\src\cpp\Managers\Utils.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Managers\Utils.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Managers
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\src\cpp\Map\GameMap.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Map\GameMap.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Map
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\src\cpp\Map\MapParser.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Map\MapParser.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Map
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\src\cpp\Map\TileLayer.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Map\TileLayer.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Map
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\src\cpp\Physics\Vec2D.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\src\cpp\Physics\Vec2D.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\src\cpp\Physics
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\thirdpart\TinyXML\tinystr.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\tinystr.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\thirdpart\TinyXML
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\thirdpart\TinyXML\tinyxml.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\tinyxml.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\thirdpart\TinyXML
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\thirdpart\TinyXML\tinyxmlerror.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\tinyxmlerror.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\thirdpart\TinyXML
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
+
+build CMakeFiles\LkSouls.dir\thirdpart\TinyXML\tinyxmlparser.cpp.obj: CXX_COMPILER__LkSouls_unscanned_Debug C$:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\tinyxmlparser.cpp || cmake_object_order_depends_target_LkSouls
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -IC:\Users\lekao\source\repos\lksrc\lksrc\glad\include -IC:\Users\lekao\source\repos\lksrc\lksrc\src\header -IC:\Users\lekao\source\repos\lksrc\lksrc\thirdpart\TinyXML\includes -IS:\SDL2\include
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
+  OBJECT_FILE_DIR = CMakeFiles\LkSouls.dir\thirdpart\TinyXML
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_PDB = LkSouls.pdb
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target LkSrc
+# Link build statements for EXECUTABLE target LkSouls
 
 
 #############################################
-# Link the executable LkSrc.exe
+# Link the executable LkSouls.exe
 
-build LkSrc.exe: CXX_EXECUTABLE_LINKER__LkSrc_Debug CMakeFiles\LkSrc.dir\src\Main.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Camera\Camera.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Collision\Collider2D.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Collision\Collisor.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Core\Button.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Core\Engine.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Core\Input.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Core\Sound.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Entities\Enemies\Enemy.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Entities\Enemies\Zombie.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Entities\Player.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\GameStates\Menu.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\GameStates\Pause.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\GameStates\Play.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Graphics\AnimatedSprite.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Graphics\Font.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Graphics\TexturedRectangle.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Managers\EntityManager.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Managers\GameEntity.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Managers\ResourceManager.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Managers\TextureManager.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Managers\Utils.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Map\GameMap.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Map\MapParser.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Map\TileLayer.cpp.obj CMakeFiles\LkSrc.dir\src\cpp\Physics\Vec2D.cpp.obj CMakeFiles\LkSrc.dir\thirdpart\TinyXML\tinystr.cpp.obj CMakeFiles\LkSrc.dir\thirdpart\TinyXML\tinyxml.cpp.obj CMakeFiles\LkSrc.dir\thirdpart\TinyXML\tinyxmlerror.cpp.obj CMakeFiles\LkSrc.dir\thirdpart\TinyXML\tinyxmlparser.cpp.obj | S$:\SDL2\lib\x64\SDL2main.lib S$:\SDL2\lib\x64\SDL2.lib S$:\SDL2\lib\x64\SDL2_image.lib S$:\SDL2\lib\x64\SDL2_ttf.lib S$:\SDL2\lib\x64\SDL2_mixer.lib
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+build LkSouls.exe: CXX_EXECUTABLE_LINKER__LkSouls_Debug CMakeFiles\LkSouls.dir\src\Main.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Camera\Camera.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Collision\Collider2D.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Collision\Collisor.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Core\Button.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Core\Engine.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Core\Input.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Core\Sound.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Dead.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\DeadFire.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Enemy.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\EnemyHit.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Skeleton.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Wolf.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\Enemies\Zombie.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\Player.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Entities\PlayerHit.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\GameStates\GameOver.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\GameStates\Menu.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\GameStates\Pause.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\GameStates\Play.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Graphics\AnimatedSprite.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Graphics\Font.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Graphics\PlayerGUI.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Graphics\TexturedRectangle.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Managers\EnemyManager.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Managers\EntityManager.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Managers\GameEntity.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Managers\ResourceManager.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Managers\TextureManager.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Managers\Utils.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Map\GameMap.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Map\MapParser.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Map\TileLayer.cpp.obj CMakeFiles\LkSouls.dir\src\cpp\Physics\Vec2D.cpp.obj CMakeFiles\LkSouls.dir\thirdpart\TinyXML\tinystr.cpp.obj CMakeFiles\LkSouls.dir\thirdpart\TinyXML\tinyxml.cpp.obj CMakeFiles\LkSouls.dir\thirdpart\TinyXML\tinyxmlerror.cpp.obj CMakeFiles\LkSouls.dir\thirdpart\TinyXML\tinyxmlparser.cpp.obj | S$:\SDL2\lib\x64\SDL2main.lib S$:\SDL2\lib\x64\SDL2.lib S$:\SDL2\lib\x64\SDL2_image.lib S$:\SDL2\lib\x64\SDL2_ttf.lib S$:\SDL2\lib\x64\SDL2_mixer.lib
+  FLAGS = /fsanitize=address /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = S:\SDL2\lib\x64\SDL2main.lib  S:\SDL2\lib\x64\SDL2.lib  S:\SDL2\lib\x64\SDL2_image.lib  S:\SDL2\lib\x64\SDL2_ttf.lib  S:\SDL2\lib\x64\SDL2_mixer.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = CMakeFiles\LkSrc.dir
+  OBJECT_DIR = CMakeFiles\LkSouls.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\LkSrc.dir\
-  TARGET_FILE = LkSrc.exe
-  TARGET_IMPLIB = LkSrc.lib
-  TARGET_PDB = LkSrc.pdb
+  TARGET_COMPILE_PDB = CMakeFiles\LkSouls.dir\
+  TARGET_FILE = LkSouls.exe
+  TARGET_IMPLIB = LkSouls.lib
+  TARGET_PDB = LkSouls.pdb
 
 
 #############################################
@@ -335,7 +407,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build LkSrc: phony LkSrc.exe
+build LkSouls: phony LkSouls.exe
 
 # =============================================================================
 # Folder targets.
@@ -345,7 +417,7 @@ build LkSrc: phony LkSrc.exe
 #############################################
 # Folder: C:/Users/lekao/source/repos/lksrc/lksrc/out/build/x64-Debug
 
-build all: phony LkSrc.exe
+build all: phony LkSouls.exe
 
 # =============================================================================
 # Built-in targets
@@ -354,14 +426,14 @@ build all: phony LkSrc.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckIncludeFile.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckLibraryExists.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindPackageMessage.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindThreads.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\CMakeLists.txt C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_image.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_mixer.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_ttf.cmake CMakeCache.txt CMakeFiles\3.28.0-msvc1\CMakeCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeCXXCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeRCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCCompilerABI.c C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXCompilerABI.cpp C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCXXCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCompileFeatures.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCompilerABI.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineRCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeParseImplicitIncludeInfo.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeParseImplicitLinkInfo.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeParseLibraryArchitecture.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystem.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeTestCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeTestCXXCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeTestCompilerCommon.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeTestRCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckIncludeFile.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckLibraryExists.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\ADSP-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\ARMCC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\ARMClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\AppleClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Borland-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Bruce-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Clang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Clang-DetermineCompilerInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Compaq-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Cray-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CrayClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Embarcadero-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Fujitsu-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\GHS-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\GNU-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\HP-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\HP-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IAR-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Intel-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\LCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\NVHPC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\NVIDIA-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\OrangeC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\PGI-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\PathScale-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\SCO-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\SDCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\SunPro-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\TI-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Tasking-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Watcom-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\XL-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\XL-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\XLClang-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\zOS-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindPackageMessage.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindThreads.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Internal\FeatureTesting.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Determine-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\CMakeLists.txt C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_image.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_mixer.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_ttf.cmake CMakeCache.txt CMakeFiles\3.28.0-msvc1\CMakeCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeCXXCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeRCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckIncludeFile.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckLibraryExists.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindPackageMessage.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindThreads.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\CMakeLists.txt C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_image.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_mixer.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_ttf.cmake CMakeCache.txt CMakeFiles\3.28.0-msvc1\CMakeCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeCXXCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeRCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeSystem.cmake: phony
+build C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCCompilerABI.c C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXCompilerABI.cpp C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCXXCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCompileFeatures.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCompilerABI.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineRCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeDetermineSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeParseImplicitIncludeInfo.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeParseImplicitLinkInfo.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeParseLibraryArchitecture.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystem.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeTestCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeTestCXXCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeTestCompilerCommon.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeTestRCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckIncludeFile.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CheckLibraryExists.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\ADSP-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\ARMCC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\ARMClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\AppleClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Borland-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Bruce-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Clang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Clang-DetermineCompilerInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Comeau-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Compaq-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Cray-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CrayClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Embarcadero-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Fujitsu-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\GHS-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\GNU-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\HP-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\HP-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IAR-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Intel-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\LCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\NVHPC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\NVIDIA-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\OrangeC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\PGI-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\PathScale-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\SCO-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\SDCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\SunPro-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\TI-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Tasking-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\Watcom-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\XL-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\XL-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\XLClang-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\zOS-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindPackageMessage.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\FindThreads.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Internal\FeatureTesting.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Determine-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\CMakeLists.txt C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_image.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_mixer.cmake C$:\Users\lekao\source\repos\lksrc\lksrc\cmake\sdl2\FindSDL2_ttf.cmake CMakeCache.txt CMakeFiles\3.28.0-msvc1\CMakeCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeCXXCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeRCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeSystem.cmake: phony
 
 
 #############################################

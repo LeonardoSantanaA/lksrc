@@ -7,7 +7,8 @@
 Font::Font(const std::string& filepath, const std::string& str, int size, const SDL_Color& color)
 	: mStr(str), mRect(), mFilepath(filepath), mColor(color), mWidth(0), mHeight(0) {
 	mFont = ResourceManager::GetInstance()->GetFont(filepath, size);
-	SDL_Surface* ttfSurface = TTF_RenderText_Solid(mFont, mStr.c_str(), color);
+
+	SDL_Surface* ttfSurface = TTF_RenderUTF8_Blended_Wrapped(mFont, mStr.c_str(), color, Engine::GetInstance()->GetWidth());
 	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), ttfSurface);
 	if (mTexture == NULL) {
 		std::cout << "Couldnt create texture from surface." << SDL_GetError() << std::endl;
@@ -51,6 +52,16 @@ Font& Font::operator=(const std::string& str) {
 	return *this;
 }
 
+void Font::SetWrapLimitSize(int limitWrap) {
+	SDL_Surface* ttfSurface = TTF_RenderUTF8_Blended_Wrapped(mFont, mStr.c_str(), mColor, limitWrap);
+	//mTexture = nullptr;
+	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), ttfSurface);
+	if (mTexture == NULL) {
+		std::cout << "Couldnt set wrap from surface." << SDL_GetError() << std::endl;
+	}
+	SDL_FreeSurface(ttfSurface);
+}
+
 void Font::SetText(const std::string& str) {
 	mStr = str;
 	SDL_Surface* ttfSurface = TTF_RenderText_Solid(mFont, mStr.c_str(), mColor);
@@ -86,8 +97,18 @@ void Font::SetPosition(int x, int y) {
 	UpdateDimensions();
 }
 
+int Font::GetSize() {
+	if (mFont) {
+		int w = 0, h = 0;
+		TTF_SizeText(mFont, mStr.c_str(), &w, &h);
+		return w;
+	}
+	return 0;
+}
+
 void Font::Render() {
 	SDL_RenderCopy(Engine::GetInstance()->GetRender(), mTexture, NULL, &mRect);
+
 }
 
 void Font::UpdateDimensions() {

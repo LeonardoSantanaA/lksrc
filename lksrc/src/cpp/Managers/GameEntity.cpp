@@ -37,30 +37,7 @@ GameEntity::GameEntity(const std::string& name) {
 	AddPoint();
 }
 
-GameEntity::~GameEntity() {
-	if (mnoptrSprite) {
-		delete mnoptrSprite;
-		mnoptrSprite = nullptr;
-	}
-
-	if (mnoptrAnimatedSprite) {
-		delete mnoptrAnimatedSprite;
-		mnoptrAnimatedSprite = nullptr;
-	}
-
-	if (mPoint) {
-		delete mPoint;
-		mPoint = nullptr;
-	}
-
-	for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
-		if (mnoptrColliders[i]) {
-			delete mnoptrColliders[i];
-			mnoptrColliders[i] = nullptr;
-		}
-	}
-	
-}
+GameEntity::~GameEntity() {}
 
 void GameEntity::Update() {
 	if (mPoint) {
@@ -97,7 +74,6 @@ void GameEntity::UpdateSpriteSheet() {
 
 		if (search != mAnimations.end()) {
 			mnoptrAnimatedSprite->PlayFrame(0, mAnimations[mCurrentAnimationName].first, mAnimatedSpriteWidth, mAnimatedSpriteHeight, mFrame);
-	
 
 			if (mAnimationDelayCount < mAnimationSpeed) {
 				mAnimationDelayCount++;
@@ -124,7 +100,7 @@ int GameEntity::GetCurrentAnimationFrame() const{
 }
 
 bool GameEntity::IsLastFrame() {
-	if (mnoptrAnimatedSprite) {
+	if (mnoptrAnimatedSprite && this) {
 		auto search = mAnimations.find(mCurrentAnimationName);
 		if (search != mAnimations.end()) {
 			if (mFrame + 1 >= mAnimations[mCurrentAnimationName].second) {
@@ -140,27 +116,27 @@ bool GameEntity::IsLastFrame() {
 }
 
 void GameEntity::AddTexturedRectangleComponent(const std::string& filepath, const ImageFormat& format, float scale) {
-	mnoptrSprite = new TexturedRectangle(filepath, format, scale);
+	mnoptrSprite = std::make_unique<TexturedRectangle>(filepath, format, scale);
 }
 
 void GameEntity::AddTexturedRectangleComponent(const std::string& filepath, int red, int green, int blue, const ImageFormat& format, float scale) {
-	mnoptrSprite = new TexturedRectangle(filepath, red, green, blue, format, scale);
+	mnoptrSprite = std::make_unique < TexturedRectangle>(filepath, red, green, blue, format, scale);
 }
 
 void GameEntity::AddAnimatedSprite(const std::string& filepath, const ImageFormat& format) {
-	mnoptrAnimatedSprite = new AnimatedSprite(filepath, format);
+	mnoptrAnimatedSprite =  std::make_unique<AnimatedSprite>(filepath, format);
 }
 
 
 void GameEntity::AddCollider2D() {
-	mnoptrColliders.push_back(new Collider2D());
+	mnoptrColliders.push_back(std::make_unique<Collider2D>());
 }
 
 void GameEntity::AddPoint() {
 	if (!mPoint) {
 		float x = GetX() + GetWidth() / static_cast<float>(2);
 		float y = GetY() + GetHeight() / static_cast<float>(2);
-		mPoint = new Point(x, y);
+		mPoint = std::make_unique<Point>(x, y);
 	}
 }
 
@@ -297,7 +273,7 @@ TexturedRectangle& GameEntity::GetTexturedRectangle() const {
 
 Collider2D* GameEntity::GetCollider2D(size_t index) {
 	if (mnoptrColliders[index]) {
-		return mnoptrColliders[index];
+		return mnoptrColliders[index].get();
 	}
 	std::cout << "trying access a nullptr. gameentity::getcollider2D(), index: " << index << std::endl;
 	return nullptr;

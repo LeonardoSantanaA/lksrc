@@ -108,11 +108,22 @@ void TexturedRectangle::SetDimensions(int w, int h, float scale) {
 	mRect.h = static_cast<int>(h * scale);
 }
 
+void TexturedRectangle::SetDimensions(float w, float h, float scale) {
+	mRect.w = static_cast<float>(w * scale);
+	mRect.h = static_cast<float>(h * scale);
+}
 
-void TexturedRectangle::Render() {
+
+void TexturedRectangle::Render(bool isStatic) {
 	Camera* camera = Camera::GetInstance();
 	Vec2D cam = camera->GetPosition();
 	SDL_Rect newDstRect = { (mRect.x - static_cast<int>(cam.x)) - static_cast<int>(camera->GetZoom()), (static_cast<int>(mRect.y) - static_cast<int>(cam.y) - static_cast<int>(camera->GetZoom())), mRect.w * static_cast<int>(camera->GetZoom()), mRect.h * static_cast<int>(camera->GetZoom()) };
+	if (isStatic) {
+		newDstRect.x = mRect.x;
+		newDstRect.y = mRect.y;
+		newDstRect.w = mRect.w;
+		newDstRect.h = mRect.h;
+	}
 	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTexture, nullptr, &newDstRect, mAngle, &mCenterPoint, mDirectionFlip);
 }
 

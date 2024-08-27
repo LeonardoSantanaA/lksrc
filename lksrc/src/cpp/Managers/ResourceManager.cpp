@@ -135,7 +135,7 @@ TTF_Font* ResourceManager::GetFont(const std::string& filepath, int size) {
 		return search->second;
 	}
 	else {
-		std::cout << "new font opened." << std::endl;
+		std::cout << "new font opened:" << filepath << std::endl;
 		TTF_Font* newFont;
 		newFont = TTF_OpenFont(filepath.c_str(), size);
 		if (!newFont) {

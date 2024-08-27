@@ -14,7 +14,7 @@ public:
 	~Button();
 
 	void Update();
-	void Render();
+	void Render(bool isStatic = true);
 	void SetButtonFunction(std::function<void(void)> function);
 	void SetPressableTexture(const std::string& path, const ImageFormat& imageFormat = FORMAT_PNG, float imageScale = SCALE);
 

@@ -8,6 +8,7 @@ void GameMap::Update() {
 
 void GameMap::Render() {
 	for (unsigned int i = 0; i < mMapLayers.size(); i++) {
+		
 		mMapLayers[i]->Render();
 	}
 }

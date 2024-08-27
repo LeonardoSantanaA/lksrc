@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include "Managers/GameEntity.h"
 #include "Graphics/RenderEntityLayer.h"
+#include <mutex>
 
 /*
 enum EntityType {
@@ -49,12 +50,32 @@ public:
 	//You can override Init() function in your entity, will call this function after constructor
 	void ParseEntities(const std::string& path);
 
-	//get a shared_ptr of a specific entity.
-	std::shared_ptr<GameEntity> GetEntityRef(const std::string& name);
+	//get a shared_ptr of a specific entity, using template
+	//Ex: std::shared_ptr<GameEntity> enemy = EntityManager::GetInstance()->GetEntityRef<GameEntity>("zombie");
+	//or: std::shared_ptr<Player> player = EntityManager::GetInstance()->GetEntityRef<Player>("PLAYER");
+	template <typename T>
+	std::shared_ptr<T> GetEntityRef(const std::string& name) const {
+		auto it = mEntities.find(name);
+		if (it != mEntities.end()) {
+			std::shared_ptr<T> entity = std::dynamic_pointer_cast<T>(it->second);
+			if (entity) {
+				return entity;
+			}
+			else {
+				std::cout << "Entity found but wrong type. Key: " << name << std::endl;
+				return nullptr;
+			}
+		}
+		else {
+			std::cout << "Entity not found. Key: " << name << std::endl;
+			return nullptr;
+		}
+	}
 
 	//remove a specific entity
 	void RemoveEntity(const std::string& name);
 
+	//update all entities in game
 	void UpdateAllEntities();
 
 	//render a specific RenderEntityLayer
@@ -70,12 +91,22 @@ public:
 	//this function register the class of a unherited class to allows instatiate
 	void RegisterType(const std::string& className, std::function < bool() > creator);
 
+	inline std::shared_ptr<const std::unordered_map<std::string, std::shared_ptr<GameEntity>>> GetEntities() const {
+		return std::make_shared<const std::unordered_map<std::string, std::shared_ptr<GameEntity>>>(mEntities);
+	}
+
 private:
 	EntityManager(): mEntityCount(0) {};
 	static EntityManager* mInstance;
 	std::unordered_map<std::string, std::shared_ptr<GameEntity>> mEntities;
 	std::unordered_map<std::string, std::function<bool()>> mTypeRegistry;
 	long long mEntityCount;
+
+	//add template entity when register
+	template <typename T>
+	void AddEntity(const std::string& name, std::shared_ptr<T> entity) {
+		mEntities[name] = std::static_pointer_cast<GameEntity>(entity);
+	}
 
 	template<class Type>
 	friend class Register;
@@ -84,16 +115,19 @@ private:
 template<class Type>
 class Register {
 public:
-	Register(const std::string& className, bool staticName = true) {
+	Register(const std::string& className, bool staticName = false) {
 		EntityManager::GetInstance()->RegisterType(className, [staticName, className]() {
 			auto entityManager = EntityManager::GetInstance();
 			std::string name = "entity_" + std::to_string(entityManager->GetEntityCount());;
-			if (!staticName) {
+			if (staticName) {
 				name = className;
 			}
+		
 			std::shared_ptr<Type> newEntity = std::make_shared<Type>(name);
+			entityManager->AddEntity(name, newEntity);
 			entityManager->mEntities.insert(std::make_pair(name, newEntity));
 			entityManager->mEntityCount++;
+		
 			std::cout << "new type instantiate. name: " << name << std::endl;
 			return (entityManager->mEntities[name] != nullptr);
 			});

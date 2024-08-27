@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.7)
-project(LkSrc)
+project(LkSouls)
 
 
 set(CMAKE_CXX_STANDARD 17)
@@ -9,14 +9,12 @@ file(GLOB_RECURSE SOURCES
     ${CMAKE_SOURCE_DIR}/src/*h
     ${CMAKE_SOURCE_DIR}/src/*.cpp
     ${CMAKE_SOURCE_DIR}/thirdpart/TinyXML/*.cpp
-
 )
 
 # Include directories
 include_directories(glad/include/)
 include_directories(${CMAKE_SOURCE_DIR}/src/header)
 include_directories(${CMAKE_SOURCE_DIR}/thirdpart/TinyXML/includes)
-
 
 # add executable
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -60,4 +58,9 @@ message(STATUS "SDL2_MIXER_LIBRARIES: ${SDL2_MIXER_LIBRARIES}")
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-message(STATUS "COPYING LKSRC ASSETS FROM ${CMAKE_CURRENT_SOURCE_DIR}/assets TO ${CMAKE_CURRENT_BINARY_DIR}")
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
+    message(STATUS "RELEASE BUILD, TURN OFF WINDOWS TERMINAL")
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        WIN32_EXECUTABLE TRUE
+    )
+endif()

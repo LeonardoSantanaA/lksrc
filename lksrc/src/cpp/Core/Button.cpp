@@ -29,13 +29,13 @@ void Button::SetButtonFunction(std::function<void(void)> function) {
 	mButtonFunction = function;
 }
 
-void Button::Render() {
+void Button::Render(bool isStatic) {
 	if (mnoptrPressableTexture && CanPressButton()) {
-		mnoptrPressableTexture->Render();
+		mnoptrPressableTexture->Render(isStatic);
 	}
 	else {
 		if (mnoptrTexture) {
-			mnoptrTexture->Render();
+			mnoptrTexture->Render(isStatic);
 		}
 	}
 }

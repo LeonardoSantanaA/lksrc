@@ -17,7 +17,9 @@ public:
 	void SetSize(int size);
 	void SetColor(const SDL_Color& color);
 	void SetPosition(int x, int y);
+	int GetSize();
 	void Render();
+	void SetWrapLimitSize(int limitWrap);
 
 private:
 	SDL_Rect mRect;

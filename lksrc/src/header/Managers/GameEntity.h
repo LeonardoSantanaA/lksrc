@@ -22,6 +22,7 @@ public:
 	void UpdateSpriteSheet();
 	virtual void Render();
 
+	inline std::string GetName() { return mName; }
 	void AddTexturedRectangleComponent(const std::string& filepath, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 	void AddTexturedRectangleComponent(const std::string& filepath, int red, int green, int blue, const ImageFormat& format = FORMAT_BMP, float scale = SCALE);
 	void AddAnimatedSprite(const std::string& filepath, const ImageFormat& format = FORMAT_BMP);
@@ -65,17 +66,18 @@ public:
 	inline void SetAnimationLoop(bool loop) { mLoop = loop; }
 	inline void SetAnimationSpeed(float speed) { mAnimationSpeed = speed; }
 	inline void SetDebugMode(bool debugMode) { mDebugMode = debugMode; }
-	inline Point* GetPoint() { return mPoint; }
+	inline Point* GetPoint() { return mPoint.get(); }
 	inline RenderEntityLayer GetRenderLayer() const{ return mRenderLayer; }
 	inline void SetRenderLayer(const RenderEntityLayer& renderLayer) { mRenderLayer = renderLayer; }
-
 	inline Vec2D GetVec2D(int index) { return Vec2D(GetCollider2D(index)->GetColliderBoundingBox()->x, GetCollider2D(index)->GetColliderBoundingBox()->y); }
 
 protected:
 	std::string mName;
-	TexturedRectangle* mnoptrSprite;
-	AnimatedSprite* mnoptrAnimatedSprite;
-	std::vector<Collider2D*> mnoptrColliders;
+	std::unique_ptr<TexturedRectangle> mnoptrSprite;
+	std::unique_ptr<AnimatedSprite> mnoptrAnimatedSprite;
+	std::vector<std::unique_ptr<Collider2D>> mnoptrColliders;
+	std::unique_ptr<Point> mPoint;
+
 	std::string mCurrentAnimationName;
 	int mAnimationDelayCount;
 	bool mLoop;
@@ -90,6 +92,5 @@ protected:
 	float mAngle;
 	SDL_Point mCenterPoint;
 
-	Point* mPoint;
 	RenderEntityLayer mRenderLayer;
 };

@@ -5,7 +5,7 @@
 
 Collisor* Collisor::mInstance = nullptr;
 
-Collisor::Collisor() {
+Collisor::Collisor() : mCollisionLayer(nullptr) {
 	//auto& mapLayers = Engine::GetInstance()->GetLevelMap()->GetMapLayers();
 	//mCollisionLayer = dynamic_cast<TileLayer*>(mapLayers.back().get());
 	

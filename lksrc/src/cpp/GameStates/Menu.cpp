@@ -19,8 +19,8 @@ bool Menu::Init() {
         });
 
     for (int i = 0; i < 2; i++) {
-        buttons[i]->SetPosition((Engine::GetInstance()->GetWidth() / 2) - (buttons[i]->GetWidth() / 2),
-            (Engine::GetInstance()->GetHeight() / static_cast<float>(2)) - 50 + (150 * i));
+        buttons[i]->SetPosition(static_cast<float>(Engine::GetInstance()->GetWidth() / 2) - static_cast<float>(buttons[i]->GetWidth() / 2),
+            Engine::GetInstance()->GetHeight() / 2.0f - 50 + (150 * i));
     }
 
     std::cout << "menu initialized." << std::endl;
