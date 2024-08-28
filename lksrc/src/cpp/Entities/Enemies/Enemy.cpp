@@ -58,7 +58,6 @@ void Enemy::Gravity() {
 }
 
 void Enemy::Move() {
-
 	if (!mCanAttack && !isTakingDamage) {
 		if (mDelayAttack < mMaxDelayAttack) {
 			mDelayAttack++;

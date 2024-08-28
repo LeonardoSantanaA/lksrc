@@ -65,18 +65,16 @@ void Dead::AnimationState() {
 		ChangeAnimation(animation);
 		SetAnimationLoop(false);
 		SetAnimationSpeed(mAttackAnimationSpeed);
-		Vec2D currentPos = mCurrentDirection > 0 ? Vec2D(GetVec2D(0).x + 40, GetVec2D(0).y + 5) : Vec2D(GetVec2D(0).x - 40, GetVec2D(0).y + 5);
+		Vec2D currentPos = mCurrentDirection > 0 ? Vec2D(GetVec2D(0).x + 50, GetVec2D(0).y + 5) : Vec2D(GetVec2D(0).x - 40, GetVec2D(0).y + 5);
 		std::shared_ptr<Player> player = EntityManager::GetInstance()->GetEntityRef<Player>("PLAYER");
+		mHit.SetPosition(currentPos);
 		if (GetCurrentAnimationFrame() == mFrameStartToAttack && mCanCreateFire) {
-			std::cout << "CRIAR!" << std::endl;
 			mCanCreateFire = false;
 			if (EntityManager::GetInstance()->CreateEntityType("DEADFIRE")) {
 				std::shared_ptr<DeadFire> fire = EntityManager::GetInstance()->GetEntityRef<DeadFire>("DEADFIRE");
 				if (fire) {
 					fire->SetPosition(currentPos.x, currentPos.y);
-					fire->SetDir(mDirection);
-					if (mDirection < 0)
-						fire->FlipHorizontal();
+					fire->SetDir(mCurrentDirection);
 				}
 			}
 			

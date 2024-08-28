@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <functional>
+#include <iostream>
 #include <set>
 #include "Core/Input.h"
 #include "Map/GameMap.h"
@@ -18,6 +19,11 @@ public:
 
 	//change the name of window
 	inline void SetWindowName(const char* name) { SDL_SetWindowTitle(mWindow, name); }
+	inline void SetFullScreen() {
+		mWindow ?
+			SDL_SetWindowFullscreen(mWindow, SDL_WINDOW_FULLSCREEN_DESKTOP) :
+			NULL;
+	}
 	void SetEventCallback(std::function<void(void)> func);
 	void SetUpdateCallback(std::function<void(void)> func);
 	void SetRenderCallback(std::function<void(void)> func);

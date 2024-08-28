@@ -20,7 +20,7 @@ DeadFire::DeadFire(const std::string& name): GameEntity::GameEntity(name),
 void DeadFire::Update() {
 	GameEntity::Update();
 	GameEntity::UpdateSpriteSheet();
-
+	std::cout << "direction: " << mDir << std::endl;
 	MovePosition(mVelocity * static_cast<float>(mDir), 0.0f);
 	mHit.SetPosition(GetVec2D(0));
 

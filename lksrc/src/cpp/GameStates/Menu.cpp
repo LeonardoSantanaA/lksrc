@@ -38,6 +38,8 @@ void Menu::Render() {
 void Menu::Update() {
     for (int i = 0; i < 2; i++) {
         if (buttons[i]) {
+            buttons[i]->SetPosition(static_cast<float>(Engine::GetInstance()->GetWidth() / 2) - static_cast<float>(buttons[i]->GetWidth() / 2),
+                Engine::GetInstance()->GetHeight() / 2.0f - 50 + (150 * i));
             buttons[i]->Update();
         }
     }
