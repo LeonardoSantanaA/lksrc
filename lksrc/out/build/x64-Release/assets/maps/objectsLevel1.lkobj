@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities>
+	<config tilesize="32" />
+	<entity type="ZOMBIE" layer="1" x="21" y="14" w="32" h="32" scale="0" flip="0"/>
+	<entity type="ZOMBIE" layer="1" x="26" y="13" w="32" h="32" scale="0" flip="0"/>
+	<entity type="WOLF" layer="1" x="45" y="13" w="32" h="32" scale="0" flip="0"/>
+	<entity type="WOLF" layer="1" x="58" y="13" w="32" h="32" scale="0" flip="0"/>
+	<entity type="SKELETON" layer="1" x="52" y="12" w="32" h="32" scale="0" flip="0"/>
+	<entity type="DEAD" layer="1" x="73" y="10" w="32" h="32" scale="0" flip="0"/>
+</Entities>

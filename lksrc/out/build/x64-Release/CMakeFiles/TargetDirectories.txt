@@ -1,0 +1,3 @@
+C:/Users/lekao/source/repos/lksrc/lksrc/out/build/x64-Release/CMakeFiles/LkSouls.dir
+C:/Users/lekao/source/repos/lksrc/lksrc/out/build/x64-Release/CMakeFiles/edit_cache.dir
+C:/Users/lekao/source/repos/lksrc/lksrc/out/build/x64-Release/CMakeFiles/rebuild_cache.dir
