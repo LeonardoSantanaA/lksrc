@@ -25,13 +25,6 @@ bool TextureManager::Load(const std::string& id, const std::string& path) {
 		return false;
 	}
 	mTextureMap[id] = texture;
-	// A superfície não é mais necessária após criar a textura
-	if (texture) {
-		//SDL_FreeSurface(surface);
-	}
-
-
-
 
 	return true;
 }

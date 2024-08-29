@@ -88,7 +88,7 @@ ResourceManager* ResourceManager::GetInstance() {
 //deleter for sdl_surface
 auto SDLSurfaceDeleter = [](SDL_Surface* surface) {
 	if (surface) {
-		std::cout << "DESTRUINDO SUPERFICIE!" << std::endl;
+		std::cout << "surface destroyed!!" << std::endl;
 		SDL_FreeSurface(surface);
 	}
 	};
