@@ -12,6 +12,13 @@ TextureManager* TextureManager::GetInstance() {
 	return mInstance;
 }
 
+auto TextureDeleter = [](SDL_Texture* texture) {
+	if (texture) {
+		SDL_DestroyTexture(texture);
+	}
+	};
+
+
 bool TextureManager::Load(const std::string& id, const std::string& path) {
 	std::shared_ptr<SDL_Surface> surface = ResourceManager::GetInstance()->GetSurface(path, FORMAT_PNG);
 	if (!surface) {
@@ -19,26 +26,27 @@ bool TextureManager::Load(const std::string& id, const std::string& path) {
 		return false;
 	}
 
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), surface.get());
-	if (!texture) {
-		SDL_Log("failed to create texture in texturemanager: %s", SDL_GetError());
-		return false;
-	}
+	std::shared_ptr<SDL_Texture> texture(
+		SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), surface.get()),
+		TextureDeleter
+	);
 	mTextureMap[id] = texture;
 
 	return true;
 }
 
 
-void TextureManager::Drop(std::string id) {
-	SDL_DestroyTexture(mTextureMap[id]);
-	mTextureMap.erase(id);
+void TextureManager::Drop(const std::string& id) {
+	auto it = mTextureMap.find(id);
+	if (it != mTextureMap.end()) {
+		mTextureMap.erase(it);
+	}
+	else {
+		SDL_Log("texture with ID '%s' not found", id.c_str());
+	}
 }
 
 void TextureManager::Clean() {
-    for (auto it = mTextureMap.begin(); it != mTextureMap.end(); ++it) {
-        SDL_DestroyTexture(it->second);
-    }
     mTextureMap.clear();
 
     if (mInstance) {
@@ -67,8 +75,8 @@ void TextureManager::Render(const std::string& id, int x, int y, int w, int h, f
 		SDL_Rect dstRect1 = { firstX, startY, scaledW, scaledH };
 		SDL_Rect dstRect2 = { secondX, startY, scaledW, scaledH };
 
-		SDL_RenderCopyEx(renderer, mTextureMap[id], &srcRect, &dstRect1, 0, nullptr, flip);
-		SDL_RenderCopyEx(renderer, mTextureMap[id], &srcRect, &dstRect2, 0, nullptr, flip);
+		SDL_RenderCopyEx(renderer, mTextureMap[id].get(), &srcRect, &dstRect1, 0, nullptr, flip);
+		SDL_RenderCopyEx(renderer, mTextureMap[id].get(), &srcRect, &dstRect2, 0, nullptr, flip);
 
 
 		if (firstX + scaledW <= 0) {
@@ -82,19 +90,16 @@ void TextureManager::Render(const std::string& id, int x, int y, int w, int h, f
 	else {
 		//render without loop
 		SDL_Rect dstRect = { startX, startY, scaledW, scaledH };
-		SDL_RenderCopyEx(renderer, mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
+		SDL_RenderCopyEx(renderer, mTextureMap[id].get(), &srcRect, &dstRect, 0, nullptr, flip);
 	}
 }
-
-
-
 
 void TextureManager::RenderFrame(const std::string& id, int x, int y, int w, int h, int row, int frame, const SDL_RendererFlip& flip) {
 	SDL_Rect srcRect = { w * frame, h * row, w, h };
 	Camera* camera = Camera::GetInstance();
 	Vec2D cam = camera->GetPosition();
 	SDL_Rect dstRect = { static_cast<int>((x - cam.x) * camera->GetZoom()), static_cast<int>((y - cam.y) * camera->GetZoom()), static_cast<int>(w * camera->GetZoom()), static_cast<int>(h * camera->GetZoom()) };
-	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id], &srcRect, &dstRect, 0, nullptr, flip);
+	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[id].get(), &srcRect, &dstRect, 0, nullptr, flip);
 }
 
 void TextureManager::RenderTile(const std::string& tilesetID, int tileSize, int x, int y, int row, int frame, const SDL_RendererFlip& flip) {
@@ -102,5 +107,5 @@ void TextureManager::RenderTile(const std::string& tilesetID, int tileSize, int 
 	Camera* camera = Camera::GetInstance();
 	Vec2D cam = camera->GetPosition();
 	SDL_Rect dstRect = { static_cast<int>((x - cam.x) * camera->GetZoom()), static_cast<int>((y - cam.y) * camera->GetZoom()), static_cast<int>(tileSize * camera->GetZoom()), static_cast<int>(tileSize * camera->GetZoom()) };
-	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[tilesetID], &srcRect, &dstRect, 0, 0, flip);
+	SDL_RenderCopyEx(Engine::GetInstance()->GetRender(), mTextureMap[tilesetID].get(), &srcRect, &dstRect, 0, 0, flip);
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include "Managers/ResourceManager.h"
@@ -63,6 +64,12 @@ void ResourceManager::ClearResourceManager() {
 	}
 	mMusics.clear();
 
+
+	for (auto& pair : mFonts) {
+		if (pair.second) {
+			TTF_CloseFont(pair.second);
+		}
+	}
 
 	mSurfaces.clear();
 
@@ -137,13 +144,11 @@ std::shared_ptr<SDL_Surface> ResourceManager::GetSurface(const std::string& file
 	return nullptr;
 }
 
-
-
 TTF_Font* ResourceManager::GetFont(const std::string& filepath, int size) {
 	std::pair<std::string, int> pairToSearch = std::make_pair(filepath, size);
 	auto search = mFonts.find(pairToSearch);
 	if (search != mFonts.end()) {
-		std::cout << "font found." << std::endl;
+		SDL_Log("font found.");
 		return search->second;
 	}
 	else {

@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <map>
 #include <string>
+#include <memory>
 
 class TextureManager {
 public:
@@ -12,7 +13,7 @@ public:
 	bool Load(const std::string& id, const std::string& path);
 
 	//clean specific texture
-	void Drop(std::string id);
+	void Drop(const std::string& id);
 
 	void Clean();
 
@@ -25,7 +26,7 @@ public:
 private:
 	TextureManager() {};
 	static TextureManager* mInstance;
-	std::map<std::string, SDL_Texture*> mTextureMap;
+	std::map<std::string, std::shared_ptr<SDL_Texture>> mTextureMap;
 
 
 };
