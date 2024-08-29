@@ -5,5 +5,5 @@
 lksrc/x64
 x64/Debug
 lksrc/build
-lksrc/out
+lksrc/out/
 lksrc/out/*
