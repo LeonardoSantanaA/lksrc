@@ -100,6 +100,10 @@ void Player::InputHandle() {
 	auto input = Input::GetInstance();
 
 	if (!isDead) {
+	if (Input::GetInstance()->GetKeyPress(SDL_SCANCODE_ESCAPE)) {
+		Engine::GetInstance()->PopState("pause");
+	}
+
 	if (input->GetKeyDown(SDL_SCANCODE_A)) {
 		Move(-1);
 	}

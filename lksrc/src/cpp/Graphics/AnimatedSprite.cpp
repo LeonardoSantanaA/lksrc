@@ -5,8 +5,8 @@
 
 
 AnimatedSprite::AnimatedSprite(const std::string& filepath, const ImageFormat& format) : mDst(), mSrc(), mCountSpeed(0), mAngle(0), mCenterPoint(SDL_Point{ 0,0 }), mDirectionFlip(SDL_FLIP_NONE) {
-	SDL_Surface* retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
-	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface);
+	std::shared_ptr<SDL_Surface> retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
+	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface.get());
 }
 
 AnimatedSprite::~AnimatedSprite() {

@@ -6,10 +6,10 @@
 TexturedRectangle::TexturedRectangle(const std::string& filepath, const ImageFormat& format, float scale)
 : mRedColorKey(), mGreenColorKey(), mBlueColorKey(), mAngle(0), mDirectionFlip(SDL_FLIP_NONE){
 	std::string newPath = filepath;
-	SDL_Surface* retrieveSurface = ResourceManager::GetInstance()->GetSurface(newPath, format);
-	SDL_SetColorKey(retrieveSurface, SDL_FALSE, SDL_MapRGB(retrieveSurface->format, 0xFF, 0xFF, 0xFF));
+	std::shared_ptr<SDL_Surface> retrieveSurface = ResourceManager::GetInstance()->GetSurface(newPath, format);
+	SDL_SetColorKey(retrieveSurface.get(), SDL_FALSE, SDL_MapRGB(retrieveSurface->format, 0xFF, 0xFF, 0xFF));
 
-	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface); //copy the surface to texture
+	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface.get()); //copy the surface to texture
 	if (mTexture == NULL) {
 		std::cout << "Couldnt create texture from surface." << SDL_GetError() << std::endl;
 	}
@@ -24,10 +24,10 @@ TexturedRectangle::TexturedRectangle(const std::string& filepath, const ImageFor
 }
 
 TexturedRectangle::TexturedRectangle(const std::string& filepath, int redColorKey, int greenColorKey, int blueColorKey, const ImageFormat& format, float scale) {
-	SDL_Surface* retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
-	SDL_SetColorKey(retrieveSurface, SDL_TRUE, SDL_MapRGB(retrieveSurface->format, redColorKey, greenColorKey, blueColorKey));
+	std::shared_ptr<SDL_Surface> retrieveSurface = ResourceManager::GetInstance()->GetSurface(filepath, format);
+	SDL_SetColorKey(retrieveSurface.get(), SDL_TRUE, SDL_MapRGB(retrieveSurface->format, redColorKey, greenColorKey, blueColorKey));
 
-	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface); //copy the surface to texture
+	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), retrieveSurface.get()); //copy the surface to texture
 	if (mTexture == NULL) {
 		std::cout << "Couldnt create texture from surface." << SDL_GetError() << std::endl;
 	}

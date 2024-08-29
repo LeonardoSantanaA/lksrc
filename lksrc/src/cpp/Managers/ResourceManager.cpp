@@ -50,22 +50,32 @@ ResourceManager& ResourceManager::operator=(const ResourceManager& other) {
 
 void ResourceManager::ClearResourceManager() {
 	for (auto& pair : mSounds) {
-		Mix_FreeChunk(pair.second);
+		if (pair.second) {
+			Mix_FreeChunk(pair.second);
+		}
 	}
+	mSounds.clear();
+
 	for (auto& pair : mMusics) {
-		Mix_FreeMusic(pair.second);
+		if (pair.second) {
+			Mix_FreeMusic(pair.second);
+		}
 	}
-	for (auto& pair : mSurfaces) {
-		SDL_FreeSurface(pair.second);
-	}
+	mMusics.clear();
+
+
+	mSurfaces.clear();
+
 	IMG_Quit();
 	TTF_Quit();
 	Mix_Quit();
+
 	if (mInstance) {
 		delete mInstance;
 		mInstance = nullptr;
 	}
 }
+
 
 
 ResourceManager* ResourceManager::GetInstance() {
@@ -75,57 +85,59 @@ ResourceManager* ResourceManager::GetInstance() {
 	return mInstance;
 }
 
+//deleter for sdl_surface
+auto SDLSurfaceDeleter = [](SDL_Surface* surface) {
+	if (surface) {
+		std::cout << "DESTRUINDO SUPERFICIE!" << std::endl;
+		SDL_FreeSurface(surface);
+	}
+	};
 
-SDL_Surface* ResourceManager::GetSurface(const std::string& filepath, const ImageFormat& format) {
+std::shared_ptr<SDL_Surface> ResourceManager::GetSurface(const std::string& filepath, const ImageFormat& format) {
 	auto search = mSurfaces.find(filepath);
-	if (search != mSurfaces.end()) {
-		return mSurfaces[filepath];
+	if (search != mSurfaces.end()) { //surface found
+		return search->second;
 	}
 	else {
+		std::shared_ptr<SDL_Surface> surface;
 		switch (format) {
 		case FORMAT_BMP: {
-			SDL_Surface* surface = SDL_LoadBMP(filepath.c_str());
-			if (surface == NULL) {
+			SDL_Surface* rawSurface = SDL_LoadBMP(filepath.c_str());
+			if (!rawSurface) {
 				std::cout << "couldn't load bmp surface: " << SDL_GetError() << std::endl;
+				return nullptr;
 			}
-			else {
-				std::cout << "new surface loaded: " << filepath.c_str() << std::endl;
-			}
-			mSurfaces.insert(std::make_pair(filepath, surface));
+			surface.reset(rawSurface, SDLSurfaceDeleter);
+			std::cout << "new surface loaded: " << filepath << std::endl;
 			break;
 		}
 
-		case FORMAT_PNG: {
-			SDL_Surface* surface = IMG_Load(filepath.c_str());
-			if (!surface) {
-				std::cout << "couldn't load png surface: " << IMG_GetError() << std::endl;
-			}
-			else {
-				std::cout << "new surface loaded: " << filepath.c_str() << std::endl;
-			}
-			mSurfaces.insert(std::make_pair(filepath, surface));
-			break;
-		}
-		
+		case FORMAT_PNG:
 		case FORMAT_JPG: {
-			SDL_Surface* surface = IMG_Load(filepath.c_str());
-			if (!surface) {
-				std::cout << "couldn't load png surface: " << IMG_GetError() << std::endl;
+			SDL_Surface* rawSurface = IMG_Load(filepath.c_str());
+			if (!rawSurface) {
+				std::cout << "couldn't load image surface: " << IMG_GetError() << std::endl;
+				return nullptr;
 			}
-			else {
-				std::cout << "new surface loaded: " << filepath.c_str() << std::endl;
-			}
-			mSurfaces.insert(std::make_pair(filepath, surface));
+			surface.reset(rawSurface, SDLSurfaceDeleter);
+			std::cout << "new surface loaded: " << filepath << std::endl;
 			break;
 		}
-		}	
 
-		return mSurfaces[filepath];
-		
+		default:
+			std::cout << "unsupported image format" << std::endl;
+			return nullptr;
+		}
+
+		if (surface) {
+			mSurfaces[filepath] = surface;
+			return surface;
+		}
 	}
-
 	return nullptr;
 }
+
+
 
 TTF_Font* ResourceManager::GetFont(const std::string& filepath, int size) {
 	std::pair<std::string, int> pairToSearch = std::make_pair(filepath, size);

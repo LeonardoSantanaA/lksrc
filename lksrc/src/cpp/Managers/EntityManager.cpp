@@ -218,7 +218,7 @@ void EntityManager::RenderAllEntities() {
 }
 
 void EntityManager::DeleteAllEntities() {
-	mEntities.erase(mEntities.begin(), mEntities.end());
+	mEntities.clear();
 	mEntityCount = 0;
 	if (mInstance) {
 		delete mInstance;

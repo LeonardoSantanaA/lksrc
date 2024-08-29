@@ -13,17 +13,29 @@ TextureManager* TextureManager::GetInstance() {
 }
 
 bool TextureManager::Load(const std::string& id, const std::string& path) {
-	SDL_Surface* surface = ResourceManager::GetInstance()->GetSurface(path, FORMAT_PNG);
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), surface);
+	std::shared_ptr<SDL_Surface> surface = ResourceManager::GetInstance()->GetSurface(path, FORMAT_PNG);
+	if (!surface) {
+		SDL_Log("failed to get surface in texturemanager: %s", SDL_GetError());
+		return false;
+	}
+
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), surface.get());
 	if (!texture) {
 		SDL_Log("failed to create texture in texturemanager: %s", SDL_GetError());
 		return false;
 	}
-
 	mTextureMap[id] = texture;
+	// A superfície não é mais necessária após criar a textura
+	if (texture) {
+		//SDL_FreeSurface(surface);
+	}
+
+
+
 
 	return true;
 }
+
 
 void TextureManager::Drop(std::string id) {
 	SDL_DestroyTexture(mTextureMap[id]);
@@ -31,17 +43,17 @@ void TextureManager::Drop(std::string id) {
 }
 
 void TextureManager::Clean() {
-	std::map<std::string, SDL_Texture*>::iterator it;
-	for (it = mTextureMap.begin(); it != mTextureMap.end(); it++) {
-		SDL_DestroyTexture(it->second);
-	}
-	mTextureMap.clear();
+    for (auto it = mTextureMap.begin(); it != mTextureMap.end(); ++it) {
+        SDL_DestroyTexture(it->second);
+    }
+    mTextureMap.clear();
 
-	if (mInstance) {
-		delete mInstance;
-		mInstance = nullptr;
-	}
+    if (mInstance) {
+        delete mInstance;
+        mInstance = nullptr;
+    }
 }
+
 
 void TextureManager::Render(const std::string& id, int x, int y, int w, int h, float scaleX, float scaleY, float scrollRatio, bool loop, const SDL_RendererFlip& flip) {
 	SDL_Rect srcRect = { 0, 0, w, h };

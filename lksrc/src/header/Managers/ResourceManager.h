@@ -6,6 +6,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <memory>
 #include "Managers/Utils.h"
 
 enum ImageFormat {
@@ -19,7 +20,7 @@ public:
 	static ResourceManager* GetInstance();
 	void ClearResourceManager();
 
-	SDL_Surface* GetSurface(const std::string& filepath, const ImageFormat& format = FORMAT_BMP);
+	std::shared_ptr<SDL_Surface> GetSurface(const std::string& filepath, const ImageFormat& format = FORMAT_BMP);
 	TTF_Font* GetFont(const std::string& filepath, int size);
 	Mix_Chunk* GetSound(const std::string& filepath);
 	Mix_Music* GetMusic(const std::string& filepath);
@@ -29,7 +30,7 @@ private:
 	static ResourceManager* mInstance;
 	ResourceManager(const ResourceManager& other);
 	ResourceManager& operator=(const ResourceManager& other);
-	std::unordered_map<std::string, SDL_Surface*> mSurfaces;
+	std::unordered_map<std::string, std::shared_ptr<SDL_Surface>> mSurfaces;
 	std::unordered_multimap<std::pair<std::string, int>, TTF_Font*, hash_pair> mFonts;
 	std::unordered_map<std::string, Mix_Chunk*> mSounds;
 	std::unordered_map<std::string, Mix_Music*> mMusics;

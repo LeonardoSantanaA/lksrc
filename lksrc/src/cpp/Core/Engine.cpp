@@ -136,14 +136,16 @@ void Engine::ChangeState(const std::string& idTarget) {
 				
 				mCurrentState->Exit();
 				canChange = true;
-				//ResourceManager::GetInstance()->ClearResourceManager();
+				ResourceManager::GetInstance()->ClearResourceManager();
 				EntityManager::GetInstance()->DeleteAllEntities();
+				EnemyManager::GetInstance()->Clean();
 				TextureManager::GetInstance()->Clean();
 				MapParser::GetInstance()->Clean();
 				Sound::GetInstance()->ClearSound();
+				Input::GetInstance()->DestroyInput();
+				Collisor::GetInstance()->Clean();
 
 				Camera::GetInstance()->Reset();
-				Collisor::GetInstance()->Clean();
 			}
 			mCurrentState = state;
 			mCurrentState->Init();
@@ -182,9 +184,6 @@ void Engine::RunLoop() {
 			mCurrentStatePoped;
 		}
 
-		if (Input::GetInstance()->GetKeyPress(SDL_SCANCODE_ESCAPE)) {
-			PopState("pause");
-		}
 
 		if (Input::GetInstance()->GetKeyPress(SDL_SCANCODE_LEFT)) {
 			ChangeState("menu");
