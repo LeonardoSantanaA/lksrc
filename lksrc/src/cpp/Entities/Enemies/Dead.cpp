@@ -5,6 +5,7 @@
 #include "Managers/EnemyManager.h"
 #include "Entities/Player.h"
 #include "Entities/Enemies/DeadFire.h"
+#include "Core/Sound.h"
 
 Dead::Dead(const std::string& name) : Enemy::Enemy(name), mCanCreateFire(true)
 {
@@ -31,6 +32,8 @@ Dead::Dead(const std::string& name) : Enemy::Enemy(name), mCanCreateFire(true)
 	mHit.SetDamage(25.0f);
 	mHit.SetDimensions(46, 46, 1.0f);
 	SetLife(30.0f);
+
+	sndDamage = Sound::GetInstance()->LoadSound("assets/snd/soundEffects/deathDamage.wav");
 }
 
 void Dead::AnimationState() {

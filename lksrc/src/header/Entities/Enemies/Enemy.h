@@ -70,4 +70,6 @@ protected:
 	EnemyHit mHit;
 
 	float mKnockback;
+
+	int sndDamage;
 };

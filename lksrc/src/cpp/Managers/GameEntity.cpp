@@ -37,7 +37,9 @@ GameEntity::GameEntity(const std::string& name) {
 	AddPoint();
 }
 
-GameEntity::~GameEntity() {}
+GameEntity::~GameEntity() {
+	mnoptrColliders.clear();
+}
 
 void GameEntity::Update() {
 	if (mPoint) {
@@ -57,11 +59,9 @@ void GameEntity::Render() {
 		for (size_t i = 0; i < mnoptrColliders.size(); ++i) {
 			if (mnoptrColliders[i]) {
 				mnoptrColliders[i]->Render();
-				//SDL_SetRenderDrawColor(Engine::GetInstance()->GetRender(), 255, 255, 255, SDL_ALPHA_OPAQUE);
-				//SDL_RenderDrawRect(Engine::GetInstance()->GetRender(), mnoptrColliders[i]->GetColliderBoundingBox());
 			}
 			else {
-				std::cout << "trying access nullptr mnoptrcolliders, index: " << i << " gameentity::render()." << std::endl;
+				SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access nullptr mnoptrcolliders, index: %d GameEntity::Render()", static_cast<int>(i));
 			}
 		}	
 	}
@@ -111,7 +111,7 @@ bool GameEntity::IsLastFrame() {
 
 		}
 	}
-	std::cout << "trying get nullptr in gameentity::islastframe()" << std::endl;
+	SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying get nullptr in GameEntity::IsLastFrame()");
 	return false;
 }
 
@@ -144,7 +144,7 @@ SDL_bool GameEntity::IsColliding(const GameEntity& otherEntity, size_t index, si
 	if (mnoptrColliders[index] && otherEntity.mnoptrColliders[otherIndex]) {
 		return this->GetCollider2D(index)->IsColliding(*otherEntity.mnoptrColliders[otherIndex]);
 	}
-	std::cout << "mcollider nullptr, index: " << index << " other index: " << otherIndex << ". gameentity::iscolliding()." << std::endl;
+	SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "mCollider nullptr index: %d, other index: %d. GameEntity::IsColliding()", static_cast<int>(index), static_cast<int>(otherIndex));
 	return SDL_FALSE;
 }
 
@@ -166,7 +166,7 @@ void GameEntity::SetPosition(int x, int y) {
 		mnoptrAnimatedSprite->SetPosition(x, y);
 	}
 	else {
-		std::cout << "trying access a null pointer. gameentity::SetPosition()." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer. GameEntity::SetPosition().");
 	}
 
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
@@ -175,7 +175,7 @@ void GameEntity::SetPosition(int x, int y) {
 			
 		}
 		else {
-			std::cout << "trying access a null pointer. gameentity::setposition(). index " << i << "." << std::endl;
+			SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer. gameentity::setposition(). index %d", i);
 		}
 	}
 }
@@ -186,7 +186,7 @@ void GameEntity::MovePosition(int x, int y) {
 	}else if (mnoptrSprite) {
 		mnoptrSprite->MovePosition(x, y);
 	}else {
-		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer. GameEntity::SetPosition().");
 	}
 
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
@@ -194,7 +194,7 @@ void GameEntity::MovePosition(int x, int y) {
 			mnoptrColliders[i]->MovePosition(x, y);
 		}
 		else {
-			std::cout << "trying access a null pointer. gameentity::moveposition(). index " << i << "." << std::endl;
+			SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer. GameEntity::MovePosition(). index %d.", i);
 		}
 	}
 }
@@ -207,7 +207,7 @@ void GameEntity::MovePosition(float x, float y) {
 		mnoptrSprite->MovePosition(x, y);
 	}
 	else {
-		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer. GameEntity::SetPosition().");
 	}
 
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
@@ -215,7 +215,7 @@ void GameEntity::MovePosition(float x, float y) {
 			mnoptrColliders[i]->MovePosition(x, y);
 		}
 		else {
-			std::cout << "trying access a null pointer. gameentity::moveposition(). index " << i << "." << std::endl;
+			SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer collider. GameEntity::MovePosition(). index %d.", i);
 		}
 	}
 }
@@ -225,13 +225,13 @@ void GameEntity::SetDimensions(int w, int h, float scale) {
 	if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->SetDimensions(w, h, scale);
 	}else {
-	std::cout << "trying access a null pointer. SetPosition()." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer. GameEntity::SetDimensions().");
 	}
 
 	if (mnoptrSprite) {
 		mnoptrSprite->SetDimensions(w, h, scale);
 	}else {
-		std::cout << "trying access a null pointer. SetPosition()." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer. GameEntity::SetPosition().");
 	}
 
 	for (int i = 0; i < mnoptrColliders.size(); ++i) {
@@ -239,7 +239,7 @@ void GameEntity::SetDimensions(int w, int h, float scale) {
 			mnoptrColliders[i]->SetDimensions(w, h);
 		} 
 		else {
-			std::cout << "trying access a null pointer. gameentity::setdimensions(). index " << i << "." << std::endl;
+			SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a null pointer collider. GameEntity::SetDimensions(). index %d.", i);
 		}
 	}
 }
@@ -268,14 +268,14 @@ TexturedRectangle& GameEntity::GetTexturedRectangle() const {
 	if (mnoptrSprite) {
 		return *mnoptrSprite;
 	}
-	std::cout << "trying access a nullptr. gameentity::gettexturedrectangle()." << std::endl;
+	SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a nullptr. GameEntity::GetTexturedRectangle().");
 }
 
 Collider2D* GameEntity::GetCollider2D(size_t index) {
 	if (mnoptrColliders[index]) {
 		return mnoptrColliders[index].get();
 	}
-	std::cout << "trying access a nullptr. gameentity::getcollider2D(), index: " << index << std::endl;
+	SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "trying access a nullptr. GameEntity::getcollider2D(), index: %d", static_cast<int>(index));
 	return nullptr;
 }
 
@@ -285,8 +285,9 @@ int GameEntity::GetX() {
 	}else if (mnoptrSprite) {
 		return mnoptrSprite->GetX(); 
 	}
-	 
-	std::cout << "gameentity::getx() from nullptr sprite." << std::endl;  
+
+	SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "GameEntity::GetX() from nullptr sprite.");
+ 
 	return -1; 
 }
 
@@ -297,7 +298,7 @@ int GameEntity::GetY() {
 		return mnoptrSprite->GetY(); 
 	}
 	 
-	std::cout << "gameentity::gety() from nullptr sprite." << std::endl; 
+	SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "GameEntity::GetY() from nullptr sprite.");
 	return -1; 
 }
 
@@ -308,7 +309,7 @@ int GameEntity::GetWidth() {
 		return mnoptrSprite->GetWidth(); 
 	}
 	 
-	std::cout << "gameentity::getwidth() from nullptr sprite." << std::endl;  
+	SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "GameEntity::GetWidth() from nullptr sprite.");
 	return -1; 
 }
 
@@ -319,7 +320,7 @@ int GameEntity::GetHeight() {
 		return mnoptrSprite->GetHeight(); 
 	}
 	 
-	std::cout << "gameentity::getheight() from nullptr sprite." << std::endl;  
+	SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "GameEntity::GetHeight() from nullptr sprite.");
 	return -1; 
 }
 
@@ -333,7 +334,7 @@ void GameEntity::SetAngleRotate(float angle) {
 		mnoptrAnimatedSprite->SetAngle(angle);
 	}
 	else {
-		std::cout << "gameentity::setanglerotate() from nullptr sprite." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "GameEntity::SetAngleRotate() from nullptr sprite.");
 	}
 	
 	
@@ -348,27 +349,20 @@ void GameEntity::SetCenterPointRotate(const SDL_Point& point) {
 	else if (mnoptrSprite) {
 		mnoptrSprite->SetCenterPointRotate(point);
 	}
-	 
 	else {
-		std::cout << "gameentity::setcenterpointrotate() from nullptr sprite." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "GameEntity::SetCenterPointRotate() from nullptr sprite.");
 	}
-
-	
-	
 }
 
 void GameEntity::FlipHorizontal() { 
-	
 	if (mnoptrAnimatedSprite) {
 		mnoptrAnimatedSprite->FlipImageHorizontal();
 	}else if (mnoptrSprite) {
 		mnoptrSprite->FlipImageHorizontal();
 	}
 	else {
-		std::cout << "gameentity::fliphorizontal() from nullptr sprite." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "GameEntity::FlipHorizontal() from nullptr sprite.");
 	}
-
-	
 }
 
 void GameEntity::FlipVertical() { 
@@ -379,8 +373,7 @@ void GameEntity::FlipVertical() {
 		mnoptrAnimatedSprite->FlipImageVertical();
 	}
 	else {
-		std::cout << "gameentity::flipvertical() from nullptr sprite." << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "GameEntity::FlipVertical() from nullptr sprite.");
 	}
-
 	
 }

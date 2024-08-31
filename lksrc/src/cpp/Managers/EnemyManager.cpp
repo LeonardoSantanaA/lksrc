@@ -26,14 +26,14 @@ std::vector<Enemy*> EnemyManager::mEnemies;
         if (it != mEnemies.end()) {
             try {
                 mEnemies.erase(it);   
-                std::cout << "Enemy removed: " << enemy.GetName() << std::endl;
+                SDL_Log("Enemy removed: '%s'", enemy.GetName().c_str());
             }
             catch (const std::exception& e) {
-                std::cerr << "Exception during enemy removal: " << e.what() << std::endl;
+                SDL_Log("Exception during enemy removal: '%s'", e.what());
             }
         }
         else {
-            std::cerr << "Attempted to remove an enemy that is not in the list. Enemy name: " << enemy.GetName() << std::endl;
+            SDL_Log("Attempted to remove an enemy that is not in the list. Enemy name: '%s'", enemy.GetName().c_str());;
         }
     }
 

@@ -32,9 +32,7 @@ int Sound::LoadMusic(std::string filepath) {
 }
 
 int Sound::LoadSound(std::string filepath) {
-	Mix_Chunk* s = nullptr;
-
-	s = ResourceManager::GetInstance()->GetSound(filepath);
+	Mix_Chunk* s = ResourceManager::GetInstance()->GetSound(filepath);;
 
 	if (s == nullptr) {
 		std::cout << "Failed to load sound. Error: " << Mix_GetError() << std::endl;

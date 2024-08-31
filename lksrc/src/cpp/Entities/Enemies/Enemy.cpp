@@ -5,9 +5,10 @@
 #include "Managers/EntityManager.h"
 #include "Managers/EnemyManager.h"
 #include "Entities/Player.h"
+#include "Core/Sound.h"
 
 Enemy::Enemy(const std::string& name) : GameEntity::GameEntity(name),
-vSpd(0.0f), grvt(0.8f), mVelocity(0.0f), mMaxVelocity(2.0f), mStepVelocity(0.2f), mCanJump(false), mMaxDelayJump(20), mCurrentDelayJump(0), distanceToPlayer(50), mIsAttacking(false), currentAnimationAttack(0), maxAnimationAttack(1), mCanAttack(false), mDelayAttack(0), mMaxDelayAttack(28.0f), mDirection(1), mCurrentDirection(1), mHit(), isTakingDamage(false), mKnockback(0.5f), mLife(5.0f), mHitKnockback(3.0f), mKnockbackDefending(1.5f), mFrameStartToAttack(4), mFrameEndToAttack(6), mIdleAnimationSpeed(10.0f), mRunAnimationSpeed(10.0f), mAttackAnimationSpeed(5.0f), mDamageAnimationSpeed(3.0f), mDeadAnimationSpeed(7.0f), mJumpAnimationSpeed(5.0f)
+vSpd(0.0f), grvt(0.8f), mVelocity(0.0f), mMaxVelocity(2.0f), mStepVelocity(0.2f), mCanJump(false), mMaxDelayJump(20), mCurrentDelayJump(0), distanceToPlayer(50), mIsAttacking(false), currentAnimationAttack(0), maxAnimationAttack(1), mCanAttack(false), mDelayAttack(0), mMaxDelayAttack(28.0f), mDirection(1), mCurrentDirection(1), mHit(), isTakingDamage(false), mKnockback(0.5f), mLife(5.0f), mHitKnockback(3.0f), mKnockbackDefending(1.5f), mFrameStartToAttack(4), mFrameEndToAttack(6), mIdleAnimationSpeed(10.0f), mRunAnimationSpeed(10.0f), mAttackAnimationSpeed(5.0f), mDamageAnimationSpeed(3.0f), mDeadAnimationSpeed(7.0f), mJumpAnimationSpeed(5.0f), sndDamage(0)
 {	
 	currentAnimation = IDLE;
 	SetKnockBack(5.0f);
@@ -15,7 +16,6 @@ vSpd(0.0f), grvt(0.8f), mVelocity(0.0f), mMaxVelocity(2.0f), mStepVelocity(0.2f)
 	mHit.SetDimensions(32, 32, 1.0f);
 	EnemyManager::GetInstance()->AddEnemy(this);
 	mCanHit = true;
-
 }
 
 void Enemy::Update() {
@@ -265,6 +265,7 @@ void Enemy::TakeDamage(float damage, GameEntity& hitOwner) {
 		isTakingDamage = true;
 		currentAnimation = DAMAGE;
 		mLife -= damage;
+		Sound::GetInstance()->PlaySound(sndDamage);
 		if (hitOwner.GetVec2D(0).x > GetVec2D(0).x) {
 			mVelocity = -mKnockback;
 		}

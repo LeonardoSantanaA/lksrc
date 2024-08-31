@@ -74,9 +74,9 @@ private:
 	int currentIndexAttack;
 	std::string nameCurrentAnimationAttack;
 	float currentDelayAttack;
-	float maxDelayAttack;
+	const float maxDelayAttack;
 	float currentDelayComboAttack;
-	float maxDelayComboAttack;
+	const float maxDelayComboAttack;
 	bool canHit;
 
 	bool canPrepareToDefend;
@@ -96,6 +96,12 @@ private:
 	void Jump();
 	bool HorizontalMovement();
 	void ResetVelocity();
+
+	//sounds
+	int sndAttack;
+	int sndAttackDeffense;
+	int sndDamage;
+	int sndRoll;
 
 	//return if player can do another movement
 	bool CanAct() const;

@@ -2,6 +2,7 @@
 #include "Entities/Enemies/Zombie.h"
 #include "Collision/Collisor.h"
 #include "Managers/EntityManager.h"
+#include "Core/Sound.h"
 
 Zombie::Zombie(const std::string& name) : Enemy::Enemy(name)
 {
@@ -26,4 +27,6 @@ Zombie::Zombie(const std::string& name) : Enemy::Enemy(name)
 	mFrameEndToAttack = 5;
 	mHit.SetDamage(25.0f);
 	SetLife(10.0f);
+
+	sndDamage = Sound::GetInstance()->LoadSound("assets/snd/soundEffects/zombieDamage.wav");
 }

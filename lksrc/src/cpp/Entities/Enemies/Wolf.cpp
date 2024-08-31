@@ -3,6 +3,7 @@
 #include "Collision/Collisor.h"
 #include "Managers/EntityManager.h"
 #include "Entities/Player.h"
+#include "Core/Sound.h"
 
 Wolf::Wolf(const std::string& name) : Enemy::Enemy(name)
 {
@@ -28,6 +29,8 @@ Wolf::Wolf(const std::string& name) : Enemy::Enemy(name)
 	mFrameStartToAttack = 2;
 	mFrameEndToAttack = 4;
 	FlipHorizontal();
+
+	sndDamage = Sound::GetInstance()->LoadSound("assets/snd/soundEffects/wolfDamage.wav");
 }
 
 void Wolf::Attack() {

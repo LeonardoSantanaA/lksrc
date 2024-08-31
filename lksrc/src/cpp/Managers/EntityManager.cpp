@@ -18,7 +18,7 @@ EntityManager* EntityManager::GetInstance() {
 bool EntityManager::CreateEntity() {
 	std::string name = "entity_" + std::to_string(GetEntityCount());
 	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name);
-	std::cout << "new entity. entities: " << GetEntityCount() << std::endl;
+	SDL_Log("new entity. entities: %d", static_cast<int>(GetEntityCount()));
 	mEntities.insert(std::make_pair(name, newEntity));
 	mEntityCount++;
 	return (mEntities[name] != nullptr);
@@ -26,7 +26,7 @@ bool EntityManager::CreateEntity() {
 
 bool EntityManager::CreateEntity(const std::string& name) {
 	std::shared_ptr<GameEntity> newEntity = std::make_shared<GameEntity>(name);
-	std::cout << "new entity. entities: " << GetEntityCount() << std::endl;
+	SDL_Log("new entity. entities: %d", static_cast<int>(GetEntityCount()));
 	mEntities.insert(std::make_pair(name, newEntity));
 	mEntityCount++;
 	return (mEntities[name] != nullptr);
@@ -43,7 +43,7 @@ bool EntityManager::CreateEntityType(const std::string& className) {
 		return type->second();
 	}
 	
-	std::cout << "trying get unknown type. entitymanager::createEntityType(). className: " << className << std::endl;
+	SDL_Log("trying get unknown type. entitymanager::createEntityType(). className: %s", className.c_str());
 	return false;
 	
 }
@@ -53,11 +53,11 @@ void EntityManager::ParseEntities(const std::string& path) {
 
 	xml.LoadFile(path + ".lkobj");
 	if (xml.Error()) {
-		std::cout << "failed to load entitymanager::parseentities in " << path + ".lkobj" << " - " << xml.ErrorDesc() << std::endl;
+		SDL_Log("failed to load entitymanager::parseentities in %s.lkobj - error: %s", path.c_str(), xml.ErrorDesc());
 		return;
 	}
 	else {
-		std::cout << "reading entities from " << path + ".lkobj" << std::endl;
+		SDL_Log("reading entities from %s.lkobj", path.c_str());
 	}
 
 	TiXmlElement* root = xml.RootElement();
@@ -66,7 +66,6 @@ void EntityManager::ParseEntities(const std::string& path) {
 	for (TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
 		if (e->Value() == std::string("config")) {
 			e->Attribute("tilesize", &tileSize);
-			std::cout << "tileSize of entities:" << tileSize << std::endl;
 		}
 
 		if (e->Value() == std::string("entity")) {
@@ -88,7 +87,7 @@ void EntityManager::ParseEntities(const std::string& path) {
 
 			CreateEntityType(entityType);
 			std::string newEntityName = "entity_" + std::to_string(GetEntityCount() - 1);
-			std::cout << "configuring entity: " << newEntityName << std::endl;
+			SDL_Log("configuring entity: %s", newEntityName.c_str());
 			std::shared_ptr<GameEntity> newEntity = GetEntityRef<GameEntity>(newEntityName);
 
 			newEntity->SetPosition(x * tileSize, y * tileSize);
@@ -125,7 +124,7 @@ void EntityManager::ParseEntities(const std::string& path) {
 			}
 
 			newEntity->Init();
-			std::cout << "new entity parsed, id: " << newEntityName << std::endl;
+			SDL_Log("new entity parsed, id: %s", newEntityName.c_str());
 		}
 	}
 }
@@ -140,18 +139,18 @@ void EntityManager::RemoveEntity(const std::string& name) {
 				mEntities.erase(entity);
 				mEntityCount--;
 
-				std::cout << "Entity removed (" << name << "). Entities: " << mEntityCount << std::endl;
+				SDL_Log("Entity removed -> %s.Entities: %d", name.c_str(), static_cast<int>(mEntityCount));
 			}
 			catch (const std::exception& e) {
-				std::cerr << "Exception during entity removal: " << e.what() << std::endl;
+				SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Exception during entity removal: %s", e.what());
 			}
 		}
 		else {
-			std::cerr << "Warning: Entity exists but is null. Key: " << name << std::endl;
+			SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Warning: Entity exists but is null. Key: %s", name.c_str());
 		}
 	}
 	else {
-		std::cerr << "Trying to remove entity that doesn't exist. EntityManager::RemoveEntity(). Key: " << name << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Trying to remove entity that doesn't exist. EntityManager::RemoveEntity(). Key: %s", name.c_str());
 	}
 }
 
@@ -176,7 +175,7 @@ void EntityManager::UpdateAllEntities() {
 			
 		}
 		else {
-			std::cerr << "Unknown entity in EntityManager::UpdateAllEntities(). Key: " << key << std::endl;
+			SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Unknown entity in EntityManager::UpdateAllEntities(). Key: %s", key.c_str());
 		}
 	}
 
@@ -202,7 +201,7 @@ void EntityManager::RenderLayerEntity(const RenderEntityLayer& layer) {
 			}
 		}
 		else if (!mEntities[it->first]) {
-			std::cout << "unknown entity render entitymanager::renderlayerentity(): " << index << std::endl;
+			SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "unknown entity render entitymanager::renderlayerentity(): %d", static_cast<int>(index));
 		}
 
 		index++;

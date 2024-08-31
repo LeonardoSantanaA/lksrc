@@ -4,6 +4,7 @@
 #include "Collision/Collisor.h"
 #include "Managers/Utils.h"
 #include "Camera/Camera.h"
+#include "Core/Sound.h"
 
 //stamina cost to roll
 const float ROLL_COST = 15.0f;
@@ -53,6 +54,11 @@ nameCurrentAnimationAttack("attack_0"), currentDelayComboAttack(0), maxDelayComb
 	AddAnimation("inDefense", 960, 2);
 	AddAnimation("damage", 1040, 3);
 	AddAnimation("dead", 480, 10);
+
+	sndAttack = Sound::GetInstance()->LoadSound("assets/snd/soundEffects/playerAttack.wav");
+	sndAttackDeffense = Sound::GetInstance()->LoadSound("assets/snd/soundEffects/playerAttackDeffense.wav");
+	sndDamage = Sound::GetInstance()->LoadSound("assets/snd/soundEffects/playerDamage.wav");
+	sndRoll = Sound::GetInstance()->LoadSound("assets/snd/soundEffects/playerRoll.wav");
 
 	ChangeAnimation("idle");
 	AddCollider2D();
@@ -191,6 +197,7 @@ void Player::Roll() {
 		if (canRoll) {
 			mVelocity = ROLL_DASH * mDirection;
 			canRoll = false;
+			Sound::GetInstance()->PlaySound(sndRoll);
 		}
 
 	}
@@ -519,6 +526,7 @@ void Player::Attack() {
 		isMoving = false;
 		mCurrentState = PLAYER_ATTACKING;
 		currentIndexAttack++;
+		Sound::GetInstance()->PlaySound(sndAttack);
 	}
 }
 
@@ -555,6 +563,10 @@ void Player::TakeDamage(float damage, float knockback) {
 			damage = damage * 0.2f; 
 			knockback = knockback * 0.5f;
 			Camera::GetInstance()->Screenshake(1.0f, 3.0f);
+			Sound::GetInstance()->PlaySound(sndAttackDeffense);
+		}
+		else {
+			Sound::GetInstance()->PlaySound(sndDamage);
 		}
 		Camera::GetInstance()->Screenshake(1.0f, 5.0f);
 		mLife -= damage;

@@ -4,6 +4,7 @@
 #include "Managers/EntityManager.h"
 #include "Managers/EnemyManager.h"
 #include "Entities/Player.h"
+#include "Core/Sound.h"
 
 Skeleton::Skeleton(const std::string& name) : Enemy::Enemy(name)
 {
@@ -30,6 +31,8 @@ Skeleton::Skeleton(const std::string& name) : Enemy::Enemy(name)
 	mFrameEndToAttack = 7;
 	SetLife(20.0f);
 	mCanHit2 = true;
+
+	sndDamage = Sound::GetInstance()->LoadSound("assets/snd/soundEffects/skeletonDamage.wav");
 }
 
 void Skeleton::AnimationState() {

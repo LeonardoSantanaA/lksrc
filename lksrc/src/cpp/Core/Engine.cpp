@@ -27,7 +27,7 @@ Engine::Engine(): mMouseX(0), mMouseY(0), mWidth(800), mHeight(600), mMaxFrameRa
 Engine* Engine::GetInstance() {
 	if (!mInstance) {
 		mInstance = new Engine;
-		std::cout << "new engine instance." << std::endl;
+		SDL_Log("new engine instance.");
 	}
 	return mInstance;
 }
@@ -36,10 +36,10 @@ void Engine::Init() {
 	mGameIsRunning = true;
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		std::cerr << "SDL could not be initialized: " << SDL_GetError() << std::endl;
+		SDL_LogError(SDL_LOG_CATEGORY_ERROR, "SDL could not be initialized: %s", SDL_GetError());
 	}
 	else {
-		std::cout << "SDL initialized." << std::endl;
+		SDL_Log("SDL initialized.");
 	}
 
 	SDL_WindowFlags windowFlags = (SDL_WindowFlags)(SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
@@ -133,7 +133,6 @@ void Engine::ChangeState(const std::string& idTarget) {
 	for (auto state : mStates) {
 		if (state->id == idTarget) {
 			if (mCurrentState) {
-				
 				mCurrentState->Exit();
 				canChange = true;
 				ResourceManager::GetInstance()->ClearResourceManager();
