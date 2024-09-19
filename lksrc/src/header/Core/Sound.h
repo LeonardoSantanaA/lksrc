@@ -13,18 +13,21 @@ public:
 	int LoadMusic(std::string filepath);
 	int LoadSound(std::string filepath);
 
-	static void SetVolumeSound(int v);
-	static void SetVolumeMusic(int v);
+	void SetVolumeSound(int v);
+	void SetVolumeMusic(int v);
+
+	inline int GetVolumeSound() const { return mVolumeSound; }
+	inline int GetVolumeMusic() const { return mVolumeMusic; }
 
 	int PlayMusic(int m);
 	int PlaySound(int s);
 
-	static void QuitMixer();
+	void QuitMixer();
 
 	void TogglePlay();
 
 private:
-	Sound() :mVolumeMusic(20), mVolumeSound(30) {};
+	Sound() :mVolumeMusic(60), mVolumeSound(30) {};
 	static Sound* mInstance;
 
 	int mVolumeSound;

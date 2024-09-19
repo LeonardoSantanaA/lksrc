@@ -91,9 +91,19 @@ public:
 	//this function register the class of a unherited class to allows instatiate
 	void RegisterType(const std::string& className, std::function < bool() > creator);
 
-	inline std::shared_ptr<const std::unordered_map<std::string, std::shared_ptr<GameEntity>>> GetEntities() const {
-		return std::make_shared<const std::unordered_map<std::string, std::shared_ptr<GameEntity>>>(mEntities);
+	template<class Type>
+	std::shared_ptr<const std::unordered_map<std::string, std::shared_ptr<GameEntity>>> GetEntities() const {
+		auto filteredEntities = std::make_shared<std::unordered_map<std::string, std::shared_ptr<GameEntity>>>();
+		for (const auto& pair : mEntities) {
+			if (std::dynamic_pointer_cast<Type>(pair.second)) {
+				filteredEntities->insert(pair);
+			}
+		}
+		
+		return filteredEntities;
 	}
+
+
 
 private:
 	EntityManager(): mEntityCount(0) {};

@@ -18,6 +18,7 @@ public:
 	void SetColor(const SDL_Color& color);
 	void SetPosition(int x, int y);
 	int GetSize();
+	int GetHeight();
 	void Render();
 	void SetWrapLimitSize(int limitWrap);
 

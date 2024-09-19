@@ -1,7 +1,6 @@
 #include "Entities/PlayerHit.h"
 #include "Managers/EntityManager.h"
 #include "Managers/Utils.h"
-#include "Managers/EnemyManager.h"
 
 PlayerHit::PlayerHit(GameEntity* entityOwn) :mnoptrCollider(nullptr), mDamage(0), mPos(Vec2D::Zero), mOwn(entityOwn) {
 	mnoptrCollider = std::make_unique<Collider2D>();
@@ -22,9 +21,11 @@ void PlayerHit::SetDimensions(int w, int h, float scale) {
 
 Enemy* PlayerHit::IsHitting() {
 	if (mnoptrCollider) {
-		for (const auto& enemy : EnemyManager::GetInstance()->GetInstance()->GetEnemies()) {
+		auto enemies = EntityManager::GetInstance()->GetEntities<Enemy>();
+		for (const auto& pair : *enemies) {
+			const auto& enemy = pair.second;
 			if (mnoptrCollider->IsColliding(*enemy->GetCollider2D(0))) {
-				return enemy;
+				return EntityManager::GetInstance()->GetEntityRef<Enemy>(enemy->GetName()).get();
 			}
 		}
 

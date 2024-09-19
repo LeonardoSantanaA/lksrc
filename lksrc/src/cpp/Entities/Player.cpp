@@ -40,7 +40,7 @@ mStepVelocity(0.2f), inChangeDirection(false), isAttacking(false), currentIndexA
 nameCurrentAnimationAttack("attack_0"), currentDelayComboAttack(0), maxDelayComboAttack(50.0f), mHit(this), canHit(true), mCurrentState(PLAYER_IDLE), canChangeDirection(false), mDelayCanChangeDirection(0), isRolling(false), canRoll(true), mDelayCanRoll(0), preparingToDefend(false), isDefending(false), canPrepareToDefend(false), takingDamage(false), mDelayTakingDamage(0), mLife(100.0f), mMaxLife(100.0f), mStepLife(0.08f), mStamina(80.0f), mMaxStamina(80.0f), mStepStamina(0.2f), isDead(false)
 {
 	float scale = 1.5f;
-	AddAnimatedSprite("assets/images/player.png", FORMAT_PNG);
+	AddAnimatedSprite("assets/images/player/player.png", FORMAT_PNG);
 	SetAnimatedSpriteDimensionsInSpriteSheet(120, 80);
 	AddAnimation("idle", 0, 10);
 	AddAnimation("run", 160, 10);

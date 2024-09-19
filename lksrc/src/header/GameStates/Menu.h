@@ -10,6 +10,7 @@ public:
         id = "menu";
         buttons[0] = nullptr;
         buttons[1] = nullptr;
+        buttons[2] = nullptr;
     }
     ~Menu() override {
         Exit();
@@ -24,5 +25,5 @@ private:
     static void Settings();
     static void Editor();
     static void Quit();
-    Button* buttons[2];
+    Button* buttons[3];
 };

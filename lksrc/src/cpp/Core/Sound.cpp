@@ -43,15 +43,20 @@ int Sound::LoadSound(std::string filepath) {
 }
 
 void Sound::SetVolumeSound(int v) {
-	Sound::GetInstance()->mVolumeSound = (MIX_MAX_VOLUME * v) / 100;
+	Mix_Volume(-1, v);
+	Sound::GetInstance()->mVolumeSound = v;//(MIX_MAX_VOLUME * v) / 100;
 }
 
 void Sound::SetVolumeMusic(int v) {
-	Sound::GetInstance()->mVolumeMusic = (MIX_MAX_VOLUME * v) / 100;
+	int adjustedVolume = v;
+	Mix_VolumeMusic(adjustedVolume);
+
+	Sound::GetInstance()->mVolumeMusic = adjustedVolume;
 }
 
 
 int Sound::PlayMusic(int m) {
+	std::cout << "volume da musica: " << mVolumeMusic << std::endl;
 	if (Mix_PlayingMusic() == 0) {
 		Mix_VolumeMusic(mVolumeMusic);
 		Mix_PlayMusic(musics[m], -1);

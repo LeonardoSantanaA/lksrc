@@ -3,7 +3,6 @@
 #include "Entities/Enemies/Enemy.h"
 #include "Collision/Collisor.h"
 #include "Managers/EntityManager.h"
-#include "Managers/EnemyManager.h"
 #include "Entities/Player.h"
 #include "Core/Sound.h"
 
@@ -14,7 +13,6 @@ vSpd(0.0f), grvt(0.8f), mVelocity(0.0f), mMaxVelocity(2.0f), mStepVelocity(0.2f)
 	SetKnockBack(5.0f);
 	mHit.SetDamage(3.0f);
 	mHit.SetDimensions(32, 32, 1.0f);
-	EnemyManager::GetInstance()->AddEnemy(this);
 	mCanHit = true;
 }
 
@@ -236,7 +234,6 @@ void Enemy::AnimationState() {
 		SetAnimationLoop(true);
 		SetAnimationSpeed(mDeadAnimationSpeed);
 		if (IsLastFrame()) {
-			EnemyManager::GetInstance()->RemoveEnemy(*this);
 			EntityManager::GetInstance()->RemoveEntity(GetName());
 		}
 		break;

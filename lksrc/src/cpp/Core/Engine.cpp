@@ -12,7 +12,6 @@
 #include "Map/MapParser.h"
 #include "Camera/Camera.h"
 #include "Collision/Collisor.h"
-#include "Managers/EnemyManager.h"
 
 //states
 #include "GameStates/Menu.h"
@@ -53,10 +52,9 @@ void Engine::Init() {
 }
 
 Engine::~Engine() {
-	Sound::QuitMixer();
+	Sound::GetInstance()->QuitMixer();
 	ResourceManager::GetInstance()->ClearResourceManager();
 	EntityManager::GetInstance()->DeleteAllEntities();
-	EnemyManager::GetInstance()->Clean();
 	TextureManager::GetInstance()->Clean();
 	MapParser::GetInstance()->Clean();
 	Sound::GetInstance()->ClearSound();
@@ -137,10 +135,9 @@ void Engine::ChangeState(const std::string& idTarget) {
 				canChange = true;
 				ResourceManager::GetInstance()->ClearResourceManager();
 				EntityManager::GetInstance()->DeleteAllEntities();
-				EnemyManager::GetInstance()->Clean();
 				TextureManager::GetInstance()->Clean();
 				MapParser::GetInstance()->Clean();
-				Sound::GetInstance()->ClearSound();
+				Sound::GetInstance()->QuitMixer();
 				Input::GetInstance()->DestroyInput();
 				Collisor::GetInstance()->Clean();
 

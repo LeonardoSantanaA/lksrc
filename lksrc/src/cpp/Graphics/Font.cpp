@@ -64,14 +64,27 @@ void Font::SetWrapLimitSize(int limitWrap) {
 
 void Font::SetText(const std::string& str) {
 	mStr = str;
+
 	SDL_Surface* ttfSurface = TTF_RenderText_Solid(mFont, mStr.c_str(), mColor);
+	if (ttfSurface == nullptr) {
+		std::cout << "Falha ao renderizar o texto. Font::SetText()/" << TTF_GetError() << std::endl;
+		return;
+	}
+
+	if (mTexture != nullptr) {
+		SDL_DestroyTexture(mTexture);
+		mTexture = nullptr;
+	}
+
 	mTexture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRender(), ttfSurface);
-	if (mTexture == NULL) {
-		std::cout << "Couldnt create texture from surface. font::settext()/" << SDL_GetError() << std::endl;
+	if (mTexture == nullptr) {
+		std::cout << "Falha ao criar a textura. Font::SetText()/" << SDL_GetError() << std::endl;
 	}
 	SDL_FreeSurface(ttfSurface);
+
 	UpdateDimensions();
 }
+
 
 void Font::SetSize(int size) {
 	mFont = ResourceManager::GetInstance()->GetFont(mFilepath, size);
@@ -100,8 +113,17 @@ void Font::SetPosition(int x, int y) {
 int Font::GetSize() {
 	if (mFont) {
 		int w = 0, h = 0;
-		TTF_SizeText(mFont, mStr.c_str(), &w, &h);
+		TTF_SizeUTF8(mFont, mStr.c_str(), &w, &h);
 		return w;
+	}
+	return 0;
+}
+
+int Font::GetHeight() {
+	if (mFont) {
+		int w = 0, h = 0;
+		TTF_SizeText(mFont, mStr.c_str(), &w, &h);
+		return h;
 	}
 	return 0;
 }

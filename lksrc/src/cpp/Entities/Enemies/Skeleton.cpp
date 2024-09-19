@@ -2,7 +2,6 @@
 #include "Entities/Enemies/Skeleton.h"
 #include "Collision/Collisor.h"
 #include "Managers/EntityManager.h"
-#include "Managers/EnemyManager.h"
 #include "Entities/Player.h"
 #include "Core/Sound.h"
 
@@ -126,7 +125,6 @@ void Skeleton::AnimationState() {
 		SetAnimationLoop(true);
 		SetAnimationSpeed(mDeadAnimationSpeed);
 		if (IsLastFrame()) {
-			EnemyManager::GetInstance()->RemoveEnemy(*this);
 			EntityManager::GetInstance()->RemoveEntity(GetName());
 		}
 		break;

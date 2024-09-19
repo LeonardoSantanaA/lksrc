@@ -11,7 +11,7 @@
 #include "Entities/Enemies/Skeleton.h"
 #include "Entities/Enemies/Dead.h"
 #include "Entities/Enemies/DeadFire.h"
-#include "Managers/EnemyManager.h"
+#include "Core/Sound.h"
 
 Play::Play() {
 	id = "play";
@@ -49,6 +49,9 @@ bool Play::Init() {
 
 	Camera::GetInstance()->SetZoom(2.0f);
 
+	int music = Sound::GetInstance()->LoadMusic("assets/snd/musics/playSoundtrack.mp3");
+	Sound::GetInstance()->PlayMusic(music);
+
 	std::cout << "play initialized" << std::endl;
 
 	return true;
@@ -63,16 +66,15 @@ void Play::Update() {
 }
 
 void Play::Render() {
-	TextureManager::GetInstance()->Render("background_1", 0, 0, 320, 180, 5.0f, 5.0f, 1.3f, true);
-	TextureManager::GetInstance()->Render("background_2", 0, 400, 320, 131, 3.0f, 2.5f, 1.1f, true);
-	TextureManager::GetInstance()->Render("background_3", 0, 500, 320, 30, 5.0f, 5.0f, 1.1f, true);
+	TextureManager::GetInstance()->Render("background_1", 0, 0, 320, 180, 5.0f, 5.0f, 1.1f, true);
+	TextureManager::GetInstance()->Render("background_2", 0, 400, 320, 131, 3.0f, 3.0f, 1.15f, true);
+	TextureManager::GetInstance()->Render("background_3", 0, 500, 320, 30, 5.0f, 5.0f, 1.2f, true);
 	mLevelMap->Render();
 	mGUI->Render();
 	EntityManager::GetInstance()->RenderAllEntities();
 }
 
 bool Play::Exit() {
-	EnemyManager::GetInstance()->ClearEnemies();
 	std::cout << "exit play" << std::endl;
 	return true; 
 }

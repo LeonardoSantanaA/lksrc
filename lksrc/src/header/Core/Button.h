@@ -18,6 +18,7 @@ public:
 	void SetButtonFunction(std::function<void(void)> function);
 	void SetPressableTexture(const std::string& path, const ImageFormat& imageFormat = FORMAT_PNG, float imageScale = SCALE);
 
+	inline Vec2D GetPosition() const { if (this) { return mPosition; } return Vec2D::Zero; }
 	void SetPosition(float x, float y);
 	void SetPosition(const Vec2D& position);
 	void SetScale(float scale, bool isPressableButton = false);
