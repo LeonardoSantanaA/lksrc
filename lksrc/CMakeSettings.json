@@ -12,7 +12,54 @@
       "environment": {
         "CFLAGS": "",
         "CXXFLAGS": ""
-      }
+      },
+      "variables": [
+        {
+          "name": "SDL2MAIN_LIBRARY",
+          "value": "C:\\SDL2\\lib\\x64\\SDL2main.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "SDL2_LIBRARY",
+          "value": "C:\\SDL2\\lib\\x64\\SDL2.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "SDL2_INCLUDE_DIR",
+          "value": "C:\\SDL2\\include",
+          "type": "PATH"
+        },
+        {
+          "name": "SDL2_IMAGE_LIBRARY",
+          "value": "C:\\SDL2\\lib\\x64\\SDL2_image.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "SDL2_IMAGE_INCLUDE_DIR",
+          "value": "C:\\SDL2\\include",
+          "type": "PATH"
+        },
+        {
+          "name": "SDL2_TTF_INCLUDE_DIR",
+          "value": "C:\\SDL2\\include",
+          "type": "PATH"
+        },
+        {
+          "name": "SDL2_TTF_LIBRARY",
+          "value": "C:\\SDL2\\lib\\x64\\SDL2_tff.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "SDL2_MIXER_LIBRARY",
+          "value": "C:\\SDL2\\lib\\x64\\SDL2_mixer.lib",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "SDL2_MIXER_INCLUDE_DIR",
+          "value": "C:\\SDL2\\include",
+          "type": "PATH"
+        }
+      ]
     },
     {
       "name": "x64-Release",

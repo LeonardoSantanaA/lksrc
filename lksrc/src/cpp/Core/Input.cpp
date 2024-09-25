@@ -66,8 +66,6 @@ void Input::Listen() {
             if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
                 int width = 0, height = 0;
                 SDL_GetWindowSize(Engine::GetInstance()->GetWindow(), &width, &height);
-                Engine::GetInstance()->SetWidth(width);
-                Engine::GetInstance()->SetHeight(height);
                 Camera::GetInstance()->Reload();
                 SDL_RenderSetLogicalSize(Engine::GetInstance()->GetRender(), Engine::GetInstance()->GetWidth(), Engine::GetInstance()->GetHeight());
             }

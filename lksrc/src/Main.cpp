@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
 
 	engine = Engine::GetInstance();
 	engine->Init();
-	engine->SetWindowName("LkSouls");
+	engine->SetWindowName("LkSrc");
 	engine->SetMaxFrameRate(60);
 	//engine->SetEventCallback(HandleEvents);
 	//engine->SetUpdateCallback(HandleUpdate);
